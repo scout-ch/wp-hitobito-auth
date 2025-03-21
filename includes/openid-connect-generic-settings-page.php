@@ -443,7 +443,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			</p>
 			<p class="description">
 				<strong><?php esc_html_e( 'MiData Docu', 'daggerhart-openid-connect-generic' ); ?></strong>
-				<code>echo '<a href="https://docu.scout.ch/">docu.scout.ch/</a>';</code>
+				<code><a href="https://docu.scout.ch/">docu.scout.ch/</a></code>
 			</p>
 
 			<?php if ( $this->settings->enable_logging ) { ?>
