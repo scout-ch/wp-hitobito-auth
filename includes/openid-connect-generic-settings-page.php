@@ -243,7 +243,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			),
 			'endpoint_login'    => array(
 				'title'       => __( 'Login Endpoint URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Identify provider authorization endpoint.', 'daggerhart-openid-connect-generic' ),
+				'description' => __( 'PRODUCTION: https://db.scout.ch/oauth/authorize TEST: https://pbs.puzzle.ch/oauth/authorize', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'https://example.com/oauth2/authorize',
 				'options'     => array(
 					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
