@@ -1,11 +1,10 @@
 <?php
 /**
- * OpenID Connect Generic Client
+ * OpenID Connect Generic Client for MiData
  *
- * This plugin provides the ability to authenticate users with Identity
- * Providers using the OpenID Connect OAuth2 API with Authorization Code Flow.
+ * This plugin provides the ability to authenticate users with the MiData account of Swiss Guide and Scout Movement.
  *
- * @package   OpenID_Connect_Generic
+ * @package   MiData Connection
  * @category  General
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2023 daggerhart
