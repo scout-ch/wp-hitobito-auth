@@ -214,7 +214,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				'type'        => 'select',
 				'options'     => array(
 					'button' => __( 'OpenID Connect button on login form', 'daggerhart-openid-connect-generic' ),
-					'auto'   => __( 'Auto Login - SSO', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_LOGIN_TYPE' ),
 				'section'     => 'client_settings',
@@ -238,7 +237,7 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'OpenID Scope', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Space separated list of scopes this client should access.', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'email profile openid offline_access',
-				'type'        => 'text',
+				'type'        => 'openid email name',
 				'disabled'    => defined( 'OIDC_CLIENT_SCOPE' ),
 				'section'     => 'client_settings',
 			),
@@ -246,7 +245,10 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'Login Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Identify provider authorization endpoint.', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'https://example.com/oauth2/authorize',
-				'type'        => 'text',
+				'options'     => array(
+					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_LOGIN_URL' ),
 				'section'     => 'client_settings',
 			),
@@ -254,7 +256,10 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'Userinfo Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Identify provider User information endpoint.', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'https://example.com/oauth2/UserInfo',
-				'type'        => 'text',
+				'options'     => array(
+					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_USERINFO_URL' ),
 				'section'     => 'client_settings',
 			),
@@ -262,7 +267,10 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'Token Validation Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Identify provider token endpoint.', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'https://example.com/oauth2/token',
-				'type'        => 'text',
+				'options'     => array(
+					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_TOKEN_URL' ),
 				'section'     => 'client_settings',
 			),
@@ -270,7 +278,10 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'End Session Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Identify provider logout endpoint.', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'https://example.com/oauth2/logout',
-				'type'        => 'text',
+				'options'     => array(
+					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_LOGOUT_URL' ),
 				'section'     => 'client_settings',
 			),
@@ -285,7 +296,7 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'Identity Key', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Where in the user claim array to find the user\'s identification data. Possible standard values: preferred_username, name, or sub. If you\'re having trouble, use "sub".', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'preferred_username',
-				'type'        => 'text',
+				'type'        => 'email',
 				'section'     => 'client_settings',
 			),
 			'no_sslverify'      => array(
@@ -299,7 +310,7 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'HTTP Request Timeout', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Set the timeout for requests made to the IDP. Default value is 5.', 'daggerhart-openid-connect-generic' ),
 				'example'     => 30,
-				'type'        => 'text',
+				'type'        => '5',
 				'section'     => 'client_settings',
 			),
 			'enforce_privacy'   => array(
@@ -324,28 +335,12 @@ class OpenID_Connect_Generic_Settings_Page {
 			),
 			'email_format'     => array(
 				'title'       => __( 'Email Formatting', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'String from which the user\'s email address is built. Specify "{email}" as long as the user claim contains an email claim.', 'daggerhart-openid-connect-generic' ),
-				'example'     => '{email}',
-				'type'        => 'text',
+				'type'        => '{email}',
 				'section'     => 'client_settings',
 			),
 			'displayname_format'     => array(
 				'title'       => __( 'Display Name Formatting', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'String from which the user\'s display name is built.', 'daggerhart-openid-connect-generic' ),
-				'example'     => '{given_name} {family_name}',
-				'type'        => 'text',
-				'section'     => 'client_settings',
-			),
-			'identify_with_username'     => array(
-				'title'       => __( 'Identify with User Name', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'If checked, the user\'s identity will be determined by the user name instead of the email address.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'section'     => 'client_settings',
-			),
-			'state_time_limit'     => array(
-				'title'       => __( 'State time limit', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'State valid time in seconds. Defaults to 180', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'number',
+				'type'        => ' {nickname}',
 				'section'     => 'client_settings',
 			),
 			'token_refresh_enable'   => array(
@@ -356,7 +351,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			),
 			'link_existing_users'   => array(
 				'title'       => __( 'Link Existing Users', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'If a WordPress account already exists with the same identity as a newly-authenticated user over OpenID Connect, login as that user instead of generating an error.', 'daggerhart-openid-connect-generic' ),
+				'description' => __( 'If a WordPress account already exists with the same identity as a newly-authenticated user over MiData Auth, login as that user instead of generating an error.', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'checkbox',
 				'disabled'    => defined( 'OIDC_LINK_EXISTING_USERS' ),
 				'section'     => 'user_settings',
@@ -367,27 +362,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				'type'        => 'checkbox',
 				'disabled'    => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ),
 				'section'     => 'user_settings',
-			),
-			'redirect_user_back'   => array(
-				'title'       => __( 'Redirect Back to Origin Page', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'After a successful OpenID Connect authentication, this will redirect the user back to the page on which they clicked the OpenID Connect login button. This will cause the login process to proceed in a traditional WordPress fashion. For example, users logging in through the default wp-login.php page would end up on the WordPress Dashboard and users logging in through the WooCommerce "My Account" page would end up on their account page.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'disabled'    => defined( 'OIDC_REDIRECT_USER_BACK' ),
-				'section'     => 'user_settings',
-			),
-			'redirect_on_logout'   => array(
-				'title'       => __( 'Redirect to the login screen when session is expired', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'When enabled, this will automatically redirect the user back to the WordPress login page if their access token has expired.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'disabled'    => defined( 'OIDC_REDIRECT_ON_LOGOUT' ),
-				'section'     => 'user_settings',
-			),
-			'enable_logging'    => array(
-				'title'       => __( 'Enable Logging', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Very simple log messages for debugging purposes.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'disabled'    => defined( 'OIDC_ENABLE_LOGGING' ),
-				'section'     => 'log_settings',
 			),
 			'log_limit'         => array(
 				'title'       => __( 'Log Limit', 'daggerhart-openid-connect-generic' ),
@@ -466,6 +440,10 @@ class OpenID_Connect_Generic_Settings_Page {
 			<p class="description">
 				<strong><?php esc_html_e( 'Authentication URL Shortcode', 'daggerhart-openid-connect-generic' ); ?></strong>
 				<code>[openid_connect_generic_auth_url]</code>
+			</p>
+			<p class="description">
+				<strong><?php esc_html_e( 'MiData Docu', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<code>echo '<a href="https://docu.scout.ch/">docu.scout.ch/</a>';</code>
 			</p>
 
 			<?php if ( $this->settings->enable_logging ) { ?>
