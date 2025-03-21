@@ -30,3 +30,13 @@
 #logger-table .col-details label {
 	font-weight: bold;
 }
+
+.button button-large{
+	background-color: #521d3a;
+	color: #ffffff;
+}
+
+.button button-large :hover{
+	background-color: #8c3c4f;
+	color: #ffffff;
+}
