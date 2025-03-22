@@ -223,8 +223,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'options'     => array(
 					'test' => __( 'TEST MiData [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
 					'prod' => __( 'PRODUCTION MiData [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
-					'jublatest' => __( 'TEST JublaDB [jubla.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
-					'jubla' => __( 'PRODUCTION JublaDB [db.jubla.ch]', 'daggerhart-openid-connect-generic' ),
+					'jublatest' => __( 'TEST jubla.db [jubla.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+					'jubla' => __( 'PRODUCTION jubla.db [db.jubla.ch]', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
