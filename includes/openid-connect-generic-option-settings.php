@@ -117,6 +117,20 @@ class OpenID_Connect_Generic_Option_Settings {
 
 		$this->values = (array) get_option( self::OPTION_NAME, $this->default_settings );
 
+		/**
+		 * Get URL selection form settings page.
+	 	*/
+	 
+		if ($this->values ['endpoint_url'] == 'test') {
+			$urlauth = 'https://pbs.puzzle.ch/oauth/';
+		} elseif ($this->values ['endpoint_url'] == 'prod') {
+			$urlauth = 'https://db.scout.ch/oauth/';
+		}
+			$this->values['endpoint_login'] 		= $urlauth . 'authorize';
+			$this->values['endpoint_userinfo'] 		= $urlauth . 'userinfo';
+			$this->values['endpoint_token'] 		= $urlauth . 'token';
+			$this->values['endpoint_end_session'] 	= $urlauth . 'logout';
+
 		// For each defined environment variable/constant be sure the settings key is set.
 		foreach ( $this->environment_settings as $key => $constant ) {
 			if ( defined( $constant ) ) {

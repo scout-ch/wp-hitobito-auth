@@ -361,20 +361,6 @@ class OpenID_Connect_Generic {
 		 */
 		spl_autoload_register( array( 'OpenID_Connect_Generic', 'autoload' ) );
 
-
-		/**
-		 * Get URL selection form settings page.
-	 	*/
-
-	 	$urltodefine = get_option ('endpoint_url');
-	 
-		if ($urltodefine ['endpoint_url'] == 'test') {
-			$urlauth = 'https://pbs.puzzle.ch/oauth/';
-		} elseif ($urltodefine['endpoint_url'] == 'prod') {
-			$urlauth = 'https://db.scout.ch/oauth/';
-		}
-	
-
 		$settings = new OpenID_Connect_Generic_Option_Settings(
 			// Default settings values.
 			array(
@@ -383,10 +369,10 @@ class OpenID_Connect_Generic {
 				'client_id'            => defined( 'OIDC_CLIENT_ID' ) ? OIDC_CLIENT_ID : '',
 				'client_secret'        => defined( 'OIDC_CLIENT_SECRET' ) ? OIDC_CLIENT_SECRET : '',
 				'scope'                => defined( 'OIDC_CLIENT_SCOPE' ) ? OIDC_CLIENT_SCOPE : '',
-				'endpoint_login'       => $urlauth . 'authorize/',
-				'endpoint_userinfo'    => $urlauth . 'userinfo/',
-				'endpoint_token'       => $urlauth . 'token/',
-				'endpoint_end_session' => $urlauth . 'logout/',
+				'endpoint_login'       => '',
+				'endpoint_userinfo'    => '',
+				'endpoint_token'       => '',
+				'endpoint_end_session' => '',
 				'acr_values'           => defined( 'OIDC_ACR_VALUES' ) ? OIDC_ACR_VALUES : '',
 
 				// Non-standard settings.
