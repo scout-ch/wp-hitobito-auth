@@ -125,13 +125,16 @@ class OpenID_Connect_Generic_Option_Settings {
 			$urlauth = 'https://pbs.puzzle.ch/oauth/';
 		} elseif ($this->values ['endpoint_url'] == 'prod') {
 			$urlauth = 'https://db.scout.ch/oauth/';
+		} elseif ($this->values ['endpoint_url'] == 'jubla') {
+			$urlauth = 'https://db.jubla.ch/oauth/';
+		} elseif ($this->values ['endpoint_url'] == 'jubla-test') {
+			$urlauth = 'https://jubla.puzzle.ch/oauth/';
 		}
+		
 			$this->values['endpoint_login'] 		= $urlauth . 'authorize';
 			$this->values['endpoint_userinfo'] 		= $urlauth . 'userinfo';
 			$this->values['endpoint_token'] 		= $urlauth . 'token';
 			$this->values['endpoint_end_session'] 	= $urlauth . 'logout';
-			$this->values['nickname_key'] 			= $urlauth . 'email';
-			$this->values['identity_key'] 			= $urlauth . 'email';
 
 		// For each defined environment variable/constant be sure the settings key is set.
 		foreach ( $this->environment_settings as $key => $constant ) {

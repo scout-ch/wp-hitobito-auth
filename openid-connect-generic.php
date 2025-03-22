@@ -365,10 +365,10 @@ class OpenID_Connect_Generic {
 			// Default settings values.
 			array(
 				// OAuth client settings.
-				'login_type'           => defined( 'OIDC_LOGIN_TYPE' ) ? OIDC_LOGIN_TYPE : 'button',
+				'login_type'           => 'button',
 				'client_id'            => defined( 'OIDC_CLIENT_ID' ) ? OIDC_CLIENT_ID : '',
 				'client_secret'        => defined( 'OIDC_CLIENT_SECRET' ) ? OIDC_CLIENT_SECRET : '',
-				'scope'                => defined( 'OIDC_CLIENT_SCOPE' ) ? OIDC_CLIENT_SCOPE : '',
+				'scope'                => 'openid email scope',
 				'endpoint_login'       => '',
 				'endpoint_userinfo'    => '',
 				'endpoint_token'       => '',
@@ -378,12 +378,12 @@ class OpenID_Connect_Generic {
 				// Non-standard settings.
 				'no_sslverify'           => 0,
 				'http_request_timeout'   => 5,
-				'identity_key'           => '',
-				'nickname_key'           => '',
+				'identity_key'           => 'email',
+				'nickname_key'           => 'nickname',
 				'email_format'           => '{email}',
 				'displayname_format'     => '{nickname}',
 				'identify_with_username' => false,
-				'state_time_limit'       => 180,
+				'state_time_limit'       => 15,
 
 				// Plugin settings.
 				'enforce_privacy'          => defined( 'OIDC_ENFORCE_PRIVACY' ) ? intval( OIDC_ENFORCE_PRIVACY ) : 0,

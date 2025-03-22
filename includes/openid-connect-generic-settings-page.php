@@ -208,16 +208,6 @@ class OpenID_Connect_Generic_Settings_Page {
 		 * - example (optional example will appear beneath description and be wrapped in <code>)
 		 */
 		$fields = array(
-			'login_type'        => array(
-				'title'       => __( 'Login Type', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Select how the client (login form) should provide login options.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'select',
-				'options'     => array(
-					'button' => __( 'OpenID Connect button on login form', 'daggerhart-openid-connect-generic' ),
-				),
-				'disabled'    => defined( 'OIDC_LOGIN_TYPE' ),
-				'section'     => 'client_settings',
-			),
 			'client_id'         => array(
 				'title'       => __( 'Client ID', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'The ID this client will be recognized as when connecting the to Identity provider server.', 'daggerhart-openid-connect-generic' ),
@@ -233,14 +223,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				'disabled'    => defined( 'OIDC_CLIENT_SECRET' ),
 				'section'     => 'client_settings',
 			),
-			'scope'             => array(
-				'title'       => __( 'OpenID Scope', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Space separated list of scopes this client should access.', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'email profile openid offline_access',
-				'type'        => 'openid email name',
-				'disabled'    => defined( 'OIDC_CLIENT_SCOPE' ),
-				'section'     => 'client_settings',
-			),
 			'endpoint_url' => array(
 				'title'       => __( 'Hitobito URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
@@ -251,33 +233,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
-			),
-			'identity_key'     => array(
-				'title'       => __( 'Identity Key', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Where in the user claim array to find the user\'s identification data. Possible standard values: preferred_username, name, or sub. If you\'re having trouble, use "sub".', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'preferred_username',
-				'type'        => 'text',
-				'section'     => 'client_settings',
-			),
-			'http_request_timeout'      => array(
-				'title'       => __( 'HTTP Request Timeout', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Set the timeout for requests made to the IDP. Default value is 5.', 'daggerhart-openid-connect-generic' ),
-				'example'     => 5 or 30,
-				'type'        => '5',
-				'section'     => 'client_settings',
-			),
-			'enforce_privacy'   => array(
-				'title'       => __( 'Enforce Privacy', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Require users be logged in to see the site.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'disabled'    => defined( 'OIDC_ENFORCE_PRIVACY' ),
-				'section'     => 'authorization_settings',
-			),
-			'alternate_redirect_uri'   => array(
-				'title'       => __( 'Alternate Redirect URI', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Provide an alternative redirect route. Useful if your server is causing issues with the default admin-ajax method. You must flush rewrite rules after changing this setting. This can be done by saving the Permalinks settings page.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'section'     => 'authorization_settings',
 			),
 			'token_refresh_enable'   => array(
 				'title'       => __( 'Enable Refresh Token', 'daggerhart-openid-connect-generic' ),
