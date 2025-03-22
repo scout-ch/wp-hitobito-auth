@@ -176,3 +176,22 @@ HTML;
 		<?php
 	}
 }
+
+/* Styling for login button
+*/
+$login_button = <<<HTML
+<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
+    <a class="button button-large" href="{$href}" 
+	style="	padding: 10px; 
+			background-color: #ffffff; 
+			border: 1px; 
+			color: #632949; 
+			text-align: 
+			center; text-decoration: 
+			none; display: 
+			inline-block; 
+			font-size: 16px;">
+        <img src="{$atts['/logo.png']}" alt="PBS Logo" style="width: 20px; height: 20px;"> {$text}
+    </a>
+</div>
+HTML;
