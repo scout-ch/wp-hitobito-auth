@@ -40,3 +40,12 @@
 	background-color: #8c3c4f;
 	color: #ffffff;
 }
+.openid_connect_generic_login_button {
+	background-color: #521d3a;
+	color: #ffffff;
+}
+
+.openid_connect_generic_login_button  :hover{
+	background-color: #8c3c4f;
+	color: #ffffff;
+}
