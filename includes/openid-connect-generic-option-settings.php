@@ -125,6 +125,7 @@ class OpenID_Connect_Generic_Option_Settings {
 			$urlauth = 'https://pbs.puzzle.ch/oauth/';
 		} elseif ($this->values ['endpoint_url'] == 'prod') {
 			$urlauth = 'https://db.scout.ch/oauth/';
+		}
 
 			$this->values['endpoint_login'] 		= $urlauth . 'authorize';
 			$this->values['endpoint_userinfo'] 		= $urlauth . 'userinfo';
