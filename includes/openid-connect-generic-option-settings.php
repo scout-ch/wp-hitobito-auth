@@ -125,6 +125,10 @@ class OpenID_Connect_Generic_Option_Settings {
 			$urlauth = 'https://pbs.puzzle.ch/oauth/';
 		} elseif ($this->values ['endpoint_url'] == 'prod') {
 			$urlauth = 'https://db.scout.ch/oauth/';
+		} elseif ($this->values ['endpoint_url'] == 'jubla') {
+			$urlauth = 'https://db.jubla.ch/oauth/';
+		} elseif ($this->values ['endpoint_url'] == 'jublatest') {
+			$urlauth = 'https://jubla.puzzle.ch/oauth/';
 		}
 
 			$this->values['endpoint_login'] 		= $urlauth . 'authorize';
