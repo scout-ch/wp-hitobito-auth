@@ -369,9 +369,9 @@ class OpenID_Connect_Generic {
 	 	$urltodefine = get_option ('endpoint_url');
 	 
 		if ($urltodefine ['endpoint_url'] == 'test') {
-			$url = 'https://pbs.puzzle.ch/oauth/';
+			$urlauth = 'https://pbs.puzzle.ch/oauth/';
 		} elseif ($urltodefine['endpoint_url'] == 'prod') {
-			$url = 'https://db.scout.ch/oauth/';
+			$urlauth = 'https://db.scout.ch/oauth/';
 		}
 	
 
@@ -383,10 +383,10 @@ class OpenID_Connect_Generic {
 				'client_id'            => defined( 'OIDC_CLIENT_ID' ) ? OIDC_CLIENT_ID : '',
 				'client_secret'        => defined( 'OIDC_CLIENT_SECRET' ) ? OIDC_CLIENT_SECRET : '',
 				'scope'                => defined( 'OIDC_CLIENT_SCOPE' ) ? OIDC_CLIENT_SCOPE : '',
-				'endpoint_login'       => $url . '/authorize/',
-				'endpoint_userinfo'    => $url . '/userinfo/',
-				'endpoint_token'       => $url . '/token/',
-				'endpoint_end_session' => $url . '/logout/',
+				'endpoint_login'       => $urlauth . '/authorize/',
+				'endpoint_userinfo'    => $urlauth . '/userinfo/',
+				'endpoint_token'       => $urlauth . '/token/',
+				'endpoint_end_session' => $urlauth . '/logout/',
 				'acr_values'           => defined( 'OIDC_ACR_VALUES' ) ? OIDC_ACR_VALUES : '',
 
 				// Non-standard settings.
