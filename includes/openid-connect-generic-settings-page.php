@@ -246,8 +246,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_LOGIN_URL' ),
 				'section'     => 'client_settings',
@@ -257,8 +257,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_USERINFO_URL' ),
 				'section'     => 'client_settings',
@@ -268,8 +268,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_TOKEN_URL' ),
 				'section'     => 'client_settings',
@@ -279,8 +279,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_LOGOUT_URL' ),
 				'section'     => 'client_settings',
