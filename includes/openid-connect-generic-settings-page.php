@@ -143,13 +143,6 @@ class OpenID_Connect_Generic_Settings_Page {
 		);
 
 		add_settings_section(
-			'authorization_settings',
-			__( 'Authorization Settings', 'daggerhart-openid-connect-generic' ),
-			array( $this, 'authorization_settings_description' ),
-			$this->options_page_name
-		);
-
-		add_settings_section(
 			'log_settings',
 			__( 'Log Settings', 'daggerhart-openid-connect-generic' ),
 			array( $this, 'log_settings_description' ),
@@ -232,12 +225,6 @@ class OpenID_Connect_Generic_Settings_Page {
 					'prod' => __( 'PRODUCTION [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
-				'section'     => 'client_settings',
-			),
-			'token_refresh_enable'   => array(
-				'title'       => __( 'Enable Refresh Token', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'If checked, support refresh tokens used to obtain access tokens from supported IDPs.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
 				'section'     => 'client_settings',
 			),
 			'create_if_does_not_exist'   => array(
@@ -336,7 +323,12 @@ class OpenID_Connect_Generic_Settings_Page {
 				<strong><?php esc_html_e( 'MiData Docu', 'daggerhart-openid-connect-generic' ); ?></strong>
 				<code><a href="https://docu.scout.ch/">docu.scout.ch/</a></code>
 			</p>
-
+			<p class="description">
+				<strong><?php esc_html_e( 'This Plugin was developed by Schlumpf and Vivo during the Hitobito Hackathon 2025. ', 'daggerhart-openid-connect-generic' ); ?></strong>
+			</p>
+			<p class="description">
+				<strong><?php esc_html_e( '(c) 2025 Swiss Guide and Scout Movement', 'daggerhart-openid-connect-generic' ); ?></strong>
+			</p>
 			<?php if ( $this->settings->enable_logging ) { ?>
 				<h2><?php esc_html_e( 'Logs', 'daggerhart-openid-connect-generic' ); ?></h2>
 				<div id="logger-table-wrapper">
@@ -449,7 +441,7 @@ class OpenID_Connect_Generic_Settings_Page {
 	 * @return void
 	 */
 	public function user_settings_description() {
-		esc_html_e( 'Modify the interaction between OpenID Connect and WordPress users.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Modify the interaction between your Hitobito and WordPress the users.', 'daggerhart-openid-connect-generic' );
 	}
 
 	/**
