@@ -2,10 +2,10 @@
 /**
  * WordPress options handling class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   MiData Auth
  * @category  Settings
- * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
- * @copyright 2015-2023 daggerhart
+ * @author    Swiss Guide and Scout Movement
+ * @copyright 2025 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  */
 
@@ -14,7 +14,7 @@
  *
  * WordPress options handling.
  *
- * @package OpenID_Connect_Generic
+ * @package MiData Auth
  * @category  Settings
  *
  * Legacy Settings:
