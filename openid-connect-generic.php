@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Hitobito Auth
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
- * Description:       Connect your Website to Hitobito (e.g. MiData, JublaDB) and use it for Authorization.
+ * Description:       Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization.
  * Version:           0.1
  * Requires at least: 5.0
  * Requires PHP:      7.4

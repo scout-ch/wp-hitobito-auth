@@ -12,7 +12,7 @@ A simple client that provides SSO or opt-in authentication against a generic OAu
 
 == Description ==
 
-This plugin allows to authenticate users with Hitobito (e.g. MiData, JublaDB).
+This plugin allows to authenticate users with Hitobito (e.g. MiData, jubla.db).
 Once installed, it can be configured to automatically authenticate users (SSO), or provide a "Login with Hitobito"
 button on the login form. After consent has been obtained, an existing user is automatically logged into WordPress, while
 new users are created in WordPress database.
