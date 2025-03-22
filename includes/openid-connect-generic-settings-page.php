@@ -221,10 +221,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'description' => __( 'For testing please use: XXX.puzzle.ch/ and for production please use e.g. db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'test' => __( 'TEST MiData [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
-					'prod' => __( 'PRODUCTION MiData [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
-					'jublatest' => __( 'TEST jubla.db [jubla.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
-					'jubla' => __( 'PRODUCTION jubla.db [db.jubla.ch]', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
