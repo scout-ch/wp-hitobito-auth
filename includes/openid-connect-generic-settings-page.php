@@ -242,7 +242,7 @@ class OpenID_Connect_Generic_Settings_Page {
 				'section'     => 'client_settings',
 			),
 			'endpoint_url' => array(
-				'title'       => __( 'MiData URL', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Hitobito URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
