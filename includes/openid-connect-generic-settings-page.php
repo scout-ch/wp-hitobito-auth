@@ -308,7 +308,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			<h4><?php esc_html_e( 'Notes', 'daggerhart-openid-connect-generic' ); ?></h4>
 
 			<p class="description">
-				<strong><?php esc_html_e( 'Redirect URI', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'Redirect URL:', 'daggerhart-openid-connect-generic' ); ?></strong>
 				<code><?php print esc_url( $redirect_uri ); ?></code>
 			</p>
 			<p class="description">
