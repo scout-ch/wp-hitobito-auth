@@ -4,27 +4,27 @@
  *
  * This plugin provides the ability to authenticate users with the MiData account of Swiss Guide and Scout Movement.
  *
- * @package   MiData Connection
+ * @package   MiData Auth
  * @category  General
- * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
- * @copyright 2015-2023 daggerhart
+ * @author    Swiss Guide and Scout Movement
+ * @copyright 2025 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
- * @link      https://github.com/daggerhart
+ * @link      https://github.com/scout-ch
  *
  * @wordpress-plugin
- * Plugin Name:       OpenID Connect Generic
- * Plugin URI:        https://github.com/daggerhart/openid-connect-generic
- * Description:       Connect to an OpenID Connect identity provider using Authorization Code Flow.
- * Version:           3.10.0
+ * Plugin Name:       MiData Auth
+ * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
+ * Description:       Connect your Website to MiData and use it for Authorization.
+ * Version:           0.1
  * Requires at least: 5.0
  * Requires PHP:      7.4
- * Author:            daggerhart
- * Author URI:        http://www.daggerhart.com
+ * Author:            Swiss Guide and Scout Movement
+ * Author URI:        https://pfadi.swiss
  * Text Domain:       daggerhart-openid-connect-generic
  * Domain Path:       /languages
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * GitHub Plugin URI: https://github.com/daggerhart/openid-connect-generic
+ * GitHub Plugin URI: https://github.com/scout-ch/wp-hitobito-auth
  */
 
 /*
@@ -90,7 +90,7 @@ class OpenID_Connect_Generic {
 	 *
 	 * @var string
 	 */
-	const VERSION = '3.10.0';
+	const VERSION = '0.1';
 
 	/**
 	 * Plugin settings.
