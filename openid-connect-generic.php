@@ -351,12 +351,10 @@ class OpenID_Connect_Generic {
 	/**
 	 * Get URL selection form settings page.
 	 */
-
-	 $urltodefine = get_option('endpoint_url')
 	 
-	 if ($urltodefine ['endpoint_url'] == 'test') {
+	 if (['endpoint_url'] == 'test') {
 		$url = 'https://pbs.puzzle.ch/oauth/';
-	} elseif ($urltodefine['endpoint_url'] == 'prod') {
+	} elseif (['endpoint_url'] == 'prod') {
 		$url = 'https://db.scout.ch/oauth/';
 	}
 	
