@@ -256,7 +256,7 @@ class OpenID_Connect_Generic_Settings_Page {
 				'title'       => __( 'Identity Key', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Where in the user claim array to find the user\'s identification data. Possible standard values: preferred_username, name, or sub. If you\'re having trouble, use "sub".', 'daggerhart-openid-connect-generic' ),
 				'example'     => 'preferred_username',
-				'type'        => 'email',
+				'type'        => 'text',
 				'section'     => 'client_settings',
 			),
 			'http_request_timeout'      => array(
