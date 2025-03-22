@@ -105,8 +105,8 @@ class OpenID_Connect_Generic_Settings_Page {
 	 */
 	public function admin_menu() {
 		add_options_page(
-			__( 'OpenID Connect - Generic Client', 'daggerhart-openid-connect-generic' ),
-			__( 'OpenID Connect Client', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
 			'manage_options',
 			$this->options_page_name,
 			array( $this, 'settings_page' )

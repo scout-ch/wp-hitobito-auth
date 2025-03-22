@@ -181,7 +181,7 @@ msgid "Response&nbsp;Time&nbsp;(sec)"
 msgstr ""
 
 #: includes/openid-connect-generic-settings-page.php:108
-msgid "OpenID Connect - Generic Client"
+msgid "Hitobito Auth"
 msgstr ""
 
 #: includes/openid-connect-generic-settings-page.php:109
