@@ -127,10 +127,10 @@ class OpenID_Connect_Generic_Option_Settings {
 			$urlauth = 'https://db.scout.ch/oauth/';
 		} elseif ($this->values ['endpoint_url'] == 'jubla') {
 			$urlauth = 'https://db.jubla.ch/oauth/';
-		} elseif ($this->values ['endpoint_url'] == 'jubla-test') {
+		} elseif ($this->values ['endpoint_url'] == 'jublatest') {
 			$urlauth = 'https://jubla.puzzle.ch/oauth/';
 		}
-		
+
 			$this->values['endpoint_login'] 		= $urlauth . 'authorize';
 			$this->values['endpoint_userinfo'] 		= $urlauth . 'userinfo';
 			$this->values['endpoint_token'] 		= $urlauth . 'token';

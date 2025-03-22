@@ -218,11 +218,13 @@ class OpenID_Connect_Generic_Settings_Page {
 			),
 			'endpoint_url' => array(
 				'title'       => __( 'Hitobito URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				'description' => __( 'For testing please use: XXX.puzzle.ch/ and for production please use e.g. db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'test' => __( 'TEST [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
-					'prod' => __( 'PRODUCTION [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST MiData [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION MiData [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
+					'jublatest' => __( 'TEST JublaDB [jubla.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+					'jubla' => __( 'PRODUCTION JublaDB [db.jubla.ch]', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
