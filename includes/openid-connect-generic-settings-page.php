@@ -252,48 +252,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
 			),
-			'endpoint_login'    => array(
-				'title'       => __( 'Login Endpoint URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'For testing please use: pbs.puzzle.ch and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'https://pbs.puzzle.ch/oauth/authorize or https://db.scout.ch/oauth/authorize',
-				'type'        => 'select',
-				'type'        => 'text',
-				'disabled'    => defined( 'OIDC_ENDPOINT_LOGIN_URL' ),
-				'section'     => 'client_settings',
-			),
-			'endpoint_userinfo' => array(
-				'title'       => __( 'Userinfo Endpoint URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'select',
-				'options'     => array(
-					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				),
-				'disabled'    => defined( 'OIDC_ENDPOINT_USERINFO_URL' ),
-				'section'     => 'client_settings',
-			),
-			'endpoint_token'    => array(
-				'title'       => __( 'Token Validation Endpoint URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'select',
-				'options'     => array(
-					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				),
-				'disabled'    => defined( 'OIDC_ENDPOINT_TOKEN_URL' ),
-				'section'     => 'client_settings',
-			),
-			'endpoint_end_session'    => array(
-				'title'       => __( 'End Session Endpoint URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'select',
-				'options'     => array(
-					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				),
-				'disabled'    => defined( 'OIDC_ENDPOINT_LOGOUT_URL' ),
-				'section'     => 'client_settings',
-			),
 			'identity_key'     => array(
 				'title'       => __( 'Identity Key', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Where in the user claim array to find the user\'s identification data. Possible standard values: preferred_username, name, or sub. If you\'re having trouble, use "sub".', 'daggerhart-openid-connect-generic' ),
