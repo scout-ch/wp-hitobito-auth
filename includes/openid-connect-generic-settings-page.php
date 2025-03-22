@@ -294,13 +294,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				'disabled'    => defined( 'OIDC_ENDPOINT_LOGOUT_URL' ),
 				'section'     => 'client_settings',
 			),
-			'acr_values'    => array(
-				'title'       => __( 'ACR values', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Use a specific defined authentication contract from the IDP - optional.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'text',
-				'disabled'    => defined( 'OIDC_ACR_VALUES' ),
-				'section'     => 'client_settings',
-			),
 			'identity_key'     => array(
 				'title'       => __( 'Identity Key', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Where in the user claim array to find the user\'s identification data. Possible standard values: preferred_username, name, or sub. If you\'re having trouble, use "sub".', 'daggerhart-openid-connect-generic' ),
@@ -308,17 +301,10 @@ class OpenID_Connect_Generic_Settings_Page {
 				'type'        => 'email',
 				'section'     => 'client_settings',
 			),
-			'no_sslverify'      => array(
-				'title'       => __( 'Disable SSL Verify', 'daggerhart-openid-connect-generic' ),
-				// translators: %1$s HTML tags for layout/styles, %2$s closing HTML tag for styles.
-				'description' => sprintf( __( 'Do not require SSL verification during authorization. The OAuth extension uses curl to make the request. By default CURL will generally verify the SSL certificate to see if its valid an issued by an accepted CA. This setting disabled that verification.%1$sNot recommended for production sites.%2$s', 'daggerhart-openid-connect-generic' ), '<br><strong>', '</strong>' ),
-				'type'        => 'checkbox',
-				'section'     => 'client_settings',
-			),
 			'http_request_timeout'      => array(
 				'title'       => __( 'HTTP Request Timeout', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Set the timeout for requests made to the IDP. Default value is 5.', 'daggerhart-openid-connect-generic' ),
-				'example'     => 30,
+				'example'     => 5 or 30,
 				'type'        => '5',
 				'section'     => 'client_settings',
 			),
@@ -335,13 +321,6 @@ class OpenID_Connect_Generic_Settings_Page {
 				'type'        => 'checkbox',
 				'section'     => 'authorization_settings',
 			),
-			'nickname_key'     => array(
-				'title'       => __( 'Nickname Key', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Where in the user claim array to find the user\'s nickname. Possible standard values: preferred_username, name, or sub.', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'preferred_username',
-				'type'        => 'text',
-				'section'     => 'client_settings',
-			),
 			'token_refresh_enable'   => array(
 				'title'       => __( 'Enable Refresh Token', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'If checked, support refresh tokens used to obtain access tokens from supported IDPs.', 'daggerhart-openid-connect-generic' ),
@@ -354,6 +333,13 @@ class OpenID_Connect_Generic_Settings_Page {
 				'type'        => 'checkbox',
 				'disabled'    => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ),
 				'section'     => 'user_settings',
+			),
+			'enable_logging'    => array(
+				'title'       => __( 'Enable Logging', 'daggerhart-openid-connect-generic' ),
+				'description' => __( 'Very simple log messages for debugging purposes.', 'daggerhart-openid-connect-generic' ),
+				'type'        => 'checkbox',
+				'disabled'    => defined( 'OIDC_ENABLE_LOGGING' ),
+				'section'     => 'log_settings',
 			),
 			'log_limit'         => array(
 				'title'       => __( 'Log Limit', 'daggerhart-openid-connect-generic' ),

@@ -349,6 +349,18 @@ class OpenID_Connect_Generic {
 	}
 
 	/**
+	 * Get URL selection form settings page.
+	 */
+
+	 $urltodefine = get_option('endpoint_url')
+	 
+	 if ($urltodefine ['endpoint_url'] == 'test') {
+		$url = 'https://pbs.puzzle.ch/oauth/';
+	} elseif ($urltodefine['endpoint_url'] == 'prod') {
+		$url = 'https://db.scout.ch/oauth/';
+	}
+	
+	/**
 	 * Instantiate the plugin and hook into WordPress.
 	 *
 	 * @return void
@@ -369,10 +381,10 @@ class OpenID_Connect_Generic {
 				'client_id'            => defined( 'OIDC_CLIENT_ID' ) ? OIDC_CLIENT_ID : '',
 				'client_secret'        => defined( 'OIDC_CLIENT_SECRET' ) ? OIDC_CLIENT_SECRET : '',
 				'scope'                => defined( 'OIDC_CLIENT_SCOPE' ) ? OIDC_CLIENT_SCOPE : '',
-				'endpoint_login'       => defined( 'OIDC_ENDPOINT_LOGIN_URL' ) ? OIDC_ENDPOINT_LOGIN_URL : '',
-				'endpoint_userinfo'    => defined( 'OIDC_ENDPOINT_USERINFO_URL' ) ? OIDC_ENDPOINT_USERINFO_URL : '',
-				'endpoint_token'       => defined( 'OIDC_ENDPOINT_TOKEN_URL' ) ? OIDC_ENDPOINT_TOKEN_URL : '',
-				'endpoint_end_session' => defined( 'OIDC_ENDPOINT_LOGOUT_URL' ) ? OIDC_ENDPOINT_LOGOUT_URL : '',
+				'endpoint_login'       => $url . '/authorize/',
+				'endpoint_userinfo'    => $url . '/userinfo/',
+				'endpoint_token'       => $url . '/token/',
+				'endpoint_end_session' => $url . '/logout/',
 				'acr_values'           => defined( 'OIDC_ACR_VALUES' ) ? OIDC_ACR_VALUES : '',
 
 				// Non-standard settings.
