@@ -390,7 +390,7 @@ class OpenID_Connect_Generic {
 				'alternate_redirect_uri'   => 0,
 				'token_refresh_enable'     => 1,
 				'link_existing_users'      => 1,
-				'create_if_does_not_exist' => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ) ? intval( OIDC_CREATE_IF_DOES_NOT_EXIST ) : 1,
+				'create_if_does_not_exist' => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ) ? intval( OIDC_CREATE_IF_DOES_NOT_EXIST ) : 0,
 				'redirect_user_back'       => 0,
 				'redirect_on_logout'       => 1,
 				'enable_logging'           => defined( 'OIDC_ENABLE_LOGGING' ) ? intval( OIDC_ENABLE_LOGGING ) : 0,
