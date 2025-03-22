@@ -244,7 +244,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			'endpoint_login'    => array(
 				'title'       => __( 'Login Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'https://example.com/oauth2/authorize',
+				'type'        => 'select',
 				'options'     => array(
 					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
 					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
@@ -255,7 +255,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			'endpoint_userinfo' => array(
 				'title'       => __( 'Userinfo Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'https://example.com/oauth2/UserInfo',
+				'type'        => 'select',
 				'options'     => array(
 					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
 					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
@@ -266,7 +266,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			'endpoint_token'    => array(
 				'title'       => __( 'Token Validation Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'https://example.com/oauth2/token',
+				'type'        => 'select',
 				'options'     => array(
 					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
 					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
@@ -277,7 +277,7 @@ class OpenID_Connect_Generic_Settings_Page {
 			'endpoint_end_session'    => array(
 				'title'       => __( 'End Session Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
-				'example'     => 'https://example.com/oauth2/logout',
+				'type'        => 'select',
 				'options'     => array(
 					'button' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
 					'button' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
