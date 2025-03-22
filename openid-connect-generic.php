@@ -349,16 +349,6 @@ class OpenID_Connect_Generic {
 	}
 
 	/**
-	 * Get URL selection form settings page.
-	 */
-	 
-	 if (['endpoint_url'] == 'test') {
-		$url = 'https://pbs.puzzle.ch/oauth/';
-	} elseif (['endpoint_url'] == 'prod') {
-		$url = 'https://db.scout.ch/oauth/';
-	}
-	
-	/**
 	 * Instantiate the plugin and hook into WordPress.
 	 *
 	 * @return void
@@ -370,6 +360,20 @@ class OpenID_Connect_Generic {
 		 * @link https://www.php.net/manual/en/function.spl-autoload-register.php#71155
 		 */
 		spl_autoload_register( array( 'OpenID_Connect_Generic', 'autoload' ) );
+
+
+		/**
+		 * Get URL selection form settings page.
+	 	*/
+
+	 	$urltodefine = get_option ('endpoint_url');
+	 
+		if ($urltodefine ['endpoint_url'] == 'test') {
+			$url = 'https://pbs.puzzle.ch/oauth/';
+		} elseif ($urltodefine['endpoint_url'] == 'prod') {
+			$url = 'https://db.scout.ch/oauth/';
+		}
+	
 
 		$settings = new OpenID_Connect_Generic_Option_Settings(
 			// Default settings values.
