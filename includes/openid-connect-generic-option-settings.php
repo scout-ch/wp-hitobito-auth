@@ -130,6 +130,8 @@ class OpenID_Connect_Generic_Option_Settings {
 			$this->values['endpoint_userinfo'] 		= $urlauth . 'userinfo';
 			$this->values['endpoint_token'] 		= $urlauth . 'token';
 			$this->values['endpoint_end_session'] 	= $urlauth . 'logout';
+			$this->values['nickname_key'] 			= $urlauth . 'email';
+			$this->values['identity_key'] 			= $urlauth . 'email';
 
 		// For each defined environment variable/constant be sure the settings key is set.
 		foreach ( $this->environment_settings as $key => $constant ) {

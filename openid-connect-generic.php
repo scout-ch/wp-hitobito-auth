@@ -378,8 +378,8 @@ class OpenID_Connect_Generic {
 				// Non-standard settings.
 				'no_sslverify'           => 0,
 				'http_request_timeout'   => 5,
-				'identity_key'           => 'preferred_username',
-				'nickname_key'           => 'preferred_username',
+				'identity_key'           => '',
+				'nickname_key'           => '',
 				'email_format'           => '{email}',
 				'displayname_format'     => '{nickname}',
 				'identify_with_username' => false,
