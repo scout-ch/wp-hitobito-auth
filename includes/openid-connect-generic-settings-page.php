@@ -246,8 +246,8 @@ class OpenID_Connect_Generic_Settings_Page {
 				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'select',
 				'options'     => array(
-					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
-					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+					'test' => __( 'TEST [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
 				),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
@@ -342,28 +342,11 @@ class OpenID_Connect_Generic_Settings_Page {
 				'type'        => 'text',
 				'section'     => 'client_settings',
 			),
-			'email_format'     => array(
-				'title'       => __( 'Email Formatting', 'daggerhart-openid-connect-generic' ),
-				'type'        => '{email}',
-				'section'     => 'client_settings',
-			),
-			'displayname_format'     => array(
-				'title'       => __( 'Display Name Formatting', 'daggerhart-openid-connect-generic' ),
-				'type'        => ' {nickname}',
-				'section'     => 'client_settings',
-			),
 			'token_refresh_enable'   => array(
 				'title'       => __( 'Enable Refresh Token', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'If checked, support refresh tokens used to obtain access tokens from supported IDPs.', 'daggerhart-openid-connect-generic' ),
 				'type'        => 'checkbox',
 				'section'     => 'client_settings',
-			),
-			'link_existing_users'   => array(
-				'title'       => __( 'Link Existing Users', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'If a WordPress account already exists with the same identity as a newly-authenticated user over MiData Auth, login as that user instead of generating an error.', 'daggerhart-openid-connect-generic' ),
-				'type'        => 'checkbox',
-				'disabled'    => defined( 'OIDC_LINK_EXISTING_USERS' ),
-				'section'     => 'user_settings',
 			),
 			'create_if_does_not_exist'   => array(
 				'title'       => __( 'Create user if does not exist', 'daggerhart-openid-connect-generic' ),

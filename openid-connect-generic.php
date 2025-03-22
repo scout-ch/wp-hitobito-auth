@@ -381,7 +381,7 @@ class OpenID_Connect_Generic {
 				'identity_key'           => 'preferred_username',
 				'nickname_key'           => 'preferred_username',
 				'email_format'           => '{email}',
-				'displayname_format'     => '',
+				'displayname_format'     => '{nickname}',
 				'identify_with_username' => false,
 				'state_time_limit'       => 180,
 
@@ -389,10 +389,10 @@ class OpenID_Connect_Generic {
 				'enforce_privacy'          => defined( 'OIDC_ENFORCE_PRIVACY' ) ? intval( OIDC_ENFORCE_PRIVACY ) : 0,
 				'alternate_redirect_uri'   => 0,
 				'token_refresh_enable'     => 1,
-				'link_existing_users'      => defined( 'OIDC_LINK_EXISTING_USERS' ) ? intval( OIDC_LINK_EXISTING_USERS ) : 0,
+				'link_existing_users'      => 1,
 				'create_if_does_not_exist' => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ) ? intval( OIDC_CREATE_IF_DOES_NOT_EXIST ) : 1,
-				'redirect_user_back'       => defined( 'OIDC_REDIRECT_USER_BACK' ) ? intval( OIDC_REDIRECT_USER_BACK ) : 0,
-				'redirect_on_logout'       => defined( 'OIDC_REDIRECT_ON_LOGOUT' ) ? intval( OIDC_REDIRECT_ON_LOGOUT ) : 1,
+				'redirect_user_back'       => 0,
+				'redirect_on_logout'       => 1,
 				'enable_logging'           => defined( 'OIDC_ENABLE_LOGGING' ) ? intval( OIDC_ENABLE_LOGGING ) : 0,
 				'log_limit'                => defined( 'OIDC_LOG_LIMIT' ) ? intval( OIDC_LOG_LIMIT ) : 1000,
 			)
