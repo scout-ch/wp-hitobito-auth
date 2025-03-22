@@ -241,6 +241,17 @@ class OpenID_Connect_Generic_Settings_Page {
 				'disabled'    => defined( 'OIDC_CLIENT_SCOPE' ),
 				'section'     => 'client_settings',
 			),
+			'endpoint_url' => array(
+				'title'       => __( 'MiData URL', 'daggerhart-openid-connect-generic' ),
+				'description' => __( 'For testing please use: pbs.puzzle.ch/ and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				'type'        => 'select',
+				'options'     => array(
+					'test' => __( 'TEST (pbs.puzzle.ch', 'daggerhart-openid-connect-generic' ),
+					'prod' => __( 'PRODUCTION (db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				),
+				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
+				'section'     => 'client_settings',
+			),
 			'endpoint_login'    => array(
 				'title'       => __( 'Login Endpoint URL', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'For testing please use: pbs.puzzle.ch and for production please use db.scout.ch', 'daggerhart-openid-connect-generic' ),
