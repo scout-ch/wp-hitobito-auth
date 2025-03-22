@@ -1,4 +1,4 @@
-=== MiData Authentication WordPress Plugin ===
+=== Hitobito Authentication WordPress Plugin ===
 Contributors: Team MiData
 Requires at least: 5.0
 Tested up to: 6.7.2
@@ -11,12 +11,12 @@ A simple client that provides SSO or opt-in authentication against a generic OAu
 
 == Description ==
 
-This plugin allows to authenticate users with MiData.
-Once installed, it can be configured to automatically authenticate users (SSO), or provide a "Login with MiData"
+This plugin allows to authenticate users with Hitobito (e.g. MiData, JublaDB).
+Once installed, it can be configured to automatically authenticate users (SSO), or provide a "Login with Hitobito"
 button on the login form. After consent has been obtained, an existing user is automatically logged into WordPress, while
 new users are created in WordPress database.
 
-Much of the documentation can be found on the Settings > MiData Connect Generic dashboard page.
+Much of the documentation can be found on the Settings > Hitobito Connect Generic dashboard page.
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
 
@@ -24,7 +24,7 @@ Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito
 
 1. Upload to the `/wp-content/plugins/` directory
 1. Activate the plugin
-1. Visit Settings > MiData Connect and configure to meet your needs
+1. Visit Settings > Hitobito Connect and configure to meet your needs
 
 == Frequently Asked Questions ==
 

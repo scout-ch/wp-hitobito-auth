@@ -4,7 +4,7 @@
  *
  * This plugin provides the ability to authenticate users with the MiData account of Swiss Guide and Scout Movement.
  *
- * @package   MiData Auth
+ * @package   Hitobito Auth
  * @category  General
  * @author    Swiss Guide and Scout Movement
  * @copyright 2025 Swiss Guide and Scout Movement
@@ -12,15 +12,15 @@
  * @link      https://github.com/scout-ch
  *
  * @wordpress-plugin
- * Plugin Name:       MiData Auth
+ * Plugin Name:       Hitobito Auth
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
- * Description:       Connect your Website to MiData and use it for Authorization.
+ * Description:       Connect your Website to Hitobito (e.g. MiData, JublaDB) and use it for Authorization.
  * Version:           0.1
  * Requires at least: 5.0
  * Requires PHP:      7.4
  * Author:            Swiss Guide and Scout Movement
  * Author URI:        https://pfadi.swiss
- * Text Domain:       daggerhart-openid-connect-generic
+ * Text Domain:       hitibito-auth
  * Domain Path:       /languages
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
