@@ -1,4 +1,4 @@
-=== Hitobito Authentication WordPress Plugin ===
+=== Hitobito Auth ===
 Contributors: Team MiData
 Requires at least: 6.7.2
 Tested up to: 6.7.2
