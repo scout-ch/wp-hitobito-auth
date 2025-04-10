@@ -151,9 +151,9 @@ class OpenID_Connect_Generic_Login_Form {
 		$href = esc_url_raw( $href );
 
 		$login_button = <<<HTML
- 			<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
- 				<a class="button button-large" href="{$href}">{$text}</a>
- 			</div>
+<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
+	<a class="button button-large" href="{$href}">{$text}</a>
+</div>
  			HTML;
 
 		return $login_button;
