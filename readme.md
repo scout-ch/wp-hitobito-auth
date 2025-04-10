@@ -1,19 +1,19 @@
 # Hitobito Auth Plugin Info
 === Hitobito Auth ===
-Contributors: Team MiData
-Requires at least: 6.7.2
-Tested up to: 6.7.2
-Stable tag: 1.0
-Requires PHP: 7.4
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Contributors: Team MiData 
+Requires at least: 6.7.2 
+Tested up to: 6.7.2 
+Stable tag: 1.0 
+Requires PHP: 7.4 
+License: GPLv2 or later 
+License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 Copy of: https://github.com/daggerhart/openid-connect-generic
 
 A simple client that provides SSO or opt-in authentication against a generic OAuth2 Server implementation.
 
 ## Updates
 
-** Important! **, Hitobito Auth Plugins Updates will be released only on GitHub.
+**Important!**, Hitobito Auth Plugins Updates will be released only on GitHub.
 As recomendation, watch the repository and star it. More: https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars
 
 ## Description
@@ -31,7 +31,7 @@ Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito
 
 1. Upload to the `/wp-content/plugins/` directory
 1. Activate the plugin
-1. Visit Settings > Hitobito Connect and configure to meet your needs
+1. Visit Settings > Hitobito Auth and configure to meet your needs
 
 ## Frequently Asked Questions ==
 
