@@ -150,13 +150,11 @@ class OpenID_Connect_Generic_Login_Form {
 		$href = $this->client_wrapper->get_authentication_url( $atts );
 		$href = esc_url_raw( $href );
 
-		ob_start();
-		?>
-			<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
-				<a class="button button-large" href="{$href}">{$text}</a>
-			</div>
-		<?php
-		$login_button = ob_get_clean();
+		$login_button = <<<HTML
+ 			<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
+ 				<a class="button button-large" href="{$href}">{$text}</a>
+ 			</div>
+ 			HTML;
 
 		return $login_button;
 	}
