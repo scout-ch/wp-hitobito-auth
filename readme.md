@@ -1,3 +1,4 @@
+# Hitobito Auth Plugin Info
 === Hitobito Auth ===
 Contributors: Team MiData
 Requires at least: 6.7.2
@@ -10,7 +11,12 @@ Copy of: https://github.com/daggerhart/openid-connect-generic
 
 A simple client that provides SSO or opt-in authentication against a generic OAuth2 Server implementation.
 
-== Description ==
+## Updates
+
+** Important! **, Hitobito Auth Plugins Updates will be released only on GitHub.
+As recomendation, watch the repository and star it. More: https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars
+
+## Description
 
 This plugin allows to authenticate users with Hitobito (e.g. MiData, jubla.db).
 Once installed, it can be configured to automatically authenticate users (SSO), or provide a "Login with Hitobito"
@@ -21,17 +27,17 @@ Much of the documentation can be found on the Settings > Hitobito Connect Generi
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
 
-== Installation ==
+## Installation
 
 1. Upload to the `/wp-content/plugins/` directory
 1. Activate the plugin
 1. Visit Settings > Hitobito Connect and configure to meet your needs
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ==
 
 You will find them on:  https://docu.scout.ch/
 
-= What is the client's Redirect URI? =
+### What is the client's Redirect URI?
 
 Most OAuth2 servers will require whitelisting a set of redirect URIs for security purposes. The Redirect URI provided
 by this client is like so:  https://example.com/wp-admin/admin-ajax.php?action=openid-connect-authorize
