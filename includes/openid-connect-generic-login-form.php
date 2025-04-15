@@ -119,7 +119,7 @@ class OpenID_Connect_Generic_Login_Form {
 		ob_start();
 		?>
 		<div id="login_error"><?php // translators: %1$s is the error code from the IDP. ?>
-			<strong><?php printf( esc_html__( 'ERROR (%1$s)', 'hitobito-auth' ), esc_html( $error_code ) ); ?>: </strong>
+			<strong><?php printf( esc_html__( 'ERROR (%1$s)', 'daggerhart-openid-connect-generic' ), esc_html( $error_code ) ); ?>: </strong>
 			<?php print esc_html( $error_message ); ?>
 		</div>
 		<?php
@@ -138,7 +138,7 @@ class OpenID_Connect_Generic_Login_Form {
 
 		$atts = shortcode_atts(
 			array(
-				'button_text' => __( 'Login with Hitobito', 'hitobito-auth' ),
+				'button_text' => __( 'Login with Hitobito', 'daggerhart-openid-connect-generic' ),
 			),
 			$atts,
 			'openid_connect_generic_login_button'
@@ -154,7 +154,7 @@ class OpenID_Connect_Generic_Login_Form {
 <div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
 	<a class="button button-large" href="{$href}">{$text}</a>
 </div>
- 			HTML;
+HTML;
 
 		return $login_button;
 	}

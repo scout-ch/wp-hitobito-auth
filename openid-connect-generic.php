@@ -20,7 +20,7 @@
  * Requires PHP:      7.4
  * Author:            Swiss Guide and Scout Movement
  * Author URI:        https://pfadi.swiss
- * Text Domain:       hitobito-auth
+ * Text Domain:       daggerhart-openid-connect-generic
  * Domain Path:       /languages
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -238,7 +238,7 @@ class OpenID_Connect_Generic {
 	 */
 	public function enforce_privacy_feeds( $content ) {
 		if ( $this->settings->enforce_privacy && ! is_user_logged_in() ) {
-			$content = __( 'Private site', 'hitobito-auth' );
+			$content = __( 'Private site', 'daggerhart-openid-connect-generic' );
 		}
 		return $content;
 	}
