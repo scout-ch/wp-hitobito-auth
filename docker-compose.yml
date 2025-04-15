@@ -26,7 +26,7 @@ services:
       - .:/workspaces/openid-connect-generic:cached
       - ./tools/local-env:/app:cached
       - ./tools/php/php-cli.ini:/usr/local/etc/php/php-cli.ini:ro,cached
-      - .:/app/wp-content/plugins/hitobito-auth:ro,cached
+      - .:/app/wp-content/plugins/daggerhart-openid-connect-generic:ro,cached
       - ~/.composer:/root/.composer:cached
       - ~/.npm:/root/.npm:cached
     networks:
@@ -43,7 +43,7 @@ services:
       <<: *env
     volumes:
       - ./tools/local-env:/app:cached
-      - .:/app/wp-content/plugins/hitobito-auth:ro,cached
+      - .:/app/wp-content/plugins/daggerhart-openid-connect-generic:ro,cached
       - ./tools/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro,cached
     networks:
       - oidcwp-net
