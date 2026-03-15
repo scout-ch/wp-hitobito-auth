@@ -236,6 +236,13 @@ class OpenID_Connect_Generic_Settings_Page {
 				'disabled'    => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ),
 				'section'     => 'user_settings',
 			),
+			'button_txt'     => array(
+				'title'       => __( 'Button Text', 'daggerhart-openid-connect-generic' ),
+				'description' => __( 'The text shown in the button for the Hitobito login.', 'daggerhart-openid-connect-generic' ),
+				'type'        => 'text',
+				'disabled'    => defined( 'OIDC_BUTTON_TXT' ),
+				'section'     => 'user_settings',
+			),
 			'enable_logging'    => array(
 				'title'       => __( 'Enable Logging', 'daggerhart-openid-connect-generic' ),
 				'description' => __( 'Very simple log messages for debugging purposes.', 'daggerhart-openid-connect-generic' ),

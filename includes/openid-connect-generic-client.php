@@ -176,8 +176,19 @@ class OpenID_Connect_Generic_Client {
 			return new WP_Error( 'missing-state', __( 'Missing state.', 'daggerhart-openid-connect-generic' ), $request );
 		}
 
-		if ( ! $this->check_state( $request['state'] ) ) {
-			return new WP_Error( 'invalid-state', __( 'Invalid state.', 'daggerhart-openid-connect-generic' ), $request );
+		// Check the state
+		$state_check = $this->check_state( $request['state'] );
+
+		if ( true !== $state_check ) {
+			switch ( $state_check ) {
+				case 'expired':
+					return new WP_Error( 'expired-state', __( 'The login session is expired. Please reload the page and try again.', 'daggerhart-openid-connect-generic' ), $request );
+
+				case 'missing':
+				case 'invalid':
+				default:
+					return new WP_Error( 'invalid-state', __( 'The login session is invalid or expired. Please reload the page and try again.', 'daggerhart-openid-connect-generic' ), $request );
+			}
 		}
 
 		return $request;
@@ -362,11 +373,12 @@ class OpenID_Connect_Generic_Client {
 	public function new_state( $redirect_to ) {
 		// New state w/ timestamp.
 		$state = md5( mt_rand() . microtime( true ) );
+		
 		$state_value = array(
-			$state => array(
-				'redirect_to' => $redirect_to,
-			),
+			'redirect_to' => $redirect_to,
+			'created'     => time(),
 		);
+
 		set_transient( 'openid-connect-generic-state--' . $state, $state_value, $this->state_time_limit );
 
 		return $state;
@@ -381,20 +393,29 @@ class OpenID_Connect_Generic_Client {
 	 */
 	public function check_state( $state ) {
 
-		$state_found = true;
+		$transient_key = 'openid-connect-generic-state--' . $state;
+		$state_data    = get_transient( $transient_key );
 
-		if ( ! get_option( '_transient_openid-connect-generic-state--' . $state ) ) {
-			do_action( 'openid-connect-generic-state-not-found', $state );
-			$state_found = false;
+		if ( false === $state_data ) {
+			do_action( 'openid-connect-generic-state-missing', $state );
+			return 'missing';
 		}
 
-		$valid = get_transient( 'openid-connect-generic-state--' . $state );
-
-		if ( ! $valid && $state_found ) {
-			do_action( 'openid-connect-generic-state-expired', $state );
+		if ( ! is_array( $state_data ) || empty( $state_data['created'] ) ) {
+			do_action( 'openid-connect-generic-state-invalid', $state, $state_data );
+			return 'invalid';
 		}
 
-		return boolval( $valid );
+		$age = time() - (int) $state_data['created'];
+
+		if ( $age > $this->state_time_limit ) {
+			do_action( 'openid-connect-generic-state-expired', $state, $age, $state_data );
+			return 'expired';
+		}
+
+		do_action( 'openid-connect-generic-state-validated', $state, $age, $state_data );
+
+		return true;
 	}
 
 	/**
