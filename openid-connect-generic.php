@@ -93,6 +93,13 @@ class OpenID_Connect_Generic {
 	const VERSION = '1.0';
 
 	/**
+	 * Main plugin file path.
+	 *
+	 * @var string
+	 */
+	const PLUGIN_FILE = __FILE__;
+
+	/**
 	 * Plugin settings.
 	 *
 	 * @var OpenID_Connect_Generic_Option_Settings
