@@ -95,6 +95,27 @@ class OpenID_Connect_Generic_Settings_Page {
 
 		// Register our settings.
 		add_action( 'admin_init', array( $settings_page, 'admin_init' ) );
+
+		// Add a "Settings" link to the plugin row on the Plugins page.
+		add_filter( 'plugin_action_links_' . plugin_basename( OpenID_Connect_Generic::PLUGIN_FILE ), array( $settings_page, 'plugin_action_links' ) );
+	}
+
+	/**
+	 * Implements filter plugin_action_links_{$plugin_file} to link to the settings page.
+	 *
+	 * @param array<string> $links The plugin action links.
+	 *
+	 * @return array<string>
+	 */
+	public function plugin_action_links( $links ) {
+		$settings_link = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( admin_url( 'options-general.php?page=' . $this->options_page_name ) ),
+			esc_html__( 'Settings', 'daggerhart-openid-connect-generic' )
+		);
+		array_unshift( $links, $settings_link );
+
+		return $links;
 	}
 
 	/**
