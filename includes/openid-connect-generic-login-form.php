@@ -2,11 +2,13 @@
 /**
  * Login form and login button handling class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Login
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2020 daggerhart
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
+ *
+ * Modified for Hitobito Auth by the Swiss Guide and Scout Movement (Team MiData), 2025-2026.
  */
 
 /**
@@ -14,7 +16,7 @@
  *
  * Login form and login button handling.
  *
- * @package OpenID_Connect_Generic
+ * @package Hitobito Auth
  * @category  Login
  */
 class OpenID_Connect_Generic_Login_Form {

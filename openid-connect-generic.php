@@ -1,22 +1,31 @@
 <?php
 /**
- * OpenID Connect Generic Client for MiData
+ * Hitobito Auth – OpenID Connect client for Hitobito
  *
- * This plugin provides the ability to authenticate users with the MiData account of Swiss Guide and Scout Movement.
+ * This plugin provides the ability to authenticate users with Hitobito
+ * (e.g. MiData of the Swiss Guide and Scout Movement, jubla.db).
+ *
+ * This plugin is a modified version of "OpenID Connect Generic" (3.10.0) by
+ * Jonathan Daggerhart, Tim Nolte and contributors:
+ * https://github.com/oidc-wp/openid-connect-generic
+ * It has been adapted and simplified for Hitobito by the
+ * Swiss Guide and Scout Movement (Team MiData).
  *
  * @package   Hitobito Auth
  * @category  General
- * @author    Swiss Guide and Scout Movement
- * @copyright 2025 Swiss Guide and Scout Movement
+ * @author    Jonathan Daggerhart <jonathan@daggerhart.com> (original plugin)
+ * @author    Swiss Guide and Scout Movement (Team MiData)
+ * @copyright 2015-2023 daggerhart
+ * @copyright 2025-2026 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
- * @link      https://github.com/scout-ch
+ * @link      https://github.com/scout-ch/wp-hitobito-auth
  *
  * @wordpress-plugin
  * Plugin Name:       Hitobito Auth
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
  * Description:       Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization.
- * Version:           1.0
- * Requires at least: 6.7.0
+ * Version:           1.1
+ * Requires at least: 6.7.2
  * Requires PHP:      7.4
  * Author:            Swiss Guide and Scout Movement
  * Author URI:        https://pfadi.swiss
@@ -51,8 +60,10 @@ Notes
   - openid-connect-generic-redirect-user-back              - 2 args: $redirect_url, $user. Allows interruption of redirect during login.
   - openid-connect-generic-user-logged-in                  - 1 arg: $user, fires when user is logged in.
   - openid-connect-generic-cron-daily                      - daily cron action
-  - openid-connect-generic-state-not-found                 - the given state does not exist in the database, regardless of its expiration.
+  - openid-connect-generic-state-missing                   - the given state does not exist in the database, regardless of its expiration.
+  - openid-connect-generic-state-invalid                   - the given state exists, but its stored data is invalid.
   - openid-connect-generic-state-expired                   - the given state exists, but expired before this login attempt.
+  - openid-connect-generic-state-validated                 - the given state is valid.
 
   Callable actions
 
@@ -73,7 +84,7 @@ Notes
  *
  * Defines plugin initialization functionality.
  *
- * @package OpenID_Connect_Generic
+ * @package Hitobito Auth
  * @category  General
  */
 class OpenID_Connect_Generic {
@@ -90,7 +101,7 @@ class OpenID_Connect_Generic {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.0';
+	const VERSION = '1.1';
 
 	/**
 	 * Main plugin file path.
@@ -273,6 +284,12 @@ class OpenID_Connect_Generic {
 				$settings->save();
 			}
 
+			// Versions before 1.1 shipped a state time limit of 15 seconds, which is too short for logging in at Hitobito.
+			if ( intval( $settings->state_time_limit ) < 180 ) {
+				$settings->state_time_limit = 180;
+				$settings->save();
+			}
+
 			// Update the stored version number.
 			update_option( 'openid-connect-generic-plugin-version', self::VERSION );
 		}
@@ -391,7 +408,7 @@ class OpenID_Connect_Generic {
 				'email_format'           => '{email}',
 				'displayname_format'     => '{nickname}',
 				'identify_with_username' => false,
-				'state_time_limit'       => 15,
+				'state_time_limit'       => 180,
 
 				// Plugin settings.
 				'enforce_privacy'          => defined( 'OIDC_ENFORCE_PRIVACY' ) ? intval( OIDC_ENFORCE_PRIVACY ) : 0,
