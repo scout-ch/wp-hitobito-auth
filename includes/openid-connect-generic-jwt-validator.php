@@ -2,7 +2,7 @@
 /**
  * JWT validation and verification class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Authentication
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2020 daggerhart
@@ -18,7 +18,7 @@ use Firebase\JWT\Key;
  *
  * Handles JWT signature verification and claim validation using JWKS.
  *
- * @package  OpenID_Connect_Generic
+ * @package  Hitobito Auth
  * @category Authentication
  */
 class OpenID_Connect_Generic_JWT_Validator {
