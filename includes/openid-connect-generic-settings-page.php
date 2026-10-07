@@ -2,7 +2,7 @@
 /**
  * Plugin Admin settings page class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Settings
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2023 daggerhart
@@ -16,7 +16,7 @@
  *
  * Admin settings page.
  *
- * @package OpenID_Connect_Generic
+ * @package Hitobito Auth
  * @category  Settings
  */
 class OpenID_Connect_Generic_Settings_Page {

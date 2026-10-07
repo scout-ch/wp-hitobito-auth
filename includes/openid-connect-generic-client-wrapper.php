@@ -2,7 +2,7 @@
 /**
  * Plugin OIDC/oAuth client warpper class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Authentication
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2020 daggerhart
@@ -14,7 +14,7 @@
  *
  * Plugin OIDC/oAuth client wrapper class.
  *
- * @package  OpenID_Connect_Generic
+ * @package  Hitobito Auth
  * @category Authentication
  */
 class OpenID_Connect_Generic_Client_Wrapper {

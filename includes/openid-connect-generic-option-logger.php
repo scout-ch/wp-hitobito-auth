@@ -2,7 +2,7 @@
 /**
  * Plugin logging class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Logging
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2023 daggerhart
@@ -14,7 +14,7 @@
  *
  * Simple class for logging messages to the options table.
  *
- * @package  OpenID_Connect_Generic
+ * @package  Hitobito Auth
  * @category Logging
  */
 class OpenID_Connect_Generic_Option_Logger {

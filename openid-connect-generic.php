@@ -84,7 +84,7 @@ Notes
  *
  * Defines plugin initialization functionality.
  *
- * @package OpenID_Connect_Generic
+ * @package Hitobito Auth
  * @category  General
  */
 class OpenID_Connect_Generic {

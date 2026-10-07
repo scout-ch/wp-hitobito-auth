@@ -2,7 +2,7 @@
 /**
  * WordPress options handling class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Settings
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @author    Swiss Guide and Scout Movement (Team MiData)
@@ -18,7 +18,7 @@
  *
  * WordPress options handling.
  *
- * @package OpenID_Connect_Generic
+ * @package Hitobito Auth
  * @category  Settings
  *
  * Legacy Settings:

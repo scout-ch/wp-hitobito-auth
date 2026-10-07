@@ -2,7 +2,7 @@
 /**
  * Login form and login button handling class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Login
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2020 daggerhart
@@ -16,7 +16,7 @@
  *
  * Login form and login button handling.
  *
- * @package OpenID_Connect_Generic
+ * @package Hitobito Auth
  * @category  Login
  */
 class OpenID_Connect_Generic_Login_Form {
