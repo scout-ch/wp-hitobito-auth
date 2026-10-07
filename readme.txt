@@ -2,8 +2,8 @@
 Contributors: Team MiData
 Requires at least: 6.7.2
 Tested up to: 6.9.4
-Stable tag: 1.1
-Requires PHP: 7.4
+Stable tag: 1.2
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,7 +43,7 @@ Replace `example.com` with your domain name and path to WordPress.
 
 == Credits ==
 
-This plugin is a modified version of OpenID Connect Generic 3.10.0 by Jonathan Daggerhart, Tim Nolte and contributors (https://github.com/oidc-wp/openid-connect-generic), licensed under GPLv2 or later. Adapted and simplified for Hitobito by the Swiss Guide and Scout Movement (Team MiData).
+This plugin is a modified version of OpenID Connect Generic 3.11.3 by Jonathan Daggerhart, Tim Nolte and contributors (https://github.com/oidc-wp/openid-connect-generic), licensed under GPLv2 or later. Adapted and simplified for Hitobito by the Swiss Guide and Scout Movement (Team MiData).
 
 Copyright (C) 2015-2023 daggerhart
 Copyright (C) 2025-2026 Swiss Guide and Scout Movement

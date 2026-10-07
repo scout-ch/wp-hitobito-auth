@@ -94,6 +94,33 @@ class OpenID_Connect_Generic_Client {
 	private $acr_values;
 
 	/**
+	 * The JWKS endpoint URL for JWT signature verification.
+	 *
+	 * @see OpenID_Connect_Generic_Option_Settings::endpoint_jwks
+	 *
+	 * @var string
+	 */
+	private $endpoint_jwks;
+
+	/**
+	 * The issuer URL for JWT validation.
+	 *
+	 * @see OpenID_Connect_Generic_Option_Settings::issuer
+	 *
+	 * @var string
+	 */
+	private $issuer;
+
+	/**
+	 * The JWKS cache TTL in seconds.
+	 *
+	 * @see OpenID_Connect_Generic_Option_Settings::jwks_cache_ttl
+	 *
+	 * @var int
+	 */
+	private $jwks_cache_ttl;
+
+	/**
 	 * The state time limit. States are only valid for 3 minutes.
 	 *
 	 * @see OpenID_Connect_Generic_Option_Settings::state_time_limit
@@ -101,6 +128,15 @@ class OpenID_Connect_Generic_Client {
 	 * @var int
 	 */
 	private $state_time_limit = 180;
+
+	/**
+	 * Allow HTTP requests to internal/private network endpoints.
+	 *
+	 * @see OpenID_Connect_Generic_Option_Settings::allow_internal_idp
+	 *
+	 * @var bool
+	 */
+	private $allow_internal_idp;
 
 	/**
 	 * The logger object instance.
@@ -112,18 +148,22 @@ class OpenID_Connect_Generic_Client {
 	/**
 	 * Client constructor.
 	 *
-	 * @param string                               $client_id         @see OpenID_Connect_Generic_Option_Settings::client_id for description.
-	 * @param string                               $client_secret     @see OpenID_Connect_Generic_Option_Settings::client_secret for description.
-	 * @param string                               $scope             @see OpenID_Connect_Generic_Option_Settings::scope for description.
-	 * @param string                               $endpoint_login    @see OpenID_Connect_Generic_Option_Settings::endpoint_login for description.
-	 * @param string                               $endpoint_userinfo @see OpenID_Connect_Generic_Option_Settings::endpoint_userinfo for description.
-	 * @param string                               $endpoint_token    @see OpenID_Connect_Generic_Option_Settings::endpoint_token for description.
-	 * @param string                               $redirect_uri      @see OpenID_Connect_Generic_Option_Settings::redirect_uri for description.
-	 * @param string                               $acr_values        @see OpenID_Connect_Generic_Option_Settings::acr_values for description.
-	 * @param int                                  $state_time_limit  @see OpenID_Connect_Generic_Option_Settings::state_time_limit for description.
-	 * @param OpenID_Connect_Generic_Option_Logger $logger            The plugin logging object instance.
+	 * @param string                               $client_id          @see OpenID_Connect_Generic_Option_Settings::client_id for description.
+	 * @param string                               $client_secret      @see OpenID_Connect_Generic_Option_Settings::client_secret for description.
+	 * @param string                               $scope              @see OpenID_Connect_Generic_Option_Settings::scope for description.
+	 * @param string                               $endpoint_login     @see OpenID_Connect_Generic_Option_Settings::endpoint_login for description.
+	 * @param string                               $endpoint_userinfo  @see OpenID_Connect_Generic_Option_Settings::endpoint_userinfo for description.
+	 * @param string                               $endpoint_token     @see OpenID_Connect_Generic_Option_Settings::endpoint_token for description.
+	 * @param string                               $redirect_uri       @see OpenID_Connect_Generic_Option_Settings::redirect_uri for description.
+	 * @param string                               $acr_values         @see OpenID_Connect_Generic_Option_Settings::acr_values for description.
+	 * @param string                               $endpoint_jwks      @see OpenID_Connect_Generic_Option_Settings::endpoint_jwks for description.
+	 * @param string                               $issuer             @see OpenID_Connect_Generic_Option_Settings::issuer for description.
+	 * @param int                                  $jwks_cache_ttl     @see OpenID_Connect_Generic_Option_Settings::jwks_cache_ttl for description.
+	 * @param int                                  $state_time_limit   @see OpenID_Connect_Generic_Option_Settings::state_time_limit for description.
+	 * @param bool                                 $allow_internal_idp @see OpenID_Connect_Generic_Option_Settings::allow_internal_idp for description.
+	 * @param OpenID_Connect_Generic_Option_Logger $logger             The plugin logging object instance.
 	 */
-	public function __construct( $client_id, $client_secret, $scope, $endpoint_login, $endpoint_userinfo, $endpoint_token, $redirect_uri, $acr_values, $state_time_limit, $logger ) {
+	public function __construct( $client_id, $client_secret, $scope, $endpoint_login, $endpoint_userinfo, $endpoint_token, $redirect_uri, $acr_values, $endpoint_jwks, $issuer, $jwks_cache_ttl, $state_time_limit, $allow_internal_idp, $logger ) {
 		$this->client_id = $client_id;
 		$this->client_secret = $client_secret;
 		$this->scope = $scope;
@@ -132,8 +172,50 @@ class OpenID_Connect_Generic_Client {
 		$this->endpoint_token = $endpoint_token;
 		$this->redirect_uri = $redirect_uri;
 		$this->acr_values = $acr_values;
+		$this->endpoint_jwks = $endpoint_jwks;
+		$this->issuer = $issuer;
+		$this->jwks_cache_ttl = $jwks_cache_ttl;
 		$this->state_time_limit = $state_time_limit;
+		$this->allow_internal_idp = $allow_internal_idp;
 		$this->logger = $logger;
+	}
+
+	/**
+	 * Make a safe HTTP GET request with optional internal endpoint support.
+	 *
+	 * By default, uses wp_safe_remote_get() which blocks requests to internal/private
+	 * networks (SSRF protection). If allow_internal_idp is enabled, uses wp_remote_get()
+	 * to allow connections to localhost and private network identity providers.
+	 *
+	 * @param string $url  The URL to request.
+	 * @param array  $args Optional. Request arguments.
+	 *
+	 * @return array|WP_Error Response array or WP_Error on failure.
+	 */
+	private function http_get( $url, $args = array() ) {
+		if ( $this->allow_internal_idp ) {
+			return wp_remote_get( $url, $args );
+		}
+		return wp_safe_remote_get( $url, $args );
+	}
+
+	/**
+	 * Make a safe HTTP POST request with optional internal endpoint support.
+	 *
+	 * By default, uses wp_safe_remote_post() which blocks requests to internal/private
+	 * networks (SSRF protection). If allow_internal_idp is enabled, uses wp_remote_post()
+	 * to allow connections to localhost and private network identity providers.
+	 *
+	 * @param string $url  The URL to request.
+	 * @param array  $args Optional. Request arguments.
+	 *
+	 * @return array|WP_Error Response array or WP_Error on failure.
+	 */
+	private function http_post( $url, $args = array() ) {
+		if ( $this->allow_internal_idp ) {
+			return wp_remote_post( $url, $args );
+		}
+		return wp_safe_remote_post( $url, $args );
 	}
 
 	/**
@@ -164,7 +246,19 @@ class OpenID_Connect_Generic_Client {
 	public function validate_authentication_request( $request ) {
 		// Look for an existing error of some kind.
 		if ( isset( $request['error'] ) ) {
-			return new WP_Error( 'unknown-error', 'An unknown error occurred.', $request );
+			$error_code = sanitize_text_field( $request['error'] );
+			$error_message = 'An unknown error occurred.';
+
+			// Use the IDP's error description if available for better diagnostics.
+			if ( ! empty( $request['error_description'] ) ) {
+				$error_message = sprintf(
+					'IDP error %s: %s',
+					$error_code,
+					sanitize_text_field( $request['error_description'] )
+				);
+			}
+
+			return new WP_Error( $error_code, $error_message, $request );
 		}
 
 		// Make sure we have a legitimate authentication code and valid state.
@@ -245,7 +339,7 @@ class OpenID_Connect_Generic_Client {
 
 		// Call the server and ask for a token.
 		$start_time = microtime( true );
-		$response   = wp_remote_post( $this->endpoint_token, $request );
+		$response   = $this->http_post( $this->endpoint_token, $request );
 		$end_time   = microtime( true );
 		$this->logger->log( $this->endpoint_token, 'request_authentication_token', $end_time - $start_time );
 
@@ -278,7 +372,7 @@ class OpenID_Connect_Generic_Client {
 
 		// Call the server and ask for new tokens.
 		$start_time = microtime( true );
-		$response   = wp_remote_post( $this->endpoint_token, $request );
+		$response   = $this->http_post( $this->endpoint_token, $request );
 		$end_time   = microtime( true );
 		$this->logger->log( $this->endpoint_token, 'request_new_tokens', $end_time - $start_time );
 
@@ -354,8 +448,16 @@ class OpenID_Connect_Generic_Client {
 
 		// Attempt the request including the access token in the query string for backwards compatibility.
 		$start_time = microtime( true );
-		$response   = wp_remote_post( $this->endpoint_userinfo, $request );
-		$end_time   = microtime( true );
+		$response   = $this->http_get( $this->endpoint_userinfo, $request );
+
+		// This endpoint can support GET or POST requests according to spec, but some IDPs only allow one.
+		// If the GET request failed to produce valid json, attempt a POST request.
+		// Spec: https://openid.net/specs/openid-connect-core-1_0.html#UserInfoRequest.
+		if ( ! is_wp_error( $response ) && json_decode( $response['body'] ) === null ) {
+			$response = $this->http_post( $this->endpoint_userinfo, $request );
+		}
+
+		$end_time = microtime( true );
 		$this->logger->log( $this->endpoint_userinfo, 'request_userinfo', $end_time - $start_time );
 
 		if ( is_wp_error( $response ) ) {
@@ -373,13 +475,15 @@ class OpenID_Connect_Generic_Client {
 	 * @return string
 	 */
 	public function new_state( $redirect_to ) {
-		// New state w/ timestamp.
-		$state = md5( mt_rand() . microtime( true ) );
-		
+		// New state with cryptographically secure random bytes.
+		$state = bin2hex( random_bytes( 16 ) );
 		$state_value = array(
 			'redirect_to' => $redirect_to,
 			'created'     => time(),
 		);
+
+		// Allow storing more data with the state. Eg. to identify user relationships.
+		$state_value = apply_filters( 'openid-connect-generic-new-state-value', $state_value, $this );
 
 		set_transient( 'openid-connect-generic-state--' . $state, $state_value, $this->state_time_limit );
 
@@ -457,7 +561,7 @@ class OpenID_Connect_Generic_Client {
 	}
 
 	/**
-	 * Extract the id_token_claim from the token_response.
+	 * Extract and validate the id_token_claim from the token_response.
 	 *
 	 * @param array $token_response The token response.
 	 *
@@ -469,14 +573,47 @@ class OpenID_Connect_Generic_Client {
 			return new WP_Error( 'no-identity-token', __( 'No identity token.', 'daggerhart-openid-connect-generic' ), $token_response );
 		}
 
-		// Break apart the id_token in the response for decoding.
+		// Check if JWKS endpoint is configured for JWT signature verification.
+		if ( ! empty( $this->endpoint_jwks ) ) {
+			// Use configured issuer if provided, otherwise derive from endpoint_login.
+			$issuer = ! empty( $this->issuer )
+				? $this->issuer
+				: $this->get_issuer_from_endpoint( $this->endpoint_login );
+
+			// Use JWT validator for secure signature verification.
+			$jwt_validator = new OpenID_Connect_Generic_JWT_Validator(
+				$this->endpoint_jwks,
+				$this->client_id,
+				$issuer,
+				$this->jwks_cache_ttl,
+				$this->allow_internal_idp,
+				$this->logger
+			);
+
+			// Validate JWT signature and claims.
+			$id_token_claim = $jwt_validator->validate_id_token( $token_response['id_token'] );
+
+			if ( is_wp_error( $id_token_claim ) ) {
+				$this->logger->log( $id_token_claim, 'jwt-validation-failed' );
+				return $id_token_claim;
+			}
+
+			return $id_token_claim;
+		}
+
+		$this->logger->log(
+			'SECURITY WARNING: JWKS endpoint not configured. JWT signatures are NOT being verified. This is a critical security vulnerability. Configure the JWKS endpoint immediately in Settings > OpenID Connect Client to secure authentication.',
+			'jwks-not-configured-insecure'
+		);
+
+		// Legacy JWT decoding without signature verification (INSECURE).
 		$tmp = explode( '.', $token_response['id_token'] );
 
 		if ( ! isset( $tmp[1] ) ) {
 			return new WP_Error( 'missing-identity-token', __( 'Missing identity token.', 'daggerhart-openid-connect-generic' ), $token_response );
 		}
 
-		// Extract the id_token's claims from the token.
+		// Extract the id_token's claims from the token (no signature verification).
 		$id_token_claim = json_decode(
 			base64_decode(
 				str_replace( // Because token is encoded in base64 URL (and not just base64).
@@ -492,6 +629,38 @@ class OpenID_Connect_Generic_Client {
 	}
 
 	/**
+	 * Extract issuer URL from endpoint URL.
+	 *
+	 * The issuer is typically the base URL (scheme + host + trailing slash).
+	 *
+	 * @param string $endpoint_url The full endpoint URL.
+	 *
+	 * @return string The issuer URL.
+	 */
+	public function get_issuer_from_endpoint( $endpoint_url ) {
+		$parsed = wp_parse_url( $endpoint_url );
+
+		if ( ! $parsed || ! isset( $parsed['scheme'] ) || ! isset( $parsed['host'] ) ) {
+			return $endpoint_url;
+		}
+
+		$issuer = $parsed['scheme'] . '://' . $parsed['host'];
+
+		// Add port if non-standard.
+		if ( isset( $parsed['port'] ) ) {
+			$default_ports = array(
+				'http' => 80,
+				'https' => 443,
+			);
+			if ( ! isset( $default_ports[ $parsed['scheme'] ] ) || $parsed['port'] != $default_ports[ $parsed['scheme'] ] ) {
+				$issuer .= ':' . $parsed['port'];
+			}
+		}
+
+		return $issuer;
+	}
+
+	/**
 	 * Ensure the id_token_claim contains the required values.
 	 *
 	 * @param array $id_token_claim The ID token claim.
@@ -503,9 +672,69 @@ class OpenID_Connect_Generic_Client {
 			return new WP_Error( 'bad-id-token-claim', __( 'Bad ID token claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
 		}
 
-		// Validate the identification data and it's value.
+		// Validate the identification data and its value.
 		if ( ! isset( $id_token_claim['sub'] ) || empty( $id_token_claim['sub'] ) ) {
 			return new WP_Error( 'no-subject-identity', __( 'No subject identity.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+		}
+
+		// Validate expiration claim.
+		if ( ! isset( $id_token_claim['exp'] ) ) {
+			return new WP_Error( 'missing-exp', __( 'Token missing expiration claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+		}
+		if ( time() >= $id_token_claim['exp'] ) {
+			return new WP_Error( 'token-expired', __( 'Token has expired.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+		}
+
+		// Validate issued at claim.
+		if ( ! isset( $id_token_claim['iat'] ) ) {
+			return new WP_Error( 'missing-iat', __( 'Token missing issued at claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+		}
+
+		// Validate audience claim matches client_id (can be string or array).
+		if ( ! isset( $id_token_claim['aud'] ) ) {
+			return new WP_Error( 'missing-aud', __( 'Token missing audience claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+		}
+
+		$aud = $id_token_claim['aud'];
+		$audience_valid = false;
+
+		if ( is_array( $aud ) ) {
+			$audience_valid = in_array( $this->client_id, $aud, true );
+		} elseif ( is_string( $aud ) ) {
+			$audience_valid = ( $aud === $this->client_id );
+		}
+
+		if ( ! $audience_valid ) {
+			return new WP_Error( 'invalid-aud', __( 'Token audience does not match client.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+		}
+
+		// Validate issuer claim if configured or endpoint_login is available.
+		$expected_issuer = ! empty( $this->issuer ) ?
+			$this->issuer :
+			( ! empty( $this->endpoint_login ) ? $this->get_issuer_from_endpoint( $this->endpoint_login ) : '' );
+
+		if ( ! empty( $expected_issuer ) ) {
+			if ( ! isset( $id_token_claim['iss'] ) ) {
+				return new WP_Error( 'missing-iss', __( 'Token missing issuer claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			}
+
+			if ( rtrim( $id_token_claim['iss'], '/' ) !== rtrim( $expected_issuer, '/' ) ) {
+				$this->logger->log(
+					sprintf(
+						'Issuer mismatch - Expected: "%s", Received: "%s". Configure the correct issuer in Settings > OpenID Connect Client > Issuer field, or via the OIDC_ISSUER constant.',
+						$expected_issuer,
+						$id_token_claim['iss']
+					),
+					'issuer-mismatch'
+				);
+				return new WP_Error(
+					'invalid-iss',
+					sprintf(
+						__( 'Token issuer does not match expected issuer.', 'daggerhart-openid-connect-generic' ),
+					),
+					$id_token_claim
+				);
+			}
 		}
 
 		// Validate acr values when the option is set in the configuration.

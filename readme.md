@@ -3,8 +3,8 @@ Hitobito Auth
 - Contributors: Team MiData (Swiss Guide and Scout Movement); based on work by Jonathan Daggerhart, Tim Nolte and contributors 
 - Requires at least: 6.7.2 
 - Tested up to: 6.9.4 
-- Stable tag: 1.1 
-- Requires PHP: 7.4 
+- Stable tag: 1.2 
+- Requires PHP: 8.0 
 - License: GPLv2 or later 
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 - Based on: https://github.com/oidc-wp/openid-connect-generic
@@ -56,7 +56,7 @@ Replace `example.com` with your domain name and path to WordPress.
 ## Credits & License
 
 This plugin is a modified version of
-[OpenID Connect Generic](https://github.com/oidc-wp/openid-connect-generic) (version 3.10.0)
+[OpenID Connect Generic](https://github.com/oidc-wp/openid-connect-generic) (version 3.11.3)
 by Jonathan Daggerhart, Tim Nolte and contributors, licensed under GPLv2 or later.
 
 It has been adapted and simplified for authentication against Hitobito by the
