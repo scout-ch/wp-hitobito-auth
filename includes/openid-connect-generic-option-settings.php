@@ -2,11 +2,15 @@
 /**
  * WordPress options handling class.
  *
- * @package   MiData Auth
+ * @package   OpenID_Connect_Generic
  * @category  Settings
- * @author    Swiss Guide and Scout Movement
+ * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
+ * @author    Swiss Guide and Scout Movement (Team MiData)
+ * @copyright 2015-2023 daggerhart
  * @copyright 2025 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
+ *
+ * Modified for Hitobito Auth by the Swiss Guide and Scout Movement (Team MiData), 2025.
  */
 
 /**
@@ -14,7 +18,7 @@
  *
  * WordPress options handling.
  *
- * @package MiData Auth
+ * @package OpenID_Connect_Generic
  * @category  Settings
  *
  * Legacy Settings:

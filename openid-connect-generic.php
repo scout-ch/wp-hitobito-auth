@@ -1,15 +1,24 @@
 <?php
 /**
- * OpenID Connect Generic Client for MiData
+ * Hitobito Auth – OpenID Connect client for Hitobito
  *
- * This plugin provides the ability to authenticate users with the MiData account of Swiss Guide and Scout Movement.
+ * This plugin provides the ability to authenticate users with Hitobito
+ * (e.g. MiData of the Swiss Guide and Scout Movement, jubla.db).
+ *
+ * This plugin is a modified version of "OpenID Connect Generic" (3.10.0) by
+ * Jonathan Daggerhart, Tim Nolte and contributors:
+ * https://github.com/oidc-wp/openid-connect-generic
+ * It has been adapted and simplified for Hitobito by the
+ * Swiss Guide and Scout Movement (Team MiData).
  *
  * @package   Hitobito Auth
  * @category  General
- * @author    Swiss Guide and Scout Movement
+ * @author    Jonathan Daggerhart <jonathan@daggerhart.com> (original plugin)
+ * @author    Swiss Guide and Scout Movement (Team MiData)
+ * @copyright 2015-2023 daggerhart
  * @copyright 2025 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
- * @link      https://github.com/scout-ch
+ * @link      https://github.com/scout-ch/wp-hitobito-auth
  *
  * @wordpress-plugin
  * Plugin Name:       Hitobito Auth

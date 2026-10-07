@@ -6,7 +6,6 @@ Stable tag: 1.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Copy of: https://github.com/daggerhart/openid-connect-generic
 
 A simple client that provides SSO or opt-in authentication against a generic OAuth2 Server implementation.
 
@@ -20,6 +19,10 @@ new users are created in WordPress database.
 Much of the documentation can be found on the Settings > Hitobito Connect Generic dashboard page.
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
+
+== Scope ==
+
+This plugin is intended exclusively for authentication against Hitobito (e.g. MiData, jubla.db or other Hitobito instances). For other OpenID Connect providers, please use the original OpenID Connect Generic plugin: https://github.com/oidc-wp/openid-connect-generic
 
 == Installation ==
 
@@ -37,3 +40,10 @@ Most OAuth2 servers will require whitelisting a set of redirect URIs for securit
 by this client is like so:  https://example.com/wp-admin/admin-ajax.php?action=openid-connect-authorize
 
 Replace `example.com` with your domain name and path to WordPress.
+
+== Credits ==
+
+This plugin is a modified version of OpenID Connect Generic 3.10.0 by Jonathan Daggerhart, Tim Nolte and contributors (https://github.com/oidc-wp/openid-connect-generic), licensed under GPLv2 or later. Adapted and simplified for Hitobito by the Swiss Guide and Scout Movement (Team MiData).
+
+Copyright (C) 2015-2023 daggerhart
+Copyright (C) 2025 Swiss Guide and Scout Movement

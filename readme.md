@@ -1,13 +1,13 @@
 # Hitobito Auth Plugin Info
 Hitobito Auth
-- Contributors: Team MiData 
+- Contributors: Team MiData (Swiss Guide and Scout Movement); based on work by Jonathan Daggerhart, Tim Nolte and contributors 
 - Requires at least: 6.7.2 
 - Tested up to: 6.9.4 
 - Stable tag: 1.0 
 - Requires PHP: 7.4 
 - License: GPLv2 or later 
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html 
-- Copy of: https://github.com/daggerhart/openid-connect-generic
+- Based on: https://github.com/oidc-wp/openid-connect-generic
 
 A simple client that provides SSO or opt-in authentication against a generic OAuth2 Server implementation.
 
@@ -27,13 +27,22 @@ Much of the documentation can be found on the Settings > Hitobito Connect Generi
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
 
+## Scope
+
+This plugin is intended exclusively for authentication against **Hitobito**
+(e.g. MiData, jubla.db or other Hitobito instances). Contributions that improve
+support for Hitobito-based organisations are very welcome.
+
+If you need to connect WordPress to another OpenID Connect provider, please use the
+original [OpenID Connect Generic](https://github.com/oidc-wp/openid-connect-generic) plugin.
+
 ## Installation
 
 1. Upload to the `/wp-content/plugins/` directory
 1. Activate the plugin
 1. Visit Settings > Hitobito Auth and configure to meet your needs
 
-## Frequently Asked Questions ==
+## Frequently Asked Questions
 
 You will find them on:  https://docu.scout.ch/
 
@@ -43,3 +52,20 @@ Most OAuth2 servers will require whitelisting a set of redirect URIs for securit
 by this client is like so:  https://example.com/wp-admin/admin-ajax.php?action=openid-connect-authorize
 
 Replace `example.com` with your domain name and path to WordPress.
+
+## Credits & License
+
+This plugin is a modified version of
+[OpenID Connect Generic](https://github.com/oidc-wp/openid-connect-generic) (version 3.10.0)
+by Jonathan Daggerhart, Tim Nolte and contributors, licensed under GPLv2 or later.
+
+It has been adapted and simplified for authentication against Hitobito by the
+Swiss Guide and Scout Movement (Team MiData).
+
+Copyright (C) 2015-2023 daggerhart
+Copyright (C) 2025 Swiss Guide and Scout Movement
+
+This program is free software; you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version.
+See [LICENSE](LICENSE) for the full license text.
