@@ -2,7 +2,7 @@
 /**
  * Plugin logging class.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @category  Logging
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2023 daggerhart
@@ -14,7 +14,7 @@
  *
  * Simple class for logging messages to the options table.
  *
- * @package  OpenID_Connect_Generic
+ * @package  Hitobito Auth
  * @category Logging
  */
 class OpenID_Connect_Generic_Option_Logger {
@@ -174,7 +174,9 @@ class OpenID_Connect_Generic_Option_Logger {
 	 * @return array
 	 */
 	private function upkeep_logs( $logs ) {
-		$items_to_remove = count( $logs ) - $this->log_limit;
+		$items_to_remove = is_array( $logs ) ?
+			count( $logs ) - $this->log_limit :
+			0;
 
 		if ( $items_to_remove > 0 ) {
 			// Only keep the last $log_limit messages from the end.
@@ -250,10 +252,13 @@ class OpenID_Connect_Generic_Option_Logger {
 						</div>
 						<div>
 							<label><?php esc_html_e( 'Response&nbsp;Time&nbsp;(sec)', 'daggerhart-openid-connect-generic' ); ?></label>
-							<?php print esc_html( ! empty( $log['response_time'] ) ? $log['response_time'] : '' ); ?>
+							<?php print esc_html( ! empty( $log['processing_time'] ) ? $log['processing_time'] : 0 ); ?>
 						</div>
 					</td>
-					<td class="col-data"><pre><?php var_dump( ! empty( $log['data'] ) ? $log['data'] : '' ); ?></pre></td>
+					<td class="col-data">
+						<?php $log_data = ! empty( $log['data'] ) ? print_r( $log['data'], true ) : ''; ?>
+						<pre><?php print esc_html( $log_data ); ?></pre>
+					</td>
 				</tr>
 			<?php } ?>
 			</tbody>
