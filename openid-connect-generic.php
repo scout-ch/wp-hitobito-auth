@@ -16,7 +16,7 @@
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com> (original plugin)
  * @author    Swiss Guide and Scout Movement (Team MiData)
  * @copyright 2015-2023 daggerhart
- * @copyright 2025 Swiss Guide and Scout Movement
+ * @copyright 2025-2026 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  * @link      https://github.com/scout-ch/wp-hitobito-auth
  *
@@ -24,8 +24,8 @@
  * Plugin Name:       Hitobito Auth
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
  * Description:       Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization.
- * Version:           1.0
- * Requires at least: 6.7.0
+ * Version:           1.1
+ * Requires at least: 6.7.2
  * Requires PHP:      7.4
  * Author:            Swiss Guide and Scout Movement
  * Author URI:        https://pfadi.swiss
@@ -60,8 +60,10 @@ Notes
   - openid-connect-generic-redirect-user-back              - 2 args: $redirect_url, $user. Allows interruption of redirect during login.
   - openid-connect-generic-user-logged-in                  - 1 arg: $user, fires when user is logged in.
   - openid-connect-generic-cron-daily                      - daily cron action
-  - openid-connect-generic-state-not-found                 - the given state does not exist in the database, regardless of its expiration.
+  - openid-connect-generic-state-missing                   - the given state does not exist in the database, regardless of its expiration.
+  - openid-connect-generic-state-invalid                   - the given state exists, but its stored data is invalid.
   - openid-connect-generic-state-expired                   - the given state exists, but expired before this login attempt.
+  - openid-connect-generic-state-validated                 - the given state is valid.
 
   Callable actions
 
@@ -99,7 +101,7 @@ class OpenID_Connect_Generic {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.0';
+	const VERSION = '1.1';
 
 	/**
 	 * Main plugin file path.

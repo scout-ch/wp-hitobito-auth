@@ -8,7 +8,7 @@
  * @copyright 2015-2023 daggerhart
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  *
- * Modified for Hitobito Auth by the Swiss Guide and Scout Movement (Team MiData), 2025.
+ * Modified for Hitobito Auth by the Swiss Guide and Scout Movement (Team MiData), 2025-2026.
  */
 
 /**
@@ -359,7 +359,11 @@ class OpenID_Connect_Generic_Settings_Page {
 				<strong><?php esc_html_e( 'This Plugin was developed by Schlumpf and Vivo during the Hitobito Hackathon 2025. ', 'daggerhart-openid-connect-generic' ); ?></strong>
 			</p>
 			<p class="description">
-				<strong><?php esc_html_e( '(c) 2025 Swiss Guide and Scout Movement', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( '(c) 2025-2026 Swiss Guide and Scout Movement', 'daggerhart-openid-connect-generic' ); ?></strong>
+			</p>
+			<p class="description">
+				<?php esc_html_e( 'Based on OpenID Connect Generic by Jonathan Daggerhart, Tim Nolte and contributors, licensed under GPLv2 or later.', 'daggerhart-openid-connect-generic' ); ?>
+				<a href="https://github.com/oidc-wp/openid-connect-generic" target="_blank" rel="noopener noreferrer">github.com/oidc-wp/openid-connect-generic</a>
 			</p>
 			<?php if ( $this->settings->enable_logging ) { ?>
 				<h2><?php esc_html_e( 'Logs', 'daggerhart-openid-connect-generic' ); ?></h2>

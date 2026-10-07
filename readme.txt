@@ -1,8 +1,8 @@
 === Hitobito Authentication WordPress Plugin ===
 Contributors: Team MiData
 Requires at least: 6.7.2
-Tested up to: 6.7.2
-Stable tag: 1.0
+Tested up to: 6.9.4
+Stable tag: 1.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,7 +16,7 @@ Once installed, it can be configured to automatically authenticate users (SSO), 
 button on the login form. After consent has been obtained, an existing user is automatically logged into WordPress, while
 new users are created in WordPress database.
 
-Much of the documentation can be found on the Settings > Hitobito Connect Generic dashboard page.
+Much of the documentation can be found on the Settings > Hitobito Auth page.
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
 
@@ -28,7 +28,7 @@ This plugin is intended exclusively for authentication against Hitobito (e.g. Mi
 
 1. Upload to the `/wp-content/plugins/` directory
 1. Activate the plugin
-1. Visit Settings > Hitobito Connect and configure to meet your needs
+1. Visit Settings > Hitobito Auth and configure to meet your needs
 
 == Frequently Asked Questions ==
 
@@ -46,4 +46,4 @@ Replace `example.com` with your domain name and path to WordPress.
 This plugin is a modified version of OpenID Connect Generic 3.10.0 by Jonathan Daggerhart, Tim Nolte and contributors (https://github.com/oidc-wp/openid-connect-generic), licensed under GPLv2 or later. Adapted and simplified for Hitobito by the Swiss Guide and Scout Movement (Team MiData).
 
 Copyright (C) 2015-2023 daggerhart
-Copyright (C) 2025 Swiss Guide and Scout Movement
+Copyright (C) 2025-2026 Swiss Guide and Scout Movement

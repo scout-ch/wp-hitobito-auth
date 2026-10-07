@@ -7,10 +7,10 @@
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @author    Swiss Guide and Scout Movement (Team MiData)
  * @copyright 2015-2023 daggerhart
- * @copyright 2025 Swiss Guide and Scout Movement
+ * @copyright 2025-2026 Swiss Guide and Scout Movement
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  *
- * Modified for Hitobito Auth by the Swiss Guide and Scout Movement (Team MiData), 2025.
+ * Modified for Hitobito Auth by the Swiss Guide and Scout Movement (Team MiData), 2025-2026.
  */
 
 /**

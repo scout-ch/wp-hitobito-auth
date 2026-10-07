@@ -3,7 +3,7 @@ Hitobito Auth
 - Contributors: Team MiData (Swiss Guide and Scout Movement); based on work by Jonathan Daggerhart, Tim Nolte and contributors 
 - Requires at least: 6.7.2 
 - Tested up to: 6.9.4 
-- Stable tag: 1.0 
+- Stable tag: 1.1 
 - Requires PHP: 7.4 
 - License: GPLv2 or later 
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html 
@@ -23,7 +23,7 @@ Once installed, it can be configured to automatically authenticate users (SSO), 
 button on the login form. After consent has been obtained, an existing user is automatically logged into WordPress, while
 new users are created in WordPress database.
 
-Much of the documentation can be found on the Settings > Hitobito Connect Generic dashboard page.
+Much of the documentation can be found on the Settings > Hitobito Auth page.
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
 
@@ -63,7 +63,7 @@ It has been adapted and simplified for authentication against Hitobito by the
 Swiss Guide and Scout Movement (Team MiData).
 
 Copyright (C) 2015-2023 daggerhart
-Copyright (C) 2025 Swiss Guide and Scout Movement
+Copyright (C) 2025-2026 Swiss Guide and Scout Movement
 
 This program is free software; you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software Foundation;
