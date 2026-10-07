@@ -8,6 +8,9 @@
 - Fix: Endpoint URLs adjusted; end session endpoint is now `oidc/logout` instead of `oauth/logout`
 - Fix: Default Hitobito instance (`endpoint_url`) set to `test` for new installations
 - Improvement: Clearer error messages for an expired or invalid login session (state)
+- Fix: Users are redirected back to the requested page after login again (state redirect was ignored)
+- Fix: Login session (state) time limit raised from 15 to 180 seconds; existing installations are updated automatically
+- Security: Redirect URL from the legacy redirect cookie is now validated
 - Developer: State check now stores a creation timestamp. The action `openid-connect-generic-state-not-found` was replaced by `openid-connect-generic-state-missing`; new actions `openid-connect-generic-state-invalid` and `openid-connect-generic-state-validated`
 - Chore: Restored original copyright and author notices of OpenID Connect Generic (GPLv2 compliance)
 - Chore: Added Credits, Scope and License sections to readme

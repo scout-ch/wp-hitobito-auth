@@ -284,6 +284,12 @@ class OpenID_Connect_Generic {
 				$settings->save();
 			}
 
+			// Versions before 1.1 shipped a state time limit of 15 seconds, which is too short for logging in at Hitobito.
+			if ( intval( $settings->state_time_limit ) < 180 ) {
+				$settings->state_time_limit = 180;
+				$settings->save();
+			}
+
 			// Update the stored version number.
 			update_option( 'openid-connect-generic-plugin-version', self::VERSION );
 		}
@@ -402,7 +408,7 @@ class OpenID_Connect_Generic {
 				'email_format'           => '{email}',
 				'displayname_format'     => '{nickname}',
 				'identify_with_username' => false,
-				'state_time_limit'       => 15,
+				'state_time_limit'       => 180,
 
 				// Plugin settings.
 				'enforce_privacy'          => defined( 'OIDC_ENFORCE_PRIVACY' ) ? intval( OIDC_ENFORCE_PRIVACY ) : 0,

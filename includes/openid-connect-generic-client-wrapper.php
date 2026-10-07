@@ -566,13 +566,13 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		// Redirect user according to redirect set in state.
 		$state_object = get_transient( 'openid-connect-generic-state--' . $state );
 		// Get the redirect URL stored with the corresponding authentication request state.
-		if ( ! empty( $state_object ) && ! empty( $state_object[ $state ] ) && ! empty( $state_object[ $state ]['redirect_to'] ) ) {
-			$redirect_url = $state_object[ $state ]['redirect_to'];
+		if ( is_array( $state_object ) && ! empty( $state_object['redirect_to'] ) ) {
+			$redirect_url = $state_object['redirect_to'];
 		}
 
 		// Provide backwards compatibility for customization using the deprecated cookie method.
 		if ( ! empty( $_COOKIE[ $this->cookie_redirect_key ] ) ) {
-			$redirect_url = esc_url_raw( wp_unslash( $_COOKIE[ $this->cookie_redirect_key ] ) );
+			$redirect_url = wp_validate_redirect( esc_url_raw( wp_unslash( $_COOKIE[ $this->cookie_redirect_key ] ) ), home_url() );
 		}
 
 		// Only do redirect-user-back action hook when the plugin is configured for it.
