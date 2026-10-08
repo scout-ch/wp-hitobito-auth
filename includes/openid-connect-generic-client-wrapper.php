@@ -1070,21 +1070,19 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		}
 
 		$_nickname = $this->get_nickname_from_claim( $user_claim );
-		if ( is_wp_error( $_nickname ) ) {
-			return $_nickname;
-		}
-		// Use the username as the nickname if the userinfo request nickname is empty.
-		if ( empty( $_nickname ) ) {
+		// The nickname is optional; fall back to the username if it is missing.
+		if ( is_wp_error( $_nickname ) || empty( $_nickname ) ) {
 			$nickname = $username;
+		} else {
+			$nickname = $_nickname;
 		}
 
 		$_displayname = $this->get_displayname_from_claim( $user_claim, true );
-		if ( is_wp_error( $_displayname ) ) {
-			return $_displayname;
-		}
-		// Use the nickname as the displayname if the userinfo request displayname is empty.
-		if ( empty( $_displayname ) ) {
+		// Use the nickname as the displayname if the userinfo request displayname is missing or empty.
+		if ( is_wp_error( $_displayname ) || empty( $_displayname ) ) {
 			$displayname = $nickname;
+		} else {
+			$displayname = $_displayname;
 		}
 
 		// Before trying to create the user, first check if a matching user exists.
