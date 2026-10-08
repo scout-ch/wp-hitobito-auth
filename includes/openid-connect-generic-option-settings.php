@@ -90,6 +90,7 @@ class OpenID_Connect_Generic_Option_Settings {
 	private $environment_settings = array(
 		'client_id'                 => 'OIDC_CLIENT_ID',
 		'client_secret'             => 'OIDC_CLIENT_SECRET',
+		'endpoint_url'              => 'OIDC_ENDPOINT_URL',
 		'endpoint_end_session'      => 'OIDC_ENDPOINT_LOGOUT_URL',
 		'endpoint_login'            => 'OIDC_ENDPOINT_LOGIN_URL',
 		'endpoint_token'            => 'OIDC_ENDPOINT_TOKEN_URL',
@@ -119,25 +120,6 @@ class OpenID_Connect_Generic_Option_Settings {
 
 		$this->values = (array) get_option( self::OPTION_NAME, $this->default_settings );
 
-		/**
-		 * Get URL selection form settings page.
-	 	*/
-	 
-		if ($this->values ['endpoint_url'] == 'test') {
-			$urlauth = 'https://pbs.puzzle.ch/';
-		} elseif ($this->values ['endpoint_url'] == 'prod') {
-			$urlauth = 'https://db.scout.ch/';
-		} elseif ($this->values ['endpoint_url'] == 'jublatest') {
-			$urlauth = 'https://jubla.puzzle.ch/';
-		} elseif ($this->values ['endpoint_url'] == 'jubla') {
-			$urlauth = 'https://db.jubla.ch/';
-		} 
-
-			$this->values['endpoint_login'] 		= $urlauth . 'oauth/authorize';
-			$this->values['endpoint_userinfo'] 		= $urlauth . 'oauth/userinfo';
-			$this->values['endpoint_token'] 		= $urlauth . 'oauth/token';
-			$this->values['endpoint_end_session'] 	= $urlauth . 'oidc/logout';
-
 		// For each defined environment variable/constant be sure the settings key is set.
 		foreach ( $this->environment_settings as $key => $constant ) {
 			if ( defined( $constant ) ) {
@@ -147,6 +129,67 @@ class OpenID_Connect_Generic_Option_Settings {
 
 		if ( $granular_defaults ) {
 			$this->values = array_replace_recursive( $this->default_settings, $this->values );
+		}
+	}
+
+	/**
+	 * Get the selectable Hitobito instances.
+	 *
+	 * Use the 'openid-connect-generic-hitobito-instances' filter to add, change
+	 * or remove instances. Each instance needs a 'label' (shown in the settings
+	 * dropdown) and a 'url' (the Hitobito base URL).
+	 *
+	 * @return array<string,array{label:string,url:string}>
+	 */
+	public static function get_hitobito_instances() {
+		$instances = array(
+			'test'      => array(
+				'label' => __( 'TEST MiData [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+				'url'   => 'https://pbs.puzzle.ch/',
+			),
+			'prod'      => array(
+				'label' => __( 'PRODUCTION MiData [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
+				'url'   => 'https://db.scout.ch/',
+			),
+			'jubla'     => array(
+				'label' => __( 'PRODUCTION jubla.db [db.jubla.ch]', 'daggerhart-openid-connect-generic' ),
+				'url'   => 'https://db.jubla.ch/',
+			),
+			'jublatest' => array(
+				'label' => __( 'TEST jubla.db [jubla.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+				'url'   => 'https://jubla.puzzle.ch/',
+			),
+		);
+
+		return apply_filters( 'openid-connect-generic-hitobito-instances', $instances );
+	}
+
+	/**
+	 * Set the OAuth endpoints based on the selected Hitobito instance.
+	 *
+	 * Endpoints defined by environment constants are left untouched.
+	 *
+	 * @return void
+	 */
+	public function apply_hitobito_instance() {
+		$instances = self::get_hitobito_instances();
+
+		if ( empty( $this->values['endpoint_url'] ) || empty( $instances[ $this->values['endpoint_url'] ]['url'] ) ) {
+			return;
+		}
+
+		$base_url  = trailingslashit( $instances[ $this->values['endpoint_url'] ]['url'] );
+		$endpoints = array(
+			'endpoint_login'       => 'oauth/authorize',
+			'endpoint_userinfo'    => 'oauth/userinfo',
+			'endpoint_token'       => 'oauth/token',
+			'endpoint_end_session' => 'oidc/logout',
+		);
+
+		foreach ( $endpoints as $key => $path ) {
+			if ( ! defined( $this->environment_settings[ $key ] ) ) {
+				$this->values[ $key ] = $base_url . $path;
+			}
 		}
 	}
 
