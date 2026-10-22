@@ -2,7 +2,7 @@
 /**
  * Global OIDCG functions.
  *
- * @package   OpenID_Connect_Generic
+ * @package   Hitobito Auth
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com>
  * @copyright 2015-2020 daggerhart
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
