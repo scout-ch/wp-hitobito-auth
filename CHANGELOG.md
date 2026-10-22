@@ -1,5 +1,25 @@
 # MiData WordPress Plugin Changelog
 
+**1.2**
+
+**SECURITY RELEASE** – based on OpenID Connect Generic 3.11.3 (previously 3.10.0)
+
+- Security: ID token signatures are now verified against the Hitobito JWKS (`/oauth/discovery/keys`)
+- Security: ID token claims are validated (issuer, audience, expiry)
+- Security: Login state is generated with `random_bytes()` instead of `md5( mt_rand() )`
+- Security: Requests to the identity provider use `wp_safe_remote_*` (SSRF protection)
+- Security: "Disable SSL Verify" only takes effect in local development environments
+- Security: Removed the `?debug` output on the settings page, which displayed all settings including the client secret
+- Fix: Retry login once for some IDP errors (Safari ITP on iOS)
+- Fix: Fallback to a POST request for userinfo when GET fails
+- Fix: A corrupted log no longer causes a fatal error
+- Fix: WordPress session is no longer cut short when refresh tokens are enabled
+- Improvement: Better multisite compatibility (user data stored as user options; existing users are still recognised)
+- Developer: JWKS URL and issuer are set automatically from the selected Hitobito instance
+- Developer: New dependency `firebase/php-jwt` (bundled in `vendor/`, managed with Composer)
+- Developer: New filter `openid-connect-generic-new-state-value`; it receives the state as `['redirect_to' => …, 'created' => …]`
+- Chore: Requires PHP 8.0 or later (PHP 7.4 is end of life)
+
 **1.1**
 
 - Feature: Login button text is now configurable in the settings (#1, thanks @Elfangor93)

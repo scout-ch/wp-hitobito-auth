@@ -5,7 +5,7 @@
  * This plugin provides the ability to authenticate users with Hitobito
  * (e.g. MiData of the Swiss Guide and Scout Movement, jubla.db).
  *
- * This plugin is a modified version of "OpenID Connect Generic" (3.10.0) by
+ * This plugin is a modified version of "OpenID Connect Generic" (3.11.3) by
  * Jonathan Daggerhart, Tim Nolte and contributors:
  * https://github.com/oidc-wp/openid-connect-generic
  * It has been adapted and simplified for Hitobito by the
@@ -24,9 +24,9 @@
  * Plugin Name:       Hitobito Auth
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
  * Description:       Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization.
- * Version:           1.1
+ * Version:           1.2
  * Requires at least: 6.7.2
- * Requires PHP:      7.4
+ * Requires PHP:      8.0
  * Author:            Swiss Guide and Scout Movement
  * Author URI:        https://pfadi.swiss
  * Text Domain:       daggerhart-openid-connect-generic
@@ -43,6 +43,7 @@ Notes
   Filters
   - openid-connect-generic-alter-request       - 3 args: request array, plugin settings, specific request op
   - openid-connect-generic-settings-fields     - modify the fields provided on the settings page
+  - openid-connect-generic-settings            - modify settings values early in plugin bootstrap.
   - openid-connect-generic-login-button-text   - modify the login button text
   - openid-connect-generic-cookie-redirect-url - modify the redirect url stored as a cookie
   - openid-connect-generic-user-login-test     - (bool) should the user be logged in based on their claim
@@ -52,6 +53,7 @@ Notes
   - openid-connect-generic-alter-user-data     - modify user data before a new user is created
   - openid-connect-modify-token-response-before-validation - modify the token response before validation
   - openid-connect-modify-id-token-claim-before-validation - modify the token claim before validation
+  - openid-connect-generic-new-state-value     - modify the user's state value before it us saved.
 
   Actions
   - openid-connect-generic-user-create                     - 2 args: fires when a new user is created by this plugin
@@ -67,11 +69,11 @@ Notes
 
   Callable actions
 
-  User Meta
-  - openid-connect-generic-subject-identity    - the identity of the user provided by the idp
-  - openid-connect-generic-last-id-token-claim - the user's most recent id_token claim, decoded
-  - openid-connect-generic-last-user-claim     - the user's most recent user_claim
-  - openid-connect-generic-last-token-response - the user's most recent token response
+  User Meta (since v3.10.4 prefixed with the blog database prefix, for example wp_2_openid-connect-generic-subject-identity)
+  - [[BLOG_DB_PREFIX]]openid-connect-generic-subject-identity    - the identity of the user provided by the idp
+  - [[BLOG_DB_PREFIX]]openid-connect-generic-last-id-token-claim - the user's most recent id_token claim, decoded
+  - [[BLOG_DB_PREFIX]]openid-connect-generic-last-user-claim     - the user's most recent user_claim
+  - [[BLOG_DB_PREFIX]]openid-connect-generic-last-token-response - the user's most recent token response
 
   Options
   - openid_connect_generic_settings     - plugin settings
@@ -101,7 +103,7 @@ class OpenID_Connect_Generic {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.1';
+	const VERSION = '1.2';
 
 	/**
 	 * Main plugin file path.
@@ -161,6 +163,9 @@ class OpenID_Connect_Generic {
 	 */
 	public function init() {
 
+		// Allow altering the settings.
+		$this->settings = apply_filters( 'openid-connect-generic-settings', $this->settings );
+
 		$this->client = new OpenID_Connect_Generic_Client(
 			$this->settings->client_id,
 			$this->settings->client_secret,
@@ -170,7 +175,11 @@ class OpenID_Connect_Generic {
 			$this->settings->endpoint_token,
 			$this->get_redirect_uri( $this->settings ),
 			$this->settings->acr_values,
+			$this->settings->endpoint_jwks,
+			$this->settings->issuer ?? '',
+			$this->settings->jwks_cache_ttl,
 			$this->get_state_time_limit( $this->settings ),
+			$this->settings->allow_internal_idp,
 			$this->logger
 		);
 
@@ -179,7 +188,7 @@ class OpenID_Connect_Generic {
 			return;
 		}
 
-		OpenID_Connect_Generic_Login_Form::register( $this->settings, $this->client_wrapper );
+		OpenID_Connect_Generic_Login_Form::register( $this->settings, $this->client_wrapper, $this->client );
 
 		// Add a shortcode to get the auth URL.
 		add_shortcode( 'openid_connect_generic_auth_url', array( $this->client_wrapper, 'get_authentication_url' ) );
@@ -191,6 +200,7 @@ class OpenID_Connect_Generic {
 
 		if ( is_admin() ) {
 			OpenID_Connect_Generic_Settings_Page::register( $this->settings, $this->logger );
+			add_action( 'admin_notices', array( $this, 'admin_notice_jwks_required' ) );
 		}
 	}
 
@@ -259,6 +269,59 @@ class OpenID_Connect_Generic {
 			$content = __( 'Private site', 'daggerhart-openid-connect-generic' );
 		}
 		return $content;
+	}
+
+	/**
+	 * Display admin notice when JWKS endpoint is not configured.
+	 *
+	 * @return void
+	 */
+	public function admin_notice_jwks_required() {
+		// Only show to users who can manage options.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		// Check if JWKS endpoint is configured.
+		if ( ! empty( $this->settings->endpoint_jwks ) ) {
+			return;
+		}
+
+		// Check if any OIDC endpoints are configured (plugin is actually being used).
+		if ( empty( $this->settings->endpoint_login ) ) {
+			return;
+		}
+
+		$settings_url = admin_url( 'options-general.php?page=openid-connect-generic-settings' );
+		?>
+		<div class="notice notice-error">
+			<p>
+				<strong><?php esc_html_e( 'OpenID Connect Generic - Security Configuration Required', 'daggerhart-openid-connect-generic' ); ?></strong>
+			</p>
+			<p>
+				<?php
+				echo wp_kses_post(
+					sprintf(
+						/* translators: %s is a link to the settings page */
+						__( 'Your OpenID Connect authentication is using an insecure fallback method. You must configure the <strong>JWKS endpoint</strong> in <a href="%s">plugin settings</a> as soon as possible.', 'daggerhart-openid-connect-generic' ),
+						esc_url( $settings_url )
+					)
+				);
+				?>
+			</p>
+			<p>
+				<?php esc_html_e( 'The current insecure fallback will be removed in version 3.12.0. After that update, authentication will fail until the JWKS endpoint is configured.', 'daggerhart-openid-connect-generic' ); ?>
+			</p>
+			<p>
+				<strong><?php esc_html_e( 'Common JWKS endpoints:', 'daggerhart-openid-connect-generic' ); ?></strong><br>
+				• Keycloak: <code>https://your-domain/realms/your-realm/protocol/openid-connect/certs</code><br>
+				• Auth0: <code>https://your-domain.auth0.com/.well-known/jwks.json</code><br>
+				• Okta: <code>https://your-domain.okta.com/oauth2/default/v1/keys</code><br>
+				• Azure AD: <code>https://login.microsoftonline.com/your-tenant/discovery/v2.0/keys</code><br>
+				• Google: <code>https://www.googleapis.com/oauth2/v3/certs</code>
+			</p>
+		</div>
+		<?php
 	}
 
 	/**
@@ -378,12 +441,7 @@ class OpenID_Connect_Generic {
 	 * @return void
 	 */
 	public static function bootstrap() {
-		/**
-		 * This is a documented valid call for spl_autoload_register.
-		 *
-		 * @link https://www.php.net/manual/en/function.spl-autoload-register.php#71155
-		 */
-		spl_autoload_register( array( 'OpenID_Connect_Generic', 'autoload' ) );
+		require_once __DIR__ . '/vendor/autoload.php';
 
 		$settings = new OpenID_Connect_Generic_Option_Settings(
 			// Default settings values.
@@ -398,11 +456,14 @@ class OpenID_Connect_Generic {
 				'endpoint_userinfo'    => '',
 				'endpoint_token'       => '',
 				'endpoint_end_session' => '',
+				'endpoint_jwks'        => defined( 'OIDC_ENDPOINT_JWKS_URL' ) ? OIDC_ENDPOINT_JWKS_URL : '',
+				'jwks_cache_ttl'       => 3600,
 				'acr_values'           => defined( 'OIDC_ACR_VALUES' ) ? OIDC_ACR_VALUES : '',
 
 				// Non-standard settings.
 				'no_sslverify'           => 0,
 				'http_request_timeout'   => 5,
+				'allow_internal_idp'     => 0,
 				'identity_key'           => 'email',
 				'nickname_key'           => 'nickname',
 				'email_format'           => '{email}',
