@@ -91,10 +91,12 @@ class OpenID_Connect_Generic_Option_Settings {
 		'client_id'                 => 'OIDC_CLIENT_ID',
 		'client_secret'             => 'OIDC_CLIENT_SECRET',
 		'endpoint_url'              => 'OIDC_ENDPOINT_URL',
+		'endpoint_jwks'             => 'OIDC_ENDPOINT_JWKS',
 		'endpoint_end_session'      => 'OIDC_ENDPOINT_LOGOUT_URL',
 		'endpoint_login'            => 'OIDC_ENDPOINT_LOGIN_URL',
 		'endpoint_token'            => 'OIDC_ENDPOINT_TOKEN_URL',
 		'endpoint_userinfo'         => 'OIDC_ENDPOINT_USERINFO_URL',
+		'issuer'                    => 'OIDC_ISSUER',
 		'login_type'                => 'OIDC_LOGIN_TYPE',
 		'scope'                     => 'OIDC_CLIENT_SCOPE',
 		'create_if_does_not_exist'  => 'OIDC_CREATE_IF_DOES_NOT_EXIST',
@@ -184,12 +186,18 @@ class OpenID_Connect_Generic_Option_Settings {
 			'endpoint_userinfo'    => 'oauth/userinfo',
 			'endpoint_token'       => 'oauth/token',
 			'endpoint_end_session' => 'oidc/logout',
+			'endpoint_jwks'        => 'oauth/discovery/keys',
 		);
 
 		foreach ( $endpoints as $key => $path ) {
 			if ( ! defined( $this->environment_settings[ $key ] ) ) {
 				$this->values[ $key ] = $base_url . $path;
 			}
+		}
+
+		// The issuer is required for ID token validation (see JWT validator).
+		if ( ! defined( $this->environment_settings['issuer'] ) ) {
+			$this->values['issuer'] = untrailingslashit( $base_url );
 		}
 	}
 
