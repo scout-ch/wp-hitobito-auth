@@ -43,6 +43,7 @@ Notes
   Filters
   - openid-connect-generic-alter-request       - 3 args: request array, plugin settings, specific request op
   - openid-connect-generic-settings-fields     - modify the fields provided on the settings page
+  - openid-connect-generic-hitobito-instances  - add/modify the selectable Hitobito instances (key => label, url)
   - openid-connect-generic-settings            - modify settings values early in plugin bootstrap.
   - openid-connect-generic-login-button-text   - modify the login button text
   - openid-connect-generic-cookie-redirect-url - modify the redirect url stored as a cookie
@@ -165,6 +166,9 @@ class OpenID_Connect_Generic {
 
 		// Allow altering the settings.
 		$this->settings = apply_filters( 'openid-connect-generic-settings', $this->settings );
+
+		// Resolved on init so the instances filter can be added by themes and other plugins.
+		$this->settings->apply_hitobito_instance();
 
 		$this->client = new OpenID_Connect_Generic_Client(
 			$this->settings->client_id,

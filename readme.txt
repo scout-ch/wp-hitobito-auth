@@ -41,6 +41,26 @@ by this client is like so:  https://example.com/wp-admin/admin-ajax.php?action=o
 
 Replace `example.com` with your domain name and path to WordPress.
 
+= How can I add a custom Hitobito instance? =
+
+This example requires a plugin version that provides the `openid-connect-generic-hitobito-instances` filter. Versions with a fixed instance list do not support this filter.
+
+Add the following snippet to a custom plugin, an MU plugin, or your child theme's `functions.php`:
+
+`
+add_filter( 'openid-connect-generic-hitobito-instances', function ( $instances ) {
+	$instances['custom_hitobito'] = array(
+		'label' => 'Custom Hitobito [hitobito.example.org]',
+		'url'   => 'https://hitobito.example.org/',
+	);
+	return $instances;
+} );
+`
+
+Replace `custom_hitobito` with a unique instance key, `label` with the display name, and `url` with your Hitobito instance's HTTPS base URL, including the trailing slash. Keep the key stable once the instance is selected. Returning `$instances` preserves the existing entries.
+
+Then select your instance under Settings > Hitobito Auth > Hitobito URL and save the settings. Configure the OAuth client on that instance with the WordPress redirect URI described above.
+
 == Credits ==
 
 This plugin is a modified version of OpenID Connect Generic 3.11.3 by Jonathan Daggerhart, Tim Nolte and contributors (https://github.com/oidc-wp/openid-connect-generic), licensed under GPLv2 or later. Adapted and simplified for Hitobito by the Swiss Guide and Scout Movement (Team MiData).
