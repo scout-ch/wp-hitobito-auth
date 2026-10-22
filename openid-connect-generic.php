@@ -204,6 +204,7 @@ class OpenID_Connect_Generic {
 
 		if ( is_admin() ) {
 			OpenID_Connect_Generic_Settings_Page::register( $this->settings, $this->logger );
+			OpenID_Connect_Generic_Button_Style::register( $this->settings );
 			add_action( 'admin_notices', array( $this, 'admin_notice_jwks_required' ) );
 		}
 	}
