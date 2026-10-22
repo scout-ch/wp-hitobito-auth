@@ -11,6 +11,7 @@
   "autoload": {
     "classmap": [
       "openid-connect-generic.php",
+      "includes/openid-connect-generic-button-style.php",
       "includes/openid-connect-generic-client.php",
       "includes/openid-connect-generic-client-wrapper.php",
       "includes/openid-connect-generic-jwt-validator.php",

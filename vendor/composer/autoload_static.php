@@ -31,6 +31,7 @@ class ComposerStaticInit5ac0a64bdead52af1c0bb3254f1d420d
         'Firebase\\JWT\\Key' => __DIR__ . '/..' . '/firebase/php-jwt/src/Key.php',
         'Firebase\\JWT\\SignatureInvalidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/SignatureInvalidException.php',
         'OpenID_Connect_Generic' => __DIR__ . '/../..' . '/openid-connect-generic.php',
+        'OpenID_Connect_Generic_Button_Style' => __DIR__ . '/../..' . '/includes/openid-connect-generic-button-style.php',
         'OpenID_Connect_Generic_Client' => __DIR__ . '/../..' . '/includes/openid-connect-generic-client.php',
         'OpenID_Connect_Generic_Client_Wrapper' => __DIR__ . '/../..' . '/includes/openid-connect-generic-client-wrapper.php',
         'OpenID_Connect_Generic_JWT_Validator' => __DIR__ . '/../..' . '/includes/openid-connect-generic-jwt-validator.php',
