@@ -61,6 +61,12 @@ Replace `custom_hitobito` with a unique instance key, `label` with the display n
 
 Then select your instance under Settings > Hitobito Auth > Hitobito URL and save the settings. Configure the OAuth client on that instance with the WordPress redirect URI described above.
 
+= How can I override individual endpoints? =
+
+The endpoints of the selected instance are resolved on WordPress `init`, after the `openid-connect-generic-settings` filter has run. Endpoint values changed through that filter are therefore overwritten. To override a single endpoint, define the matching constant in `wp-config.php` instead, e.g. `OIDC_ENDPOINT_LOGIN_URL`, `OIDC_ENDPOINT_TOKEN_URL`, `OIDC_ENDPOINT_USERINFO_URL`, `OIDC_ENDPOINT_LOGOUT_URL`, `OIDC_ENDPOINT_JWKS_URL` or `OIDC_ISSUER`. Defined constants are never overwritten by the instance selection.
+
+To select the instance itself via code, define `OIDC_ENDPOINT_URL` with the instance key (e.g. `define( 'OIDC_ENDPOINT_URL', 'prod' );`).
+
 == Credits ==
 
 This plugin is a modified version of OpenID Connect Generic 3.11.3 by Jonathan Daggerhart, Tim Nolte and contributors (https://github.com/oidc-wp/openid-connect-generic), licensed under GPLv2 or later. Adapted and simplified for Hitobito by the Swiss Guide and Scout Movement (Team MiData).
