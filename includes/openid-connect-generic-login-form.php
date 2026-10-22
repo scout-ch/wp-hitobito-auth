@@ -182,13 +182,41 @@ class OpenID_Connect_Generic_Login_Form {
 		);
 		$href = esc_url_raw( $href );
 
+		$icon = '';
+		if ( OpenID_Connect_Generic_Button_Style::get_icon_data_uri( OpenID_Connect_Generic_Button_Style::get_values() ) ) {
+			$icon = '<span class="hitobito-auth-button__icon" aria-hidden="true"></span>';
+		}
+
 		$login_button = <<<HTML
-<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
-	<a class="button button-large" href="{$href}">{$text}</a>
+{$this->make_button_style()}<div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
+	<a class="button button-large hitobito-auth-button" href="{$href}">{$icon}{$text}</a>
 </div>
 HTML;
 
 		return $login_button;
+	}
+
+	/**
+	 * Create the style element for the configured button colors and icon.
+	 *
+	 * Only returned once per request, in case the button is shown more than once.
+	 *
+	 * @return string
+	 */
+	private function make_button_style() {
+		static $done = false;
+
+		if ( $done ) {
+			return '';
+		}
+		$done = true;
+
+		$css = OpenID_Connect_Generic_Button_Style::get_css();
+		if ( empty( $css ) ) {
+			return '';
+		}
+
+		return '<style id="hitobito-auth-button-style">' . $css . '</style>';
 	}
 
 	/**

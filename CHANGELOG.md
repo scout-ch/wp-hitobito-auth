@@ -1,5 +1,11 @@
 # MiData WordPress Plugin Changelog
 
+**Unreleased**
+
+- Feature: New settings sub page "Login Button" to configure the colors of the login button (text, background, border and icon, each for normal and hover state)
+- Feature: An SVG icon (e.g. the logo of your Hitobito instance) can be uploaded and is shown in the login button
+- Chore: Removed unused login button rules from the admin stylesheet
+
 **1.2**
 
 **SECURITY RELEASE** – based on OpenID Connect Generic 3.11.3 (previously 3.10.0)

@@ -324,6 +324,8 @@ class OpenID_Connect_Generic_Settings_Page {
 		<div class="wrap">
 			<h2><?php print esc_html( get_admin_page_title() ); ?></h2>
 
+			<?php OpenID_Connect_Generic_Button_Style::do_nav_tabs( $this->options_page_name ); ?>
+
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( $this->settings_field_group );
