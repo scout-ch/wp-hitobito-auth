@@ -3,7 +3,7 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hitobito Auth 1.2\n"
+"Project-Id-Version: Hitobito Auth 1.3\n"
 "Report-Msgid-Bugs-To: https://github.com/scout-ch/wp-hitobito-auth/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

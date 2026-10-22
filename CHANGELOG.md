@@ -1,10 +1,13 @@
 # MiData WordPress Plugin Changelog
 
-**Unreleased**
+**1.3**
 
 - Feature: New settings sub page "Login Button" to configure the colors of the login button (text, background, border and icon, each for normal and hover state)
 - Feature: An SVG icon (e.g. the logo of your Hitobito instance) can be uploaded and is shown in the login button
+- Feature: New filter `openid-connect-generic-hitobito-instances` to add or change Hitobito instances (#6, thanks @masteradhoc)
+- Fix: Users can be created without a nickname; the username is used as fallback (#7, thanks @masteradhoc)
 - Chore: Removed unused login button rules from the admin stylesheet
+- Chore: Documented how to override individual endpoints
 
 **1.2**
 

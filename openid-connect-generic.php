@@ -24,7 +24,7 @@
  * Plugin Name:       Hitobito Auth
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
  * Description:       Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization.
- * Version:           1.2
+ * Version:           1.3
  * Requires at least: 6.7.2
  * Requires PHP:      8.0
  * Author:            Swiss Guide and Scout Movement
@@ -104,7 +104,7 @@ class OpenID_Connect_Generic {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.2';
+	const VERSION = '1.3';
 
 	/**
 	 * Main plugin file path.
