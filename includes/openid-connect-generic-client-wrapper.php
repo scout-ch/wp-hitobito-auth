@@ -214,6 +214,9 @@ class OpenID_Connect_Generic_Client_Wrapper {
 			'openid_connect_generic_auth_url'
 		);
 
+		// Applied after the attributes are merged, so it also covers the login button and shortcodes.
+		$atts['scope'] = OpenID_Connect_Generic_Role_Mapping::get_scope( $atts['scope'] );
+
 		// Validate the redirect to value to prevent a redirection attack.
 		if ( ! empty( $atts['redirect_to'] ) ) {
 			$atts['redirect_to'] = wp_validate_redirect( $atts['redirect_to'], home_url() );
@@ -586,6 +589,11 @@ class OpenID_Connect_Generic_Client_Wrapper {
 			$this->error_redirect( $valid );
 		}
 
+		// Deny existing users without a mapped role, administrators can always log in.
+		if ( OpenID_Connect_Generic_Role_Mapping::DENY === OpenID_Connect_Generic_Role_Mapping::get_role_for_claim( $user_claim ) && ! OpenID_Connect_Generic_Role_Mapping::is_protected_user( $user ) ) {
+			$this->error_redirect( $this->get_role_mapping_denied_error( $user_claim ) );
+		}
+
 		// Login the found / created user.
 		$start_time = microtime( true );
 		$this->login_user( $user, $token_response, $id_token_claim, $user_claim, $subject_identity );
@@ -717,6 +725,8 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		update_user_option( $user->ID, 'openid-connect-generic-last-token-response', $token_response );
 		update_user_option( $user->ID, 'openid-connect-generic-last-id-token-claim', $id_token_claim );
 		update_user_option( $user->ID, 'openid-connect-generic-last-user-claim', $user_claim );
+		// Assign the WordPress role mapped from the Hitobito roles.
+		OpenID_Connect_Generic_Role_Mapping::sync_user_role( $user, $user_claim, $this->logger );
 		// Allow plugins / themes to take action using current claims on existing user (e.g. update role).
 		do_action( 'openid-connect-generic-update-user-using-current-claim', $user, $user_claim );
 
@@ -1149,6 +1159,11 @@ class OpenID_Connect_Generic_Client_Wrapper {
 			}
 		}
 
+		// Don't create accounts for users the role mapping denies.
+		if ( OpenID_Connect_Generic_Role_Mapping::DENY === OpenID_Connect_Generic_Role_Mapping::get_role_for_claim( $user_claim ) ) {
+			return $this->get_role_mapping_denied_error( $user_claim );
+		}
+
 		/**
 		 * Allow other plugins / themes to determine authorization of new accounts
 		 * based on the returned user claim.
@@ -1202,6 +1217,17 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		do_action( 'openid-connect-generic-user-create', $user, $user_claim );
 
 		return $user;
+	}
+
+	/**
+	 * Get the error for a user whose Hitobito roles match no role mapping rule.
+	 *
+	 * @param array $user_claim The authorized user claim.
+	 *
+	 * @return WP_Error
+	 */
+	private function get_role_mapping_denied_error( $user_claim ) {
+		return new WP_Error( 'role-mapping-denied', __( 'Your Hitobito account has no role which grants access to this website.', 'daggerhart-openid-connect-generic' ), $user_claim );
 	}
 
 	/**
