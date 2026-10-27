@@ -204,7 +204,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		$atts = shortcode_atts(
 			array(
 				'endpoint_login' => $this->settings->endpoint_login,
-				'scope' => OpenID_Connect_Generic_Role_Mapping::get_scope( $this->settings->scope ),
+				'scope' => $this->settings->scope,
 				'client_id' => $this->settings->client_id,
 				'redirect_uri' => $this->client->get_redirect_uri(),
 				'redirect_to' => $this->get_redirect_to(),
@@ -213,6 +213,9 @@ class OpenID_Connect_Generic_Client_Wrapper {
 			$atts,
 			'openid_connect_generic_auth_url'
 		);
+
+		// Applied after the attributes are merged, so it also covers the login button and shortcodes.
+		$atts['scope'] = OpenID_Connect_Generic_Role_Mapping::get_scope( $atts['scope'] );
 
 		// Validate the redirect to value to prevent a redirection attack.
 		if ( ! empty( $atts['redirect_to'] ) ) {
