@@ -204,7 +204,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		$atts = shortcode_atts(
 			array(
 				'endpoint_login' => $this->settings->endpoint_login,
-				'scope' => $this->settings->scope,
+				'scope' => OpenID_Connect_Generic_Role_Mapping::get_scope( $this->settings->scope ),
 				'client_id' => $this->settings->client_id,
 				'redirect_uri' => $this->client->get_redirect_uri(),
 				'redirect_to' => $this->get_redirect_to(),
