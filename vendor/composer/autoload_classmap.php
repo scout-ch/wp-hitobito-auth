@@ -23,5 +23,6 @@ return array(
     'OpenID_Connect_Generic_Login_Form' => $baseDir . '/includes/openid-connect-generic-login-form.php',
     'OpenID_Connect_Generic_Option_Logger' => $baseDir . '/includes/openid-connect-generic-option-logger.php',
     'OpenID_Connect_Generic_Option_Settings' => $baseDir . '/includes/openid-connect-generic-option-settings.php',
+    'OpenID_Connect_Generic_Role_Mapping' => $baseDir . '/includes/openid-connect-generic-role-mapping.php',
     'OpenID_Connect_Generic_Settings_Page' => $baseDir . '/includes/openid-connect-generic-settings-page.php',
 );
