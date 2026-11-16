@@ -18,6 +18,7 @@
       "includes/openid-connect-generic-login-form.php",
       "includes/openid-connect-generic-option-logger.php",
       "includes/openid-connect-generic-option-settings.php",
+      "includes/openid-connect-generic-role-mapping.php",
       "includes/openid-connect-generic-settings-page.php"
     ]
   },

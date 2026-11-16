@@ -173,7 +173,7 @@ class OpenID_Connect_Generic {
 		$this->client = new OpenID_Connect_Generic_Client(
 			$this->settings->client_id,
 			$this->settings->client_secret,
-			$this->settings->scope,
+			OpenID_Connect_Generic_Role_Mapping::get_scope( $this->settings->scope ),
 			$this->settings->endpoint_login,
 			$this->settings->endpoint_userinfo,
 			$this->settings->endpoint_token,
@@ -205,6 +205,7 @@ class OpenID_Connect_Generic {
 		if ( is_admin() ) {
 			OpenID_Connect_Generic_Settings_Page::register( $this->settings, $this->logger );
 			OpenID_Connect_Generic_Button_Style::register( $this->settings );
+			OpenID_Connect_Generic_Role_Mapping::register();
 			add_action( 'admin_notices', array( $this, 'admin_notice_jwks_required' ) );
 		}
 	}

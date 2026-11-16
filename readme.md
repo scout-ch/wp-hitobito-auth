@@ -79,6 +79,29 @@ The endpoints of the selected instance are resolved on WordPress `init`, after t
 
 To select the instance itself via code, define `OIDC_ENDPOINT_URL` with the instance key (e.g. `define( 'OIDC_ENDPOINT_URL', 'prod' );`).
 
+### How can I assign WordPress roles based on Hitobito roles?
+
+1. Ask the administrators of your Hitobito instance to enable the scope `with_roles` for your OAuth application. Without it the login fails as soon as the role mapping is enabled.
+2. Create the WordPress roles you need (e.g. with a role editor plugin).
+3. Under Settings > Hitobito Auth > Role Mapping, enable the mapping and enter one rule per line:
+
+```
+# Leaders of the department
+100, 101, 102 | Group::Abteilung::Abteilungsleitung, Group::Pfadi::Einheitsleitung | leiter
+# Everyone else in the department
+100, 101, 102 | * | eltern
+```
+
+Each rule consists of `group ids | role classes | WordPress role`. Several group ids or role classes are separated by commas, and `*` matches everything (e.g. `Group::Abteilung::*`). The rules are checked from top to bottom and the first rule matching one of the user's Hitobito roles wins, so put the rules with more rights first. Users without a matching rule get the fallback role (e.g. Subscriber), or their login is denied.
+
+Notes:
+
+- Hitobito only reports the group a role is directly in, not its department (layer). To match a whole department, list the department and all of its subgroups.
+- Match on the role class (e.g. `Group::Abteilung::Abteilungsleitung`), not on the displayed role name, which is translated.
+- After a login with Hitobito, administrators see the user's Hitobito roles with group ids and role classes on the user's profile page.
+- The role is only updated when the user logs in with Hitobito. A user who leaves the organisation keeps their WordPress role until the next login.
+- Administrators are never changed by the mapping, and roles with administrator capabilities cannot be assigned.
+
 ## Credits & License
 
 This plugin is a modified version of

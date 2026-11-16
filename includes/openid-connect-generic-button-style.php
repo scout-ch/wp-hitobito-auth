@@ -267,6 +267,7 @@ class OpenID_Connect_Generic_Button_Style {
 		$tabs = array(
 			self::PARENT_PAGE_NAME => __( 'Settings', 'daggerhart-openid-connect-generic' ),
 			self::PAGE_NAME        => __( 'Login Button', 'daggerhart-openid-connect-generic' ),
+			OpenID_Connect_Generic_Role_Mapping::PAGE_NAME => __( 'Role Mapping', 'daggerhart-openid-connect-generic' ),
 		);
 		?>
 		<nav class="nav-tab-wrapper">

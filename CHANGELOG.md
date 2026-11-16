@@ -1,5 +1,11 @@
 # MiData WordPress Plugin Changelog
 
+**Unreleased**
+
+- Feature: New settings sub page "Role Mapping" to assign WordPress roles based on the Hitobito roles of a user (scope `with_roles`). The role is updated on every login; administrators are never changed and no rule can grant administrator access
+- Feature: Users whose Hitobito roles match no rule get a configurable fallback role, or their login is denied
+- Feature: The user profile shows the Hitobito roles of the last login (group ids and role classes) to administrators
+
 **1.3**
 
 - Feature: New settings sub page "Login Button" to configure the colors of the login button (text, background, border and icon, each for normal and hover state)
