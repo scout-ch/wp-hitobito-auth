@@ -36,6 +36,10 @@
  * GitHub Plugin URI: https://github.com/scout-ch/wp-hitobito-auth
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /*
 Notes
   Spec Doc - http://openid.net/specs/openid-connect-basic-1_0-32.html
