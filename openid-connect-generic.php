@@ -1,6 +1,6 @@
 <?php
 /**
- * Hitobito Auth – OpenID Connect client for Hitobito
+ * Hitobito OAuth Authentication – OpenID Connect client for Hitobito
  *
  * This plugin provides the ability to authenticate users with Hitobito
  * (e.g. MiData of the Swiss Guide and Scout Movement, jubla.db).
@@ -11,19 +11,19 @@
  * It has been adapted and simplified for Hitobito by the
  * Swiss Guide and Scout Movement (Team MiData).
  *
- * @package   Hitobito Auth
+ * @package   Hitobito OAuth Authentication
  * @category  General
  * @author    Jonathan Daggerhart <jonathan@daggerhart.com> (original plugin)
  * @author    Swiss Guide and Scout Movement (Team MiData)
  * @copyright 2015-2023 daggerhart
  * @copyright 2025-2026 Swiss Guide and Scout Movement
- * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
+ * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0-or-later
  * @link      https://github.com/scout-ch/wp-hitobito-auth
  *
  * @wordpress-plugin
- * Plugin Name:       Hitobito Auth
+ * Plugin Name:       Hitobito OAuth Authentication
  * Plugin URI:        https://github.com/scout-ch/wp-hitobito-auth
- * Description:       Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization.
+ * Description:       Connect your website to Hitobito (e.g. MiData, jubla.db) for authentication and single sign-on.
  * Version:           1.3
  * Requires at least: 6.7.2
  * Requires PHP:      8.0
@@ -31,10 +31,12 @@
  * Author URI:        https://pfadi.swiss
  * Text Domain:       daggerhart-openid-connect-generic
  * Domain Path:       /languages
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * GitHub Plugin URI: https://github.com/scout-ch/wp-hitobito-auth
- */
+ * License:           GPL-2.0-or-later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /*
 Notes
@@ -87,7 +89,7 @@ Notes
  *
  * Defines plugin initialization functionality.
  *
- * @package Hitobito Auth
+ * @package Hitobito OAuth Authentication
  * @category  General
  */
 class OpenID_Connect_Generic {

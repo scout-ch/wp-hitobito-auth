@@ -1,11 +1,11 @@
-# Hitobito Auth Plugin Info
-Hitobito Auth
-- Contributors: Team MiData (Swiss Guide and Scout Movement); based on work by Jonathan Daggerhart, Tim Nolte and contributors
+# Hitobito OAuth Authentication Plugin Info
+Hitobito OAuth Authentication
+- Contributors: laurinberli, elfangor, masteradhoc; based on work by Jonathan Daggerhart, Tim Nolte and contributors
 - Requires at least: 6.7.2 
-- Tested up to: 6.9.4 
+- Tested up to: 7.1 
 - Stable tag: 1.3
 - Requires PHP: 8.0
-- License: GPLv2 or later 
+- License: GPL-2.0-or-later 
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 - Based on: https://github.com/oidc-wp/openid-connect-generic
 
@@ -13,7 +13,7 @@ A simple client that provides SSO or opt-in authentication against a generic OAu
 
 ## Updates
 
-**Important!**, Hitobito Auth Plugins Updates will be released only on GitHub.
+**Important!**, Hitobito OAuth Authentication plugin updates will be released only on GitHub and WordPress.org Plugin Repository.
 As recomendation, watch the repository and star it. More: https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars
 
 ## Description
@@ -23,7 +23,7 @@ Once installed, it can be configured to automatically authenticate users (SSO), 
 button on the login form. After consent has been obtained, an existing user is automatically logged into WordPress, while
 new users are created in WordPress database.
 
-Much of the documentation can be found on the Settings > Hitobito Auth page.
+Much of the documentation can be found on the Settings > Hitobito OAuth Authentication page.
 
 Please submit issues to the Github repo: https://github.com/scout-ch/wp-hitobito-auth
 
@@ -40,7 +40,7 @@ original [OpenID Connect Generic](https://github.com/oidc-wp/openid-connect-gene
 
 1. Upload to the `/wp-content/plugins/` directory
 1. Activate the plugin
-1. Visit Settings > Hitobito Auth and configure to meet your needs
+1. Visit Settings > Hitobito OAuth Authentication and configure to meet your needs
 
 ## Frequently Asked Questions
 
@@ -71,7 +71,7 @@ add_filter( 'openid-connect-generic-hitobito-instances', function ( $instances )
 
 Replace `custom_hitobito` with a unique instance key, `label` with the display name, and `url` with your Hitobito instance's HTTPS base URL, including the trailing slash. Keep the key stable once the instance is selected. Returning `$instances` preserves the existing entries.
 
-Then select your instance under Settings > Hitobito Auth > Hitobito URL and save the settings. Configure the OAuth client on that instance with the WordPress redirect URI described above.
+Then select your instance under Settings > Hitobito OAuth Authentication > Hitobito URL and save the settings. Configure the OAuth client on that instance with the WordPress redirect URI described above.
 
 ### How can I override individual endpoints?
 
@@ -83,7 +83,7 @@ To select the instance itself via code, define `OIDC_ENDPOINT_URL` with the inst
 
 1. Ask the administrators of your Hitobito instance to enable the scope `with_roles` for your OAuth application. Without it the login fails as soon as the role mapping is enabled.
 2. Create the WordPress roles you need (e.g. with a role editor plugin).
-3. Under Settings > Hitobito Auth > Role Mapping, enable the mapping and enter one rule per line:
+3. Under Settings > Hitobito OAuth Roles, enable the mapping and enter one rule per line:
 
 ```
 # Leaders of the department
