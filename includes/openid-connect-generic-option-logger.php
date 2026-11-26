@@ -227,31 +227,31 @@ class OpenID_Connect_Generic_Option_Logger {
 		?>
 		<table id="logger-table" class="wp-list-table widefat fixed striped posts">
 			<thead>
-				<th class="col-details"><?php esc_html_e( 'Details', 'daggerhart-openid-connect-generic' ); ?></th>
-				<th class="col-data"><?php esc_html_e( 'Data', 'daggerhart-openid-connect-generic' ); ?></th>
+				<th class="col-details"><?php esc_html_e( 'Details', 'hitobito-oauth' ); ?></th>
+				<th class="col-data"><?php esc_html_e( 'Data', 'hitobito-oauth' ); ?></th>
 			</thead>
 			<tbody>
 			<?php foreach ( $logs as $log ) { ?>
 				<tr>
 					<td class="col-details">
 						<div>
-							<label><?php esc_html_e( 'Date', 'daggerhart-openid-connect-generic' ); ?></label>
+							<label><?php esc_html_e( 'Date', 'hitobito-oauth' ); ?></label>
 							<?php print esc_html( ! empty( $log['time'] ) ? gmdate( 'Y-m-d H:i:s', $log['time'] ) : '' ); ?>
 						</div>
 						<div>
-							<label><?php esc_html_e( 'Type', 'daggerhart-openid-connect-generic' ); ?></label>
+							<label><?php esc_html_e( 'Type', 'hitobito-oauth' ); ?></label>
 							<?php print esc_html( ! empty( $log['type'] ) ? $log['type'] : '' ); ?>
 						</div>
 						<div>
-							<label><?php esc_html_e( 'User', 'daggerhart-openid-connect-generic' ); ?>: </label>
+							<label><?php esc_html_e( 'User', 'hitobito-oauth' ); ?>: </label>
 							<?php print esc_html( ( get_userdata( $log['user_ID'] ) ) ? get_userdata( $log['user_ID'] )->user_login : '0' ); ?>
 						</div>
 						<div>
-							<label><?php esc_html_e( 'URI ', 'daggerhart-openid-connect-generic' ); ?>: </label>
+							<label><?php esc_html_e( 'URI ', 'hitobito-oauth' ); ?>: </label>
 							<?php print esc_url( ! empty( $log['uri'] ) ? $log['uri'] : '' ); ?>
 						</div>
 						<div>
-							<label><?php esc_html_e( 'Response&nbsp;Time&nbsp;(sec)', 'daggerhart-openid-connect-generic' ); ?></label>
+							<label><?php esc_html_e( 'Response&nbsp;Time&nbsp;(sec)', 'hitobito-oauth' ); ?></label>
 							<?php print esc_html( ! empty( $log['processing_time'] ) ? $log['processing_time'] : 0 ); ?>
 						</div>
 					</td>

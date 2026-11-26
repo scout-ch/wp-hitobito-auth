@@ -578,7 +578,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 					$this->error_redirect( $user );
 				}
 			} else {
-				$this->error_redirect( new WP_Error( 'identity-not-map-existing-user', __( 'User identity is not linked to an existing WordPress user.', 'daggerhart-openid-connect-generic' ), $user_claim ) );
+				$this->error_redirect( new WP_Error( 'identity-not-map-existing-user', __( 'User identity is not linked to an existing WordPress user.', 'hitobito-oauth' ), $user_claim ) );
 			}
 		}
 
@@ -644,7 +644,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 	public function validate_user( $user ) {
 		// Ensure the found user is a real WP_User.
 		if ( ! is_a( $user, 'WP_User' ) || ! $user->exists() ) {
-			return new WP_Error( 'invalid-user', __( 'Invalid user.', 'daggerhart-openid-connect-generic' ), $user );
+			return new WP_Error( 'invalid-user', __( 'Invalid user.', 'hitobito-oauth' ), $user );
 		}
 
 		return true;
@@ -835,7 +835,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		}
 		if ( empty( $desired_username ) ) {
 			// Nothing to build a name from.
-			return new WP_Error( 'no-username', __( 'No appropriate username found.', 'daggerhart-openid-connect-generic' ), $user_claim );
+			return new WP_Error( 'no-username', __( 'No appropriate username found.', 'hitobito-oauth' ), $user_claim );
 		}
 
 		// Don't use the full email address for a username.
@@ -845,7 +845,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		$sanitized_username = sanitize_user( $desired_username, true );
 		if ( empty( $sanitized_username ) ) {
 			// translators: %1$s is the santitized version of the username from the IDP.
-			return new WP_Error( 'username-sanitization-failed', sprintf( __( 'Username %1$s could not be sanitized.', 'daggerhart-openid-connect-generic' ), $desired_username ), $desired_username );
+			return new WP_Error( 'username-sanitization-failed', sprintf( __( 'Username %1$s could not be sanitized.', 'hitobito-oauth' ), $desired_username ), $desired_username );
 		}
 
 		return $sanitized_username;
@@ -867,7 +867,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 
 		if ( empty( $desired_nickname ) ) {
 			// translators: %1$s is the configured User Claim nickname key.
-			return new WP_Error( 'no-nickname', sprintf( __( 'No nickname found in user claim using key: %1$s.', 'daggerhart-openid-connect-generic' ), $this->settings->nickname_key ), $this->settings->nickname_key );
+			return new WP_Error( 'no-nickname', sprintf( __( 'No nickname found in user claim using key: %1$s.', 'hitobito-oauth' ), $this->settings->nickname_key ), $this->settings->nickname_key );
 		}
 
 		return $desired_nickname;
@@ -999,7 +999,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 					if ( $error_on_missing_key ) {
 						return new WP_Error(
 							'incomplete-user-claim',
-							__( 'User claim incomplete.', 'daggerhart-openid-connect-generic' ),
+							__( 'User claim incomplete.', 'hitobito-oauth' ),
 							array(
 								'message'    => 'Unable to find key: ' . $key . ' in user_claim',
 								'hint'       => 'Verify OpenID Scope includes a scope with the attributes you need',
@@ -1102,7 +1102,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 
 			// Make sure we didn't get an error.
 			if ( is_wp_error( $user_claim_result ) ) {
-				return new WP_Error( 'bad-user-claim-result', __( 'Bad user claim result.', 'daggerhart-openid-connect-generic' ), $user_claim_result );
+				return new WP_Error( 'bad-user-claim-result', __( 'Bad user claim result.', 'hitobito-oauth' ), $user_claim_result );
 			}
 
 			$user_claim = json_decode( $user_claim_result['body'], true );
@@ -1171,7 +1171,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 		$create_user = apply_filters( 'openid-connect-generic-user-creation-test', $this->settings->create_if_does_not_exist, $user_claim );
 
 		if ( ! $create_user ) {
-			return new WP_Error( 'cannot-authorize', __( 'Can not authorize.', 'daggerhart-openid-connect-generic' ), $create_user );
+			return new WP_Error( 'cannot-authorize', __( 'Can not authorize.', 'hitobito-oauth' ), $create_user );
 		}
 
 		// Copy the username for incrementing.
@@ -1200,7 +1200,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 
 		// Make sure we didn't fail in creating the user.
 		if ( is_wp_error( $uid ) ) {
-			return new WP_Error( 'failed-user-creation', __( 'Failed user creation.', 'daggerhart-openid-connect-generic' ), $uid );
+			return new WP_Error( 'failed-user-creation', __( 'Failed user creation.', 'hitobito-oauth' ), $uid );
 		}
 
 		// Retrieve our new user.
@@ -1227,7 +1227,7 @@ class OpenID_Connect_Generic_Client_Wrapper {
 	 * @return WP_Error
 	 */
 	private function get_role_mapping_denied_error( $user_claim ) {
-		return new WP_Error( 'role-mapping-denied', __( 'Your Hitobito account has no role which grants access to this website.', 'daggerhart-openid-connect-generic' ), $user_claim );
+		return new WP_Error( 'role-mapping-denied', __( 'Your Hitobito account has no role which grants access to this website.', 'hitobito-oauth' ), $user_claim );
 	}
 
 	/**

@@ -113,7 +113,7 @@ class OpenID_Connect_Generic_Settings_Page {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( admin_url( 'options-general.php?page=' . $this->options_page_name ) ),
-			esc_html__( 'Settings', 'daggerhart-openid-connect-generic' )
+			esc_html__( 'Settings', 'hitobito-oauth' )
 		);
 		array_unshift( $links, $settings_link );
 
@@ -128,8 +128,8 @@ class OpenID_Connect_Generic_Settings_Page {
 	 */
 	public function admin_menu() {
 		add_options_page(
-			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
-			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito Auth', 'hitobito-oauth' ),
+			__( 'Hitobito Auth', 'hitobito-oauth' ),
 			'manage_options',
 			$this->options_page_name,
 			array( $this, 'settings_page' )
@@ -153,21 +153,21 @@ class OpenID_Connect_Generic_Settings_Page {
 
 		add_settings_section(
 			'client_settings',
-			__( 'Client Settings', 'daggerhart-openid-connect-generic' ),
+			__( 'Client Settings', 'hitobito-oauth' ),
 			array( $this, 'client_settings_description' ),
 			$this->options_page_name
 		);
 
 		add_settings_section(
 			'user_settings',
-			__( 'WordPress User Settings', 'daggerhart-openid-connect-generic' ),
+			__( 'WordPress User Settings', 'hitobito-oauth' ),
 			array( $this, 'user_settings_description' ),
 			$this->options_page_name
 		);
 
 		add_settings_section(
 			'log_settings',
-			__( 'Log Settings', 'daggerhart-openid-connect-generic' ),
+			__( 'Log Settings', 'hitobito-oauth' ),
 			array( $this, 'log_settings_description' ),
 			$this->options_page_name
 		);
@@ -225,52 +225,52 @@ class OpenID_Connect_Generic_Settings_Page {
 		 */
 		$fields = array(
 			'client_id'         => array(
-				'title'       => __( 'Client ID', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'The ID this client will be recognized as when connecting the to Identity provider server.', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Client ID', 'hitobito-oauth' ),
+				'description' => __( 'The ID this client will be recognized as when connecting the to Identity provider server.', 'hitobito-oauth' ),
 				'example'     => 'my-wordpress-client-id',
 				'type'        => 'text',
 				'disabled'    => defined( 'OIDC_CLIENT_ID' ),
 				'section'     => 'client_settings',
 			),
 			'client_secret'     => array(
-				'title'       => __( 'Client Secret Key', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Arbitrary secret key the server expects from this client. Can be anything, but should be very unique.', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Client Secret Key', 'hitobito-oauth' ),
+				'description' => __( 'Arbitrary secret key the server expects from this client. Can be anything, but should be very unique.', 'hitobito-oauth' ),
 				'type'        => 'text',
 				'disabled'    => defined( 'OIDC_CLIENT_SECRET' ),
 				'section'     => 'client_settings',
 			),
 			'endpoint_url' => array(
-				'title'       => __( 'Hitobito URL', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'For testing please use: XXX.puzzle.ch/ and for production please use e.g. db.scout.ch', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Hitobito URL', 'hitobito-oauth' ),
+				'description' => __( 'For testing please use: XXX.puzzle.ch/ and for production please use e.g. db.scout.ch', 'hitobito-oauth' ),
 				'type'        => 'select',
 				'options'     => wp_list_pluck( OpenID_Connect_Generic_Option_Settings::get_hitobito_instances(), 'label' ),
 				'disabled'    => defined( 'OIDC_ENDPOINT_URL' ),
 				'section'     => 'client_settings',
 			),
 			'create_if_does_not_exist'   => array(
-				'title'       => __( 'Create user if does not exist', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'If the user identity is not linked to an existing WordPress user, it is created. If this setting is not enabled, and if the user authenticates with an account which is not linked to an existing WordPress user, then the authentication will fail.', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Create user if does not exist', 'hitobito-oauth' ),
+				'description' => __( 'If the user identity is not linked to an existing WordPress user, it is created. If this setting is not enabled, and if the user authenticates with an account which is not linked to an existing WordPress user, then the authentication will fail.', 'hitobito-oauth' ),
 				'type'        => 'checkbox',
 				'disabled'    => defined( 'OIDC_CREATE_IF_DOES_NOT_EXIST' ),
 				'section'     => 'user_settings',
 			),
 			'button_txt'     => array(
-				'title'       => __( 'Button Text', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'The text shown in the button for the Hitobito login.', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Button Text', 'hitobito-oauth' ),
+				'description' => __( 'The text shown in the button for the Hitobito login.', 'hitobito-oauth' ),
 				'type'        => 'text',
 				'disabled'    => defined( 'OIDC_BUTTON_TXT' ),
 				'section'     => 'user_settings',
 			),
 			'enable_logging'    => array(
-				'title'       => __( 'Enable Logging', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Very simple log messages for debugging purposes.', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Enable Logging', 'hitobito-oauth' ),
+				'description' => __( 'Very simple log messages for debugging purposes.', 'hitobito-oauth' ),
 				'type'        => 'checkbox',
 				'disabled'    => defined( 'OIDC_ENABLE_LOGGING' ),
 				'section'     => 'log_settings',
 			),
 			'log_limit'         => array(
-				'title'       => __( 'Log Limit', 'daggerhart-openid-connect-generic' ),
-				'description' => __( 'Number of items to keep in the log. These logs are stored as an option in the database, so space is limited.', 'daggerhart-openid-connect-generic' ),
+				'title'       => __( 'Log Limit', 'hitobito-oauth' ),
+				'description' => __( 'Number of items to keep in the log. These logs are stored as an option in the database, so space is limited.', 'hitobito-oauth' ),
 				'type'        => 'number',
 				'disabled'    => defined( 'OIDC_LOG_LIMIT' ),
 				'section'     => 'log_settings',
@@ -308,7 +308,7 @@ class OpenID_Connect_Generic_Settings_Page {
 	 * @return void
 	 */
 	public function settings_page() {
-		wp_enqueue_style( 'daggerhart-openid-connect-generic-admin', plugin_dir_url( __DIR__ ) . 'css/styles-admin.css', array(), OpenID_Connect_Generic::VERSION, 'all' );
+		wp_enqueue_style( 'hitobito-oauth-admin', plugin_dir_url( __DIR__ ) . 'css/styles-admin.css', array(), OpenID_Connect_Generic::VERSION, 'all' );
 
 		$redirect_uri = admin_url( 'admin-ajax.php?action=openid-connect-authorize' );
 
@@ -329,36 +329,36 @@ class OpenID_Connect_Generic_Settings_Page {
 				?>
 			</form>
 
-			<h4><?php esc_html_e( 'Notes', 'daggerhart-openid-connect-generic' ); ?></h4>
+			<h4><?php esc_html_e( 'Notes', 'hitobito-oauth' ); ?></h4>
 
 			<p class="description">
-				<strong><?php esc_html_e( 'Redirect URL:', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'Redirect URL:', 'hitobito-oauth' ); ?></strong>
 				<code><?php print esc_url( $redirect_uri ); ?></code>
 			</p>
 			<p class="description">
-				<strong><?php esc_html_e( 'Login Button Shortcode', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'Login Button Shortcode', 'hitobito-oauth' ); ?></strong>
 				<code>[openid_connect_generic_login_button]</code>
 			</p>
 			<p class="description">
-				<strong><?php esc_html_e( 'Authentication URL Shortcode', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'Authentication URL Shortcode', 'hitobito-oauth' ); ?></strong>
 				<code>[openid_connect_generic_auth_url]</code>
 			</p>
 			<p class="description">
-				<strong><?php esc_html_e( 'MiData Docu', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'MiData Docu', 'hitobito-oauth' ); ?></strong>
 				<code><a href="https://docu.scout.ch/">docu.scout.ch/</a></code>
 			</p>
 			<p class="description">
-				<strong><?php esc_html_e( 'This Plugin was developed by Schlumpf and Vivo during the Hitobito Hackathon 2025. ', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'This Plugin was developed by Schlumpf and Vivo during the Hitobito Hackathon 2025. ', 'hitobito-oauth' ); ?></strong>
 			</p>
 			<p class="description">
-				<strong><?php esc_html_e( '(c) 2025-2026 Swiss Guide and Scout Movement', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( '(c) 2025-2026 Swiss Guide and Scout Movement', 'hitobito-oauth' ); ?></strong>
 			</p>
 			<p class="description">
-				<?php esc_html_e( 'Based on OpenID Connect Generic by Jonathan Daggerhart, Tim Nolte and contributors, licensed under GPLv2 or later.', 'daggerhart-openid-connect-generic' ); ?>
+				<?php esc_html_e( 'Based on OpenID Connect Generic by Jonathan Daggerhart, Tim Nolte and contributors, licensed under GPLv2 or later.', 'hitobito-oauth' ); ?>
 				<a href="https://github.com/oidc-wp/openid-connect-generic" target="_blank" rel="noopener noreferrer">github.com/oidc-wp/openid-connect-generic</a>
 			</p>
 			<?php if ( $this->settings->enable_logging ) { ?>
-				<h2><?php esc_html_e( 'Logs', 'daggerhart-openid-connect-generic' ); ?></h2>
+				<h2><?php esc_html_e( 'Logs', 'hitobito-oauth' ); ?></h2>
 				<div id="logger-table-wrapper">
 					<?php print wp_kses_post( $this->logger->get_logs_table() ); ?>
 				</div>
@@ -447,7 +447,7 @@ class OpenID_Connect_Generic_Settings_Page {
 		<p class="description">
 			<?php print wp_kses_post( $field['description'] ); ?>
 			<?php if ( isset( $field['example'] ) ) : ?>
-				<br/><strong><?php esc_html_e( 'Example', 'daggerhart-openid-connect-generic' ); ?>: </strong>
+				<br/><strong><?php esc_html_e( 'Example', 'hitobito-oauth' ); ?>: </strong>
 				<code><?php print esc_html( $field['example'] ); ?></code>
 			<?php endif; ?>
 		</p>
@@ -460,7 +460,7 @@ class OpenID_Connect_Generic_Settings_Page {
 	 * @return void
 	 */
 	public function client_settings_description() {
-		esc_html_e( 'Enter your OpenID Connect identity provider settings.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Enter your OpenID Connect identity provider settings.', 'hitobito-oauth' );
 	}
 
 	/**
@@ -469,7 +469,7 @@ class OpenID_Connect_Generic_Settings_Page {
 	 * @return void
 	 */
 	public function user_settings_description() {
-		esc_html_e( 'Modify the interaction between your Hitobito and WordPress the users.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Modify the interaction between your Hitobito and WordPress the users.', 'hitobito-oauth' );
 	}
 
 	/**
@@ -478,7 +478,7 @@ class OpenID_Connect_Generic_Settings_Page {
 	 * @return void
 	 */
 	public function authorization_settings_description() {
-		esc_html_e( 'Control the authorization mechanics of the site.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Control the authorization mechanics of the site.', 'hitobito-oauth' );
 	}
 
 	/**
@@ -487,6 +487,6 @@ class OpenID_Connect_Generic_Settings_Page {
 	 * @return void
 	 */
 	public function log_settings_description() {
-		esc_html_e( 'Log information about login attempts through OpenID Connect Generic.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Log information about login attempts through OpenID Connect Generic.', 'hitobito-oauth' );
 	}
 }

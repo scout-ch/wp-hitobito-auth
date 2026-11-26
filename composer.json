@@ -10,7 +10,7 @@
   },
   "autoload": {
     "classmap": [
-      "openid-connect-generic.php",
+      "hitobito-oauth.php",
       "includes/openid-connect-generic-button-style.php",
       "includes/openid-connect-generic-client.php",
       "includes/openid-connect-generic-client-wrapper.php",

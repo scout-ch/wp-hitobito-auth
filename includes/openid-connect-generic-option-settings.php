@@ -154,19 +154,19 @@ class OpenID_Connect_Generic_Option_Settings {
 	public static function get_hitobito_instances() {
 		$instances = array(
 			'test'      => array(
-				'label' => __( 'TEST MiData [pbs.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+				'label' => __( 'TEST MiData [pbs.puzzle.ch]', 'hitobito-oauth' ),
 				'url'   => 'https://pbs.puzzle.ch/',
 			),
 			'prod'      => array(
-				'label' => __( 'PRODUCTION MiData [db.scout.ch]', 'daggerhart-openid-connect-generic' ),
+				'label' => __( 'PRODUCTION MiData [db.scout.ch]', 'hitobito-oauth' ),
 				'url'   => 'https://db.scout.ch/',
 			),
 			'jubla'     => array(
-				'label' => __( 'PRODUCTION jubla.db [db.jubla.ch]', 'daggerhart-openid-connect-generic' ),
+				'label' => __( 'PRODUCTION jubla.db [db.jubla.ch]', 'hitobito-oauth' ),
 				'url'   => 'https://db.jubla.ch/',
 			),
 			'jublatest' => array(
-				'label' => __( 'TEST jubla.db [jubla.puzzle.ch]', 'daggerhart-openid-connect-generic' ),
+				'label' => __( 'TEST jubla.db [jubla.puzzle.ch]', 'hitobito-oauth' ),
 				'url'   => 'https://jubla.puzzle.ch/',
 			),
 		);

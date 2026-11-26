@@ -165,7 +165,7 @@ class OpenID_Connect_Generic_Role_Mapping {
 
 			$parts = array_map( 'trim', explode( '|', $line ) );
 			if ( 3 !== count( $parts ) ) {
-				$errors[ $line_number ] = __( 'Expected "group ids | role classes | WordPress role".', 'daggerhart-openid-connect-generic' );
+				$errors[ $line_number ] = __( 'Expected "group ids | role classes | WordPress role".', 'hitobito-oauth' );
 				continue;
 			}
 
@@ -174,18 +174,18 @@ class OpenID_Connect_Generic_Role_Mapping {
 			$wp_role      = $parts[2];
 
 			if ( empty( $groups ) || preg_grep( '/^(\d+|\*)$/', $groups, PREG_GREP_INVERT ) ) {
-				$errors[ $line_number ] = __( 'Group ids must be numbers or *.', 'daggerhart-openid-connect-generic' );
+				$errors[ $line_number ] = __( 'Group ids must be numbers or *.', 'hitobito-oauth' );
 				continue;
 			}
 
 			if ( empty( $role_classes ) ) {
-				$errors[ $line_number ] = __( 'At least one role class or * is required.', 'daggerhart-openid-connect-generic' );
+				$errors[ $line_number ] = __( 'At least one role class or * is required.', 'hitobito-oauth' );
 				continue;
 			}
 
 			if ( ! isset( $assignable_roles[ $wp_role ] ) ) {
 				// translators: %s is the WordPress role slug entered in the rule.
-				$errors[ $line_number ] = sprintf( __( 'The WordPress role "%s" does not exist or has administrator capabilities.', 'daggerhart-openid-connect-generic' ), $wp_role );
+				$errors[ $line_number ] = sprintf( __( 'The WordPress role "%s" does not exist or has administrator capabilities.', 'hitobito-oauth' ), $wp_role );
 				continue;
 			}
 
@@ -303,8 +303,8 @@ class OpenID_Connect_Generic_Role_Mapping {
 	 */
 	public function admin_menu() {
 		add_options_page(
-			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
-			__( 'Hitobito Auth Roles', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito Auth', 'hitobito-oauth' ),
+			__( 'Hitobito Auth Roles', 'hitobito-oauth' ),
 			'manage_options',
 			self::PAGE_NAME,
 			array( $this, 'settings_page' )
@@ -353,14 +353,14 @@ class OpenID_Connect_Generic_Role_Mapping {
 
 		add_settings_section(
 			'role_mapping',
-			__( 'Role Mapping', 'daggerhart-openid-connect-generic' ),
+			__( 'Role Mapping', 'hitobito-oauth' ),
 			array( $this, 'role_mapping_section_description' ),
 			self::PAGE_NAME
 		);
 
 		add_settings_field(
 			'enabled',
-			__( 'Enable role mapping', 'daggerhart-openid-connect-generic' ),
+			__( 'Enable role mapping', 'hitobito-oauth' ),
 			array( $this, 'do_enabled_field' ),
 			self::PAGE_NAME,
 			'role_mapping'
@@ -368,7 +368,7 @@ class OpenID_Connect_Generic_Role_Mapping {
 
 		add_settings_field(
 			'rules',
-			__( 'Rules', 'daggerhart-openid-connect-generic' ),
+			__( 'Rules', 'hitobito-oauth' ),
 			array( $this, 'do_rules_field' ),
 			self::PAGE_NAME,
 			'role_mapping'
@@ -376,7 +376,7 @@ class OpenID_Connect_Generic_Role_Mapping {
 
 		add_settings_field(
 			'fallback_role',
-			__( 'Users without matching rule', 'daggerhart-openid-connect-generic' ),
+			__( 'Users without matching rule', 'hitobito-oauth' ),
 			array( $this, 'do_fallback_role_field' ),
 			self::PAGE_NAME,
 			'role_mapping'
@@ -406,7 +406,7 @@ class OpenID_Connect_Generic_Role_Mapping {
 		self::parse_rules( $options['rules'], $errors );
 		foreach ( $errors as $line_number => $message ) {
 			// translators: %1$d is the line number, %2$s the error message.
-			add_settings_error( self::OPTION_NAME, 'rule_' . $line_number, sprintf( __( 'Rule on line %1$d is ignored: %2$s', 'daggerhart-openid-connect-generic' ), $line_number, $message ) );
+			add_settings_error( self::OPTION_NAME, 'rule_' . $line_number, sprintf( __( 'Rule on line %1$d is ignored: %2$s', 'hitobito-oauth' ), $line_number, $message ) );
 		}
 
 		return $options;
@@ -442,11 +442,11 @@ class OpenID_Connect_Generic_Role_Mapping {
 	 */
 	public function role_mapping_section_description() {
 		?>
-		<p><?php esc_html_e( 'Assign WordPress roles based on the roles of a user in Hitobito. The role is updated on every login with Hitobito. Administrators are never changed, and no rule can grant administrator access.', 'daggerhart-openid-connect-generic' ); ?></p>
+		<p><?php esc_html_e( 'Assign WordPress roles based on the roles of a user in Hitobito. The role is updated on every login with Hitobito. Administrators are never changed, and no rule can grant administrator access.', 'hitobito-oauth' ); ?></p>
 		<p>
 			<?php
 			// translators: %s is the name of the Hitobito scope.
-			printf( esc_html__( 'The mapping requests the additional scope %s. It has to be enabled for the OAuth application in Hitobito before you enable the mapping, otherwise the login fails.', 'daggerhart-openid-connect-generic' ), '<code>' . esc_html( self::SCOPE ) . '</code>' );
+			printf( esc_html__( 'The mapping requests the additional scope %s. It has to be enabled for the OAuth application in Hitobito before you enable the mapping, otherwise the login fails.', 'hitobito-oauth' ), '<code>' . esc_html( self::SCOPE ) . '</code>' );
 			?>
 		</p>
 		<?php
@@ -483,13 +483,13 @@ class OpenID_Connect_Generic_Role_Mapping {
 			rows="10"
 			name="<?php print esc_attr( self::OPTION_NAME . '[rules]' ); ?>"><?php print esc_textarea( $values['rules'] ); ?></textarea>
 		<p class="description">
-			<?php esc_html_e( 'One rule per line: group ids | role classes | WordPress role. Separate several group ids or role classes with commas, * matches everything (e.g. Group::Abteilung::*). The rules are checked from top to bottom and the first matching rule wins, so put the rules with more rights first.', 'daggerhart-openid-connect-generic' ); ?>
+			<?php esc_html_e( 'One rule per line: group ids | role classes | WordPress role. Separate several group ids or role classes with commas, * matches everything (e.g. Group::Abteilung::*). The rules are checked from top to bottom and the first matching rule wins, so put the rules with more rights first.', 'hitobito-oauth' ); ?>
 		</p>
 		<p class="description">
-			<?php esc_html_e( 'Hitobito only reports the group a role is directly in. To match a whole department, list the department and all of its subgroups. Each user profile shows the Hitobito roles of the last login, including the group ids and role classes.', 'daggerhart-openid-connect-generic' ); ?>
+			<?php esc_html_e( 'Hitobito only reports the group a role is directly in. To match a whole department, list the department and all of its subgroups. Each user profile shows the Hitobito roles of the last login, including the group ids and role classes.', 'hitobito-oauth' ); ?>
 		</p>
 		<p class="description">
-			<strong><?php esc_html_e( 'Example', 'daggerhart-openid-connect-generic' ); ?>:</strong>
+			<strong><?php esc_html_e( 'Example', 'hitobito-oauth' ); ?>:</strong>
 		</p>
 		<pre><code><?php print esc_html( $example ); ?></code></pre>
 		<?php
@@ -502,7 +502,7 @@ class OpenID_Connect_Generic_Role_Mapping {
 	 */
 	public function do_fallback_role_field() {
 		$values  = self::get_values();
-		$options = array( self::DENY => __( '— Deny login —', 'daggerhart-openid-connect-generic' ) ) + self::get_assignable_roles();
+		$options = array( self::DENY => __( '— Deny login —', 'hitobito-oauth' ) ) + self::get_assignable_roles();
 		?>
 		<select id="role_mapping_fallback_role" name="<?php print esc_attr( self::OPTION_NAME . '[fallback_role]' ); ?>">
 			<?php foreach ( $options as $value => $text ) : ?>
@@ -510,7 +510,7 @@ class OpenID_Connect_Generic_Role_Mapping {
 			<?php endforeach; ?>
 		</select>
 		<p class="description">
-			<?php esc_html_e( 'Role for users whose Hitobito roles match no rule, e.g. everyone outside of your organisation. "Deny login" blocks them instead and no WordPress account is created for them.', 'daggerhart-openid-connect-generic' ); ?>
+			<?php esc_html_e( 'Role for users whose Hitobito roles match no rule, e.g. everyone outside of your organisation. "Deny login" blocks them instead and no WordPress account is created for them.', 'hitobito-oauth' ); ?>
 		</p>
 		<?php
 	}
@@ -537,23 +537,23 @@ class OpenID_Connect_Generic_Role_Mapping {
 		$hitobito_roles = ( isset( $user_claim['roles'] ) && is_array( $user_claim['roles'] ) ) ? $user_claim['roles'] : null;
 		$mapped_role    = self::get_role_for_claim( $user_claim );
 		?>
-		<h2><?php esc_html_e( 'Hitobito Roles', 'daggerhart-openid-connect-generic' ); ?></h2>
+		<h2><?php esc_html_e( 'Hitobito Roles', 'hitobito-oauth' ); ?></h2>
 		<?php if ( null === $hitobito_roles ) : ?>
 			<p class="description">
 				<?php
 				// translators: %s is the name of the Hitobito scope.
-				printf( esc_html__( 'The last login contained no roles. Enable the role mapping (scope %s) and log in again with Hitobito.', 'daggerhart-openid-connect-generic' ), '<code>' . esc_html( self::SCOPE ) . '</code>' );
+				printf( esc_html__( 'The last login contained no roles. Enable the role mapping (scope %s) and log in again with Hitobito.', 'hitobito-oauth' ), '<code>' . esc_html( self::SCOPE ) . '</code>' );
 				?>
 			</p>
 		<?php else : ?>
-			<p class="description"><?php esc_html_e( 'Roles in Hitobito at the last login.', 'daggerhart-openid-connect-generic' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Roles in Hitobito at the last login.', 'hitobito-oauth' ); ?></p>
 			<table class="widefat striped" style="max-width: 60em;">
 				<thead>
 					<tr>
-						<th><?php esc_html_e( 'Group id', 'daggerhart-openid-connect-generic' ); ?></th>
-						<th><?php esc_html_e( 'Group', 'daggerhart-openid-connect-generic' ); ?></th>
-						<th><?php esc_html_e( 'Role', 'daggerhart-openid-connect-generic' ); ?></th>
-						<th><?php esc_html_e( 'Role class', 'daggerhart-openid-connect-generic' ); ?></th>
+						<th><?php esc_html_e( 'Group id', 'hitobito-oauth' ); ?></th>
+						<th><?php esc_html_e( 'Group', 'hitobito-oauth' ); ?></th>
+						<th><?php esc_html_e( 'Role', 'hitobito-oauth' ); ?></th>
+						<th><?php esc_html_e( 'Role class', 'hitobito-oauth' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -566,18 +566,18 @@ class OpenID_Connect_Generic_Role_Mapping {
 						</tr>
 					<?php endforeach; ?>
 					<?php if ( empty( $hitobito_roles ) ) : ?>
-						<tr><td colspan="4"><?php esc_html_e( 'No roles.', 'daggerhart-openid-connect-generic' ); ?></td></tr>
+						<tr><td colspan="4"><?php esc_html_e( 'No roles.', 'hitobito-oauth' ); ?></td></tr>
 					<?php endif; ?>
 				</tbody>
 			</table>
 			<?php if ( null !== $mapped_role ) : ?>
 				<p>
-					<strong><?php esc_html_e( 'Mapped WordPress role:', 'daggerhart-openid-connect-generic' ); ?></strong>
+					<strong><?php esc_html_e( 'Mapped WordPress role:', 'hitobito-oauth' ); ?></strong>
 					<?php
 					if ( self::is_protected_user( $user ) ) {
-						esc_html_e( 'unchanged (administrator)', 'daggerhart-openid-connect-generic' );
+						esc_html_e( 'unchanged (administrator)', 'hitobito-oauth' );
 					} elseif ( self::DENY === $mapped_role ) {
-						esc_html_e( 'login denied', 'daggerhart-openid-connect-generic' );
+						esc_html_e( 'login denied', 'hitobito-oauth' );
 					} else {
 						print esc_html( self::get_assignable_roles()[ $mapped_role ] ?? $mapped_role );
 					}

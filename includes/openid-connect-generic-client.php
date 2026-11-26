@@ -269,7 +269,7 @@ class OpenID_Connect_Generic_Client {
 		// Check the client request state.
 		if ( ! isset( $request['state'] ) ) {
 			do_action( 'openid-connect-generic-no-state-provided' );
-			return new WP_Error( 'missing-state', __( 'Missing state.', 'daggerhart-openid-connect-generic' ), $request );
+			return new WP_Error( 'missing-state', __( 'Missing state.', 'hitobito-oauth' ), $request );
 		}
 
 		// Check the state
@@ -278,12 +278,12 @@ class OpenID_Connect_Generic_Client {
 		if ( true !== $state_check ) {
 			switch ( $state_check ) {
 				case 'expired':
-					return new WP_Error( 'expired-state', __( 'The login session is expired. Please reload the page and try again.', 'daggerhart-openid-connect-generic' ), $request );
+					return new WP_Error( 'expired-state', __( 'The login session is expired. Please reload the page and try again.', 'hitobito-oauth' ), $request );
 
 				case 'missing':
 				case 'invalid':
 				default:
-					return new WP_Error( 'invalid-state', __( 'The login session is invalid or expired. Please reload the page and try again.', 'daggerhart-openid-connect-generic' ), $request );
+					return new WP_Error( 'invalid-state', __( 'The login session is invalid or expired. Please reload the page and try again.', 'hitobito-oauth' ), $request );
 			}
 		}
 
@@ -299,7 +299,7 @@ class OpenID_Connect_Generic_Client {
 	 */
 	public function get_authentication_code( $request ) {
 		if ( ! isset( $request['code'] ) ) {
-			return new WP_Error( 'missing-authentication-code', __( 'Missing authentication code.', 'daggerhart-openid-connect-generic' ), $request );
+			return new WP_Error( 'missing-authentication-code', __( 'Missing authentication code.', 'hitobito-oauth' ), $request );
 		}
 
 		return $request['code'];
@@ -344,7 +344,7 @@ class OpenID_Connect_Generic_Client {
 		$this->logger->log( $this->endpoint_token, 'request_authentication_token', $end_time - $start_time );
 
 		if ( is_wp_error( $response ) ) {
-			$response->add( 'request_authentication_token', __( 'Request for authentication token failed.', 'daggerhart-openid-connect-generic' ) );
+			$response->add( 'request_authentication_token', __( 'Request for authentication token failed.', 'hitobito-oauth' ) );
 		}
 
 		return $response;
@@ -377,7 +377,7 @@ class OpenID_Connect_Generic_Client {
 		$this->logger->log( $this->endpoint_token, 'request_new_tokens', $end_time - $start_time );
 
 		if ( is_wp_error( $response ) ) {
-			$response->add( 'refresh_token', __( 'Refresh token failed.', 'daggerhart-openid-connect-generic' ) );
+			$response->add( 'refresh_token', __( 'Refresh token failed.', 'hitobito-oauth' ) );
 		}
 
 		return $response;
@@ -392,7 +392,7 @@ class OpenID_Connect_Generic_Client {
 	 */
 	public function get_token_response( $token_result ) {
 		if ( ! isset( $token_result['body'] ) ) {
-			return new WP_Error( 'missing-token-body', __( 'Missing token body.', 'daggerhart-openid-connect-generic' ), $token_result );
+			return new WP_Error( 'missing-token-body', __( 'Missing token body.', 'hitobito-oauth' ), $token_result );
 		}
 
 		// Extract the token response from token.
@@ -400,7 +400,7 @@ class OpenID_Connect_Generic_Client {
 
 		// Check that the token response body was able to be parsed.
 		if ( is_null( $token_response ) ) {
-			return new WP_Error( 'invalid-token', __( 'Invalid token.', 'daggerhart-openid-connect-generic' ), $token_result );
+			return new WP_Error( 'invalid-token', __( 'Invalid token.', 'hitobito-oauth' ), $token_result );
 		}
 
 		if ( isset( $token_response['error'] ) ) {
@@ -461,7 +461,7 @@ class OpenID_Connect_Generic_Client {
 		$this->logger->log( $this->endpoint_userinfo, 'request_userinfo', $end_time - $start_time );
 
 		if ( is_wp_error( $response ) ) {
-			$response->add( 'request_userinfo', __( 'Request for userinfo failed.', 'daggerhart-openid-connect-generic' ) );
+			$response->add( 'request_userinfo', __( 'Request for userinfo failed.', 'hitobito-oauth' ) );
 		}
 
 		return $response;
@@ -533,7 +533,7 @@ class OpenID_Connect_Generic_Client {
 	 */
 	public function get_authentication_state( $request ) {
 		if ( ! isset( $request['state'] ) ) {
-			return new WP_Error( 'missing-authentication-state', __( 'Missing authentication state.', 'daggerhart-openid-connect-generic' ), $request );
+			return new WP_Error( 'missing-authentication-state', __( 'Missing authentication state.', 'hitobito-oauth' ), $request );
 		}
 
 		return $request['state'];
@@ -570,7 +570,7 @@ class OpenID_Connect_Generic_Client {
 	public function get_id_token_claim( $token_response ) {
 		// Validate there is an id_token.
 		if ( ! isset( $token_response['id_token'] ) ) {
-			return new WP_Error( 'no-identity-token', __( 'No identity token.', 'daggerhart-openid-connect-generic' ), $token_response );
+			return new WP_Error( 'no-identity-token', __( 'No identity token.', 'hitobito-oauth' ), $token_response );
 		}
 
 		// Check if JWKS endpoint is configured for JWT signature verification.
@@ -610,7 +610,7 @@ class OpenID_Connect_Generic_Client {
 		$tmp = explode( '.', $token_response['id_token'] );
 
 		if ( ! isset( $tmp[1] ) ) {
-			return new WP_Error( 'missing-identity-token', __( 'Missing identity token.', 'daggerhart-openid-connect-generic' ), $token_response );
+			return new WP_Error( 'missing-identity-token', __( 'Missing identity token.', 'hitobito-oauth' ), $token_response );
 		}
 
 		// Extract the id_token's claims from the token (no signature verification).
@@ -669,30 +669,30 @@ class OpenID_Connect_Generic_Client {
 	 */
 	public function validate_id_token_claim( $id_token_claim ) {
 		if ( ! is_array( $id_token_claim ) ) {
-			return new WP_Error( 'bad-id-token-claim', __( 'Bad ID token claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'bad-id-token-claim', __( 'Bad ID token claim.', 'hitobito-oauth' ), $id_token_claim );
 		}
 
 		// Validate the identification data and its value.
 		if ( ! isset( $id_token_claim['sub'] ) || empty( $id_token_claim['sub'] ) ) {
-			return new WP_Error( 'no-subject-identity', __( 'No subject identity.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'no-subject-identity', __( 'No subject identity.', 'hitobito-oauth' ), $id_token_claim );
 		}
 
 		// Validate expiration claim.
 		if ( ! isset( $id_token_claim['exp'] ) ) {
-			return new WP_Error( 'missing-exp', __( 'Token missing expiration claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'missing-exp', __( 'Token missing expiration claim.', 'hitobito-oauth' ), $id_token_claim );
 		}
 		if ( time() >= $id_token_claim['exp'] ) {
-			return new WP_Error( 'token-expired', __( 'Token has expired.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'token-expired', __( 'Token has expired.', 'hitobito-oauth' ), $id_token_claim );
 		}
 
 		// Validate issued at claim.
 		if ( ! isset( $id_token_claim['iat'] ) ) {
-			return new WP_Error( 'missing-iat', __( 'Token missing issued at claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'missing-iat', __( 'Token missing issued at claim.', 'hitobito-oauth' ), $id_token_claim );
 		}
 
 		// Validate audience claim matches client_id (can be string or array).
 		if ( ! isset( $id_token_claim['aud'] ) ) {
-			return new WP_Error( 'missing-aud', __( 'Token missing audience claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'missing-aud', __( 'Token missing audience claim.', 'hitobito-oauth' ), $id_token_claim );
 		}
 
 		$aud = $id_token_claim['aud'];
@@ -705,7 +705,7 @@ class OpenID_Connect_Generic_Client {
 		}
 
 		if ( ! $audience_valid ) {
-			return new WP_Error( 'invalid-aud', __( 'Token audience does not match client.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+			return new WP_Error( 'invalid-aud', __( 'Token audience does not match client.', 'hitobito-oauth' ), $id_token_claim );
 		}
 
 		// Validate issuer claim if configured or endpoint_login is available.
@@ -715,7 +715,7 @@ class OpenID_Connect_Generic_Client {
 
 		if ( ! empty( $expected_issuer ) ) {
 			if ( ! isset( $id_token_claim['iss'] ) ) {
-				return new WP_Error( 'missing-iss', __( 'Token missing issuer claim.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+				return new WP_Error( 'missing-iss', __( 'Token missing issuer claim.', 'hitobito-oauth' ), $id_token_claim );
 			}
 
 			if ( rtrim( $id_token_claim['iss'], '/' ) !== rtrim( $expected_issuer, '/' ) ) {
@@ -730,7 +730,7 @@ class OpenID_Connect_Generic_Client {
 				return new WP_Error(
 					'invalid-iss',
 					sprintf(
-						__( 'Token issuer does not match expected issuer.', 'daggerhart-openid-connect-generic' ),
+						__( 'Token issuer does not match expected issuer.', 'hitobito-oauth' ),
 					),
 					$id_token_claim
 				);
@@ -740,7 +740,7 @@ class OpenID_Connect_Generic_Client {
 		// Validate acr values when the option is set in the configuration.
 		if ( ! empty( $this->acr_values ) && isset( $id_token_claim['acr'] ) ) {
 			if ( $this->acr_values != $id_token_claim['acr'] ) {
-				return new WP_Error( 'no-match-acr', __( 'No matching acr values.', 'daggerhart-openid-connect-generic' ), $id_token_claim );
+				return new WP_Error( 'no-match-acr', __( 'No matching acr values.', 'hitobito-oauth' ), $id_token_claim );
 			}
 		}
 
@@ -760,7 +760,7 @@ class OpenID_Connect_Generic_Client {
 
 		// Make sure we didn't get an error, and that the response body exists.
 		if ( is_wp_error( $user_claim_result ) || ! isset( $user_claim_result['body'] ) ) {
-			return new WP_Error( 'bad-claim', __( 'Bad user claim.', 'daggerhart-openid-connect-generic' ), $user_claim_result );
+			return new WP_Error( 'bad-claim', __( 'Bad user claim.', 'hitobito-oauth' ), $user_claim_result );
 		}
 
 		$user_claim = json_decode( $user_claim_result['body'], true );
@@ -780,12 +780,12 @@ class OpenID_Connect_Generic_Client {
 	public function validate_user_claim( $user_claim, $id_token_claim ) {
 		// Validate the user claim.
 		if ( ! is_array( $user_claim ) ) {
-			return new WP_Error( 'invalid-user-claim', __( 'Invalid user claim.', 'daggerhart-openid-connect-generic' ), $user_claim );
+			return new WP_Error( 'invalid-user-claim', __( 'Invalid user claim.', 'hitobito-oauth' ), $user_claim );
 		}
 
 		// Allow for errors from the IDP.
 		if ( isset( $user_claim['error'] ) ) {
-			$message = __( 'Error from the IDP.', 'daggerhart-openid-connect-generic' );
+			$message = __( 'Error from the IDP.', 'hitobito-oauth' );
 			if ( ! empty( $user_claim['error_description'] ) ) {
 				$message = $user_claim['error_description'];
 			}
@@ -794,14 +794,14 @@ class OpenID_Connect_Generic_Client {
 
 		// Make sure the id_token sub equals the user_claim sub, according to spec.
 		if ( $id_token_claim['sub'] !== $user_claim['sub'] ) {
-			return new WP_Error( 'incorrect-user-claim', __( 'Incorrect user claim.', 'daggerhart-openid-connect-generic' ), func_get_args() );
+			return new WP_Error( 'incorrect-user-claim', __( 'Incorrect user claim.', 'hitobito-oauth' ), func_get_args() );
 		}
 
 		// Allow for other plugins to alter the login success.
 		$login_user = apply_filters( 'openid-connect-generic-user-login-test', true, $user_claim );
 
 		if ( ! $login_user ) {
-			return new WP_Error( 'unauthorized', __( 'Unauthorized access.', 'daggerhart-openid-connect-generic' ), $login_user );
+			return new WP_Error( 'unauthorized', __( 'Unauthorized access.', 'hitobito-oauth' ), $login_user );
 		}
 
 		return true;

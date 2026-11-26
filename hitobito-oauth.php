@@ -29,7 +29,7 @@
  * Requires PHP:      8.0
  * Author:            Swiss Guide and Scout Movement
  * Author URI:        https://pfadi.swiss
- * Text Domain:       daggerhart-openid-connect-generic
+ * Text Domain:       hitobito-oauth
  * Domain Path:       /languages
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -272,7 +272,7 @@ class OpenID_Connect_Generic {
 	 */
 	public function enforce_privacy_feeds( $content ) {
 		if ( $this->settings->enforce_privacy && ! is_user_logged_in() ) {
-			$content = __( 'Private site', 'daggerhart-openid-connect-generic' );
+			$content = __( 'Private site', 'hitobito-oauth' );
 		}
 		return $content;
 	}
@@ -302,24 +302,24 @@ class OpenID_Connect_Generic {
 		?>
 		<div class="notice notice-error">
 			<p>
-				<strong><?php esc_html_e( 'OpenID Connect Generic - Security Configuration Required', 'daggerhart-openid-connect-generic' ); ?></strong>
+				<strong><?php esc_html_e( 'OpenID Connect Generic - Security Configuration Required', 'hitobito-oauth' ); ?></strong>
 			</p>
 			<p>
 				<?php
 				echo wp_kses_post(
 					sprintf(
 						/* translators: %s is a link to the settings page */
-						__( 'Your OpenID Connect authentication is using an insecure fallback method. You must configure the <strong>JWKS endpoint</strong> in <a href="%s">plugin settings</a> as soon as possible.', 'daggerhart-openid-connect-generic' ),
+						__( 'Your OpenID Connect authentication is using an insecure fallback method. You must configure the <strong>JWKS endpoint</strong> in <a href="%s">plugin settings</a> as soon as possible.', 'hitobito-oauth' ),
 						esc_url( $settings_url )
 					)
 				);
 				?>
 			</p>
 			<p>
-				<?php esc_html_e( 'The current insecure fallback will be removed in version 3.12.0. After that update, authentication will fail until the JWKS endpoint is configured.', 'daggerhart-openid-connect-generic' ); ?>
+				<?php esc_html_e( 'The current insecure fallback will be removed in version 3.12.0. After that update, authentication will fail until the JWKS endpoint is configured.', 'hitobito-oauth' ); ?>
 			</p>
 			<p>
-				<strong><?php esc_html_e( 'Common JWKS endpoints:', 'daggerhart-openid-connect-generic' ); ?></strong><br>
+				<strong><?php esc_html_e( 'Common JWKS endpoints:', 'hitobito-oauth' ); ?></strong><br>
 				• Keycloak: <code>https://your-domain/realms/your-realm/protocol/openid-connect/certs</code><br>
 				• Auth0: <code>https://your-domain.auth0.com/.well-known/jwks.json</code><br>
 				• Okta: <code>https://your-domain.okta.com/oauth2/default/v1/keys</code><br>

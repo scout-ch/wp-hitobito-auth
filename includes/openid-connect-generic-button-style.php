@@ -103,42 +103,42 @@ class OpenID_Connect_Generic_Button_Style {
 	public static function get_color_fields() {
 		return array(
 			'text_color'             => array(
-				'title'   => __( 'Text', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Text', 'hitobito-oauth' ),
 				'section' => 'normal',
 				'var'     => 'text',
 			),
 			'background_color'       => array(
-				'title'   => __( 'Background', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Background', 'hitobito-oauth' ),
 				'section' => 'normal',
 				'var'     => 'bg',
 			),
 			'border_color'           => array(
-				'title'   => __( 'Border', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Border', 'hitobito-oauth' ),
 				'section' => 'normal',
 				'var'     => 'border',
 			),
 			'icon_color'             => array(
-				'title'   => __( 'Icon', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Icon', 'hitobito-oauth' ),
 				'section' => 'normal',
 				'var'     => 'icon',
 			),
 			'hover_text_color'       => array(
-				'title'   => __( 'Text', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Text', 'hitobito-oauth' ),
 				'section' => 'hover',
 				'var'     => 'text',
 			),
 			'hover_background_color' => array(
-				'title'   => __( 'Background', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Background', 'hitobito-oauth' ),
 				'section' => 'hover',
 				'var'     => 'bg',
 			),
 			'hover_border_color'     => array(
-				'title'   => __( 'Border', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Border', 'hitobito-oauth' ),
 				'section' => 'hover',
 				'var'     => 'border',
 			),
 			'hover_icon_color'       => array(
-				'title'   => __( 'Icon', 'daggerhart-openid-connect-generic' ),
+				'title'   => __( 'Icon', 'hitobito-oauth' ),
 				'section' => 'hover',
 				'var'     => 'icon',
 			),
@@ -265,9 +265,9 @@ class OpenID_Connect_Generic_Button_Style {
 	 */
 	public static function do_nav_tabs( $active ) {
 		$tabs = array(
-			self::PARENT_PAGE_NAME => __( 'Settings', 'daggerhart-openid-connect-generic' ),
-			self::PAGE_NAME        => __( 'Login Button', 'daggerhart-openid-connect-generic' ),
-			OpenID_Connect_Generic_Role_Mapping::PAGE_NAME => __( 'Role Mapping', 'daggerhart-openid-connect-generic' ),
+			self::PARENT_PAGE_NAME => __( 'Settings', 'hitobito-oauth' ),
+			self::PAGE_NAME        => __( 'Login Button', 'hitobito-oauth' ),
+			OpenID_Connect_Generic_Role_Mapping::PAGE_NAME => __( 'Role Mapping', 'hitobito-oauth' ),
 		);
 		?>
 		<nav class="nav-tab-wrapper">
@@ -286,8 +286,8 @@ class OpenID_Connect_Generic_Button_Style {
 	 */
 	public function admin_menu() {
 		add_options_page(
-			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
-			__( 'Hitobito Auth Button', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito Auth', 'hitobito-oauth' ),
+			__( 'Hitobito Auth Button', 'hitobito-oauth' ),
 			'manage_options',
 			self::PAGE_NAME,
 			array( $this, 'settings_page' )
@@ -336,21 +336,21 @@ class OpenID_Connect_Generic_Button_Style {
 
 		add_settings_section(
 			'normal',
-			__( 'Normal', 'daggerhart-openid-connect-generic' ),
+			__( 'Normal', 'hitobito-oauth' ),
 			array( $this, 'normal_section_description' ),
 			self::PAGE_NAME
 		);
 
 		add_settings_section(
 			'hover',
-			__( 'Hover', 'daggerhart-openid-connect-generic' ),
+			__( 'Hover', 'hitobito-oauth' ),
 			array( $this, 'hover_section_description' ),
 			self::PAGE_NAME
 		);
 
 		add_settings_section(
 			'icon',
-			__( 'Icon', 'daggerhart-openid-connect-generic' ),
+			__( 'Icon', 'hitobito-oauth' ),
 			array( $this, 'icon_section_description' ),
 			self::PAGE_NAME
 		);
@@ -370,7 +370,7 @@ class OpenID_Connect_Generic_Button_Style {
 
 		add_settings_field(
 			'icon_svg',
-			__( 'SVG Icon', 'daggerhart-openid-connect-generic' ),
+			__( 'SVG Icon', 'hitobito-oauth' ),
 			array( $this, 'do_icon_field' ),
 			self::PAGE_NAME,
 			'icon'
@@ -471,15 +471,15 @@ JS;
 	 */
 	private function read_uploaded_icon( $file ) {
 		if ( ! empty( $file['error'] ) || ! is_uploaded_file( $file['tmp_name'] ) ) {
-			return new WP_Error( 'icon_upload', __( 'The icon could not be uploaded.', 'daggerhart-openid-connect-generic' ) );
+			return new WP_Error( 'icon_upload', __( 'The icon could not be uploaded.', 'hitobito-oauth' ) );
 		}
 
 		if ( 'svg' !== strtolower( pathinfo( $file['name'], PATHINFO_EXTENSION ) ) ) {
-			return new WP_Error( 'icon_type', __( 'The icon must be an SVG file.', 'daggerhart-openid-connect-generic' ) );
+			return new WP_Error( 'icon_type', __( 'The icon must be an SVG file.', 'hitobito-oauth' ) );
 		}
 
 		if ( $file['size'] > self::ICON_MAX_SIZE ) {
-			return new WP_Error( 'icon_size', __( 'The icon must not be larger than 100 KB.', 'daggerhart-openid-connect-generic' ) );
+			return new WP_Error( 'icon_size', __( 'The icon must not be larger than 100 KB.', 'hitobito-oauth' ) );
 		}
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local uploaded file.
@@ -487,7 +487,7 @@ JS;
 
 		// Reject document type declarations to prevent entity expansion attacks.
 		if ( false === $content || false !== stripos( $content, '<!DOCTYPE' ) || false !== stripos( $content, '<!ENTITY' ) ) {
-			return new WP_Error( 'icon_invalid', __( 'The icon is not a valid SVG file.', 'daggerhart-openid-connect-generic' ) );
+			return new WP_Error( 'icon_invalid', __( 'The icon is not a valid SVG file.', 'hitobito-oauth' ) );
 		}
 
 		$previous = libxml_use_internal_errors( true );
@@ -497,7 +497,7 @@ JS;
 		libxml_use_internal_errors( $previous );
 
 		if ( ! $loaded || ! $document->documentElement || 'svg' !== strtolower( $document->documentElement->localName ) ) {
-			return new WP_Error( 'icon_invalid', __( 'The icon is not a valid SVG file.', 'daggerhart-openid-connect-generic' ) );
+			return new WP_Error( 'icon_invalid', __( 'The icon is not a valid SVG file.', 'hitobito-oauth' ) );
 		}
 
 		// Browsers only render SVG images with the SVG namespace.
@@ -519,7 +519,7 @@ JS;
 
 		$button_text = ! empty( trim( $this->settings->button_txt ?? '' ) )
 			? $this->settings->button_txt
-			: __( 'Login with Hitobito', 'daggerhart-openid-connect-generic' );
+			: __( 'Login with Hitobito', 'hitobito-oauth' );
 		?>
 		<div class="wrap">
 			<h2><?php print esc_html( get_admin_page_title() ); ?></h2>
@@ -555,8 +555,8 @@ JS;
 				}
 			</style>
 
-			<h3><?php esc_html_e( 'Preview', 'daggerhart-openid-connect-generic' ); ?></h3>
-			<p class="description"><?php esc_html_e( 'The preview shows the saved icon. Colors are updated while you edit them. Empty colors keep the styling of your theme.', 'daggerhart-openid-connect-generic' ); ?></p>
+			<h3><?php esc_html_e( 'Preview', 'hitobito-oauth' ); ?></h3>
+			<p class="description"><?php esc_html_e( 'The preview shows the saved icon. Colors are updated while you edit them. Empty colors keep the styling of your theme.', 'hitobito-oauth' ); ?></p>
 			<p>
 				<a id="hitobito-auth-button-preview" class="button button-large" href="#" onclick="return false;"
 					<?php if ( $icon_uri ) : ?>
@@ -614,13 +614,13 @@ JS;
 			name="<?php print esc_attr( self::ICON_UPLOAD_FIELD ); ?>"
 			accept=".svg,image/svg+xml">
 		<p class="description">
-			<?php esc_html_e( 'Upload an SVG file (max. 100 KB), e.g. the logo of your Hitobito instance like the MiData. The icon is shown left of the button text and colored with the icon colors above; if no icon color is set it uses the text color. Works best with single-color icons.', 'daggerhart-openid-connect-generic' ); ?>
+			<?php esc_html_e( 'Upload an SVG file (max. 100 KB), e.g. the logo of your Hitobito instance like the MiData. The icon is shown left of the button text and colored with the icon colors above; if no icon color is set it uses the text color. Works best with single-color icons.', 'hitobito-oauth' ); ?>
 		</p>
 		<?php if ( ! empty( $values['icon_svg'] ) ) : ?>
 			<p>
 				<label>
 					<input type="checkbox" name="<?php print esc_attr( self::OPTION_NAME . '[remove_icon]' ); ?>" value="1">
-					<?php esc_html_e( 'Remove current icon', 'daggerhart-openid-connect-generic' ); ?>
+					<?php esc_html_e( 'Remove current icon', 'hitobito-oauth' ); ?>
 				</label>
 			</p>
 		<?php endif; ?>
@@ -633,7 +633,7 @@ JS;
 	 * @return void
 	 */
 	public function normal_section_description() {
-		esc_html_e( 'Colors of the login button. Leave a color empty to keep the styling of your theme.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Colors of the login button. Leave a color empty to keep the styling of your theme.', 'hitobito-oauth' );
 	}
 
 	/**
@@ -642,7 +642,7 @@ JS;
 	 * @return void
 	 */
 	public function hover_section_description() {
-		esc_html_e( 'Colors of the login button when the mouse is over it or it has the keyboard focus.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Colors of the login button when the mouse is over it or it has the keyboard focus.', 'hitobito-oauth' );
 	}
 
 	/**
@@ -651,6 +651,6 @@ JS;
 	 * @return void
 	 */
 	public function icon_section_description() {
-		esc_html_e( 'Personalize the button with the icon of your Hitobito instance.', 'daggerhart-openid-connect-generic' );
+		esc_html_e( 'Personalize the button with the icon of your Hitobito instance.', 'hitobito-oauth' );
 	}
 }

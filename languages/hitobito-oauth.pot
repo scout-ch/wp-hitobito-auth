@@ -1,0 +1,640 @@
+# Copyright (C) 2026 Swiss Guide and Scout Movement
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Hitobito Auth 1.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-hitobito-auth\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-26T20:58:48+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: hitobito-oauth\n"
+
+#. Plugin Name of the plugin
+#: hitobito-oauth.php
+#: includes/openid-connect-generic-button-style.php:289
+#: includes/openid-connect-generic-role-mapping.php:306
+#: includes/openid-connect-generic-settings-page.php:131
+#: includes/openid-connect-generic-settings-page.php:132
+msgid "Hitobito Auth"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: hitobito-oauth.php
+msgid "https://github.com/scout-ch/wp-hitobito-auth"
+msgstr ""
+
+#. Description of the plugin
+#: hitobito-oauth.php
+msgid "Connect your Website to Hitobito (e.g. MiData, jubla.db) and use it for Authorization."
+msgstr ""
+
+#. Author of the plugin
+#: hitobito-oauth.php
+msgid "Swiss Guide and Scout Movement"
+msgstr ""
+
+#. Author URI of the plugin
+#: hitobito-oauth.php
+msgid "https://pfadi.swiss"
+msgstr ""
+
+#: hitobito-oauth.php:275
+msgid "Private site"
+msgstr ""
+
+#: hitobito-oauth.php:305
+msgid "OpenID Connect Generic - Security Configuration Required"
+msgstr ""
+
+#. translators: %s is a link to the settings page
+#: hitobito-oauth.php:312
+#, php-format
+msgid "Your OpenID Connect authentication is using an insecure fallback method. You must configure the <strong>JWKS endpoint</strong> in <a href=\"%s\">plugin settings</a> as soon as possible."
+msgstr ""
+
+#: hitobito-oauth.php:319
+msgid "The current insecure fallback will be removed in version 3.12.0. After that update, authentication will fail until the JWKS endpoint is configured."
+msgstr ""
+
+#: hitobito-oauth.php:322
+msgid "Common JWKS endpoints:"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:106
+#: includes/openid-connect-generic-button-style.php:126
+msgid "Text"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:111
+#: includes/openid-connect-generic-button-style.php:131
+msgid "Background"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:116
+#: includes/openid-connect-generic-button-style.php:136
+msgid "Border"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:121
+#: includes/openid-connect-generic-button-style.php:141
+#: includes/openid-connect-generic-button-style.php:353
+msgid "Icon"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:268
+#: includes/openid-connect-generic-settings-page.php:116
+msgid "Settings"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:269
+msgid "Login Button"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:270
+#: includes/openid-connect-generic-role-mapping.php:356
+msgid "Role Mapping"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:290
+msgid "Hitobito Auth Button"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:339
+msgid "Normal"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:346
+msgid "Hover"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:373
+msgid "SVG Icon"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:474
+msgid "The icon could not be uploaded."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:478
+msgid "The icon must be an SVG file."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:482
+msgid "The icon must not be larger than 100 KB."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:490
+#: includes/openid-connect-generic-button-style.php:500
+msgid "The icon is not a valid SVG file."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:522
+#: includes/openid-connect-generic-login-form.php:154
+msgid "Login with Hitobito"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:558
+msgid "Preview"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:559
+msgid "The preview shows the saved icon. Colors are updated while you edit them. Empty colors keep the styling of your theme."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:617
+msgid "Upload an SVG file (max. 100 KB), e.g. the logo of your Hitobito instance like the MiData. The icon is shown left of the button text and colored with the icon colors above; if no icon color is set it uses the text color. Works best with single-color icons."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:623
+msgid "Remove current icon"
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:636
+msgid "Colors of the login button. Leave a color empty to keep the styling of your theme."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:645
+msgid "Colors of the login button when the mouse is over it or it has the keyboard focus."
+msgstr ""
+
+#: includes/openid-connect-generic-button-style.php:654
+msgid "Personalize the button with the icon of your Hitobito instance."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:581
+msgid "User identity is not linked to an existing WordPress user."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:647
+msgid "Invalid user."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:838
+msgid "No appropriate username found."
+msgstr ""
+
+#. translators: %1$s is the santitized version of the username from the IDP.
+#: includes/openid-connect-generic-client-wrapper.php:848
+#, php-format
+msgid "Username %1$s could not be sanitized."
+msgstr ""
+
+#. translators: %1$s is the configured User Claim nickname key.
+#: includes/openid-connect-generic-client-wrapper.php:870
+#, php-format
+msgid "No nickname found in user claim using key: %1$s."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:1002
+msgid "User claim incomplete."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:1105
+msgid "Bad user claim result."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:1174
+msgid "Can not authorize."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:1203
+msgid "Failed user creation."
+msgstr ""
+
+#: includes/openid-connect-generic-client-wrapper.php:1230
+msgid "Your Hitobito account has no role which grants access to this website."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:272
+msgid "Missing state."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:281
+msgid "The login session is expired. Please reload the page and try again."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:286
+msgid "The login session is invalid or expired. Please reload the page and try again."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:302
+msgid "Missing authentication code."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:347
+msgid "Request for authentication token failed."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:380
+msgid "Refresh token failed."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:395
+msgid "Missing token body."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:403
+msgid "Invalid token."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:464
+msgid "Request for userinfo failed."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:536
+msgid "Missing authentication state."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:573
+msgid "No identity token."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:613
+msgid "Missing identity token."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:672
+msgid "Bad ID token claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:677
+msgid "No subject identity."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:682
+#: includes/openid-connect-generic-jwt-validator.php:184
+msgid "Token missing expiration claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:685
+msgid "Token has expired."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:690
+#: includes/openid-connect-generic-jwt-validator.php:192
+msgid "Token missing issued at claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:695
+#: includes/openid-connect-generic-jwt-validator.php:200
+msgid "Token missing audience claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:708
+#: includes/openid-connect-generic-jwt-validator.php:217
+msgid "Token audience does not match client."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:718
+#: includes/openid-connect-generic-jwt-validator.php:226
+msgid "Token missing issuer claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:733
+#: includes/openid-connect-generic-jwt-validator.php:241
+msgid "Token issuer does not match expected issuer."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:743
+msgid "No matching acr values."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:763
+msgid "Bad user claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:783
+msgid "Invalid user claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:788
+msgid "Error from the IDP."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:797
+msgid "Incorrect user claim."
+msgstr ""
+
+#: includes/openid-connect-generic-client.php:804
+msgid "Unauthorized access."
+msgstr ""
+
+#: includes/openid-connect-generic-jwt-validator.php:127
+msgid "Failed to fetch JWKS from identity provider."
+msgstr ""
+
+#. translators: %d is the HTTP response code
+#: includes/openid-connect-generic-jwt-validator.php:138
+#, php-format
+msgid "JWKS endpoint returned HTTP %d"
+msgstr ""
+
+#: includes/openid-connect-generic-jwt-validator.php:152
+msgid "Invalid JWKS format received from identity provider."
+msgstr ""
+
+#: includes/openid-connect-generic-jwt-validator.php:176
+msgid "Token missing subject claim."
+msgstr ""
+
+#: includes/openid-connect-generic-jwt-validator.php:315
+msgid "JWKS URI not configured. JWT signature verification requires JWKS endpoint."
+msgstr ""
+
+#. translators: %s is the error message
+#: includes/openid-connect-generic-jwt-validator.php:346
+#, php-format
+msgid "JWT verification failed: %s"
+msgstr ""
+
+#. translators: %1$s is the error code from the IDP.
+#: includes/openid-connect-generic-login-form.php:134
+#, php-format
+msgid "ERROR (%1$s)"
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:230
+msgid "Details"
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:231
+msgid "Data"
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:238
+msgid "Date"
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:242
+msgid "Type"
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:246
+msgid "User"
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:250
+msgid "URI "
+msgstr ""
+
+#: includes/openid-connect-generic-option-logger.php:254
+msgid "Response&nbsp;Time&nbsp;(sec)"
+msgstr ""
+
+#: includes/openid-connect-generic-option-settings.php:157
+msgid "TEST MiData [pbs.puzzle.ch]"
+msgstr ""
+
+#: includes/openid-connect-generic-option-settings.php:161
+msgid "PRODUCTION MiData [db.scout.ch]"
+msgstr ""
+
+#: includes/openid-connect-generic-option-settings.php:165
+msgid "PRODUCTION jubla.db [db.jubla.ch]"
+msgstr ""
+
+#: includes/openid-connect-generic-option-settings.php:169
+msgid "TEST jubla.db [jubla.puzzle.ch]"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:168
+msgid "Expected \"group ids | role classes | WordPress role\"."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:177
+msgid "Group ids must be numbers or *."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:182
+msgid "At least one role class or * is required."
+msgstr ""
+
+#. translators: %s is the WordPress role slug entered in the rule.
+#: includes/openid-connect-generic-role-mapping.php:188
+#, php-format
+msgid "The WordPress role \"%s\" does not exist or has administrator capabilities."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:307
+msgid "Hitobito Auth Roles"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:363
+msgid "Enable role mapping"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:371
+msgid "Rules"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:379
+msgid "Users without matching rule"
+msgstr ""
+
+#. translators: %1$d is the line number, %2$s the error message.
+#: includes/openid-connect-generic-role-mapping.php:409
+#, php-format
+msgid "Rule on line %1$d is ignored: %2$s"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:445
+msgid "Assign WordPress roles based on the roles of a user in Hitobito. The role is updated on every login with Hitobito. Administrators are never changed, and no rule can grant administrator access."
+msgstr ""
+
+#. translators: %s is the name of the Hitobito scope.
+#: includes/openid-connect-generic-role-mapping.php:449
+#, php-format
+msgid "The mapping requests the additional scope %s. It has to be enabled for the OAuth application in Hitobito before you enable the mapping, otherwise the login fails."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:486
+msgid "One rule per line: group ids | role classes | WordPress role. Separate several group ids or role classes with commas, * matches everything (e.g. Group::Abteilung::*). The rules are checked from top to bottom and the first matching rule wins, so put the rules with more rights first."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:489
+msgid "Hitobito only reports the group a role is directly in. To match a whole department, list the department and all of its subgroups. Each user profile shows the Hitobito roles of the last login, including the group ids and role classes."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:492
+#: includes/openid-connect-generic-settings-page.php:450
+msgid "Example"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:505
+msgid "— Deny login —"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:513
+msgid "Role for users whose Hitobito roles match no rule, e.g. everyone outside of your organisation. \"Deny login\" blocks them instead and no WordPress account is created for them."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:540
+msgid "Hitobito Roles"
+msgstr ""
+
+#. translators: %s is the name of the Hitobito scope.
+#: includes/openid-connect-generic-role-mapping.php:545
+#, php-format
+msgid "The last login contained no roles. Enable the role mapping (scope %s) and log in again with Hitobito."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:549
+msgid "Roles in Hitobito at the last login."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:553
+msgid "Group id"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:554
+msgid "Group"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:555
+msgid "Role"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:556
+msgid "Role class"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:569
+msgid "No roles."
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:575
+msgid "Mapped WordPress role:"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:578
+msgid "unchanged (administrator)"
+msgstr ""
+
+#: includes/openid-connect-generic-role-mapping.php:580
+msgid "login denied"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:156
+msgid "Client Settings"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:163
+msgid "WordPress User Settings"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:170
+msgid "Log Settings"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:228
+msgid "Client ID"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:229
+msgid "The ID this client will be recognized as when connecting the to Identity provider server."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:236
+msgid "Client Secret Key"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:237
+msgid "Arbitrary secret key the server expects from this client. Can be anything, but should be very unique."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:243
+msgid "Hitobito URL"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:244
+msgid "For testing please use: XXX.puzzle.ch/ and for production please use e.g. db.scout.ch"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:251
+msgid "Create user if does not exist"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:252
+msgid "If the user identity is not linked to an existing WordPress user, it is created. If this setting is not enabled, and if the user authenticates with an account which is not linked to an existing WordPress user, then the authentication will fail."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:258
+msgid "Button Text"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:259
+msgid "The text shown in the button for the Hitobito login."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:265
+msgid "Enable Logging"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:266
+msgid "Very simple log messages for debugging purposes."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:272
+msgid "Log Limit"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:273
+msgid "Number of items to keep in the log. These logs are stored as an option in the database, so space is limited."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:332
+msgid "Notes"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:335
+msgid "Redirect URL:"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:339
+msgid "Login Button Shortcode"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:343
+msgid "Authentication URL Shortcode"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:347
+msgid "MiData Docu"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:351
+msgid "This Plugin was developed by Schlumpf and Vivo during the Hitobito Hackathon 2025. "
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:354
+msgid "(c) 2025-2026 Swiss Guide and Scout Movement"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:357
+msgid "Based on OpenID Connect Generic by Jonathan Daggerhart, Tim Nolte and contributors, licensed under GPLv2 or later."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:361
+msgid "Logs"
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:463
+msgid "Enter your OpenID Connect identity provider settings."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:472
+msgid "Modify the interaction between your Hitobito and WordPress the users."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:481
+msgid "Control the authorization mechanics of the site."
+msgstr ""
+
+#: includes/openid-connect-generic-settings-page.php:490
+msgid "Log information about login attempts through OpenID Connect Generic."
+msgstr ""
