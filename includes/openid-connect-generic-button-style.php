@@ -286,8 +286,8 @@ class OpenID_Connect_Generic_Button_Style {
 	 */
 	public function admin_menu() {
 		add_options_page(
-			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
-			__( 'Hitobito Auth Button', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito OAuth Authentication', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito OAuth Button', 'daggerhart-openid-connect-generic' ),
 			'manage_options',
 			self::PAGE_NAME,
 			array( $this, 'settings_page' )

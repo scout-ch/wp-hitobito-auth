@@ -303,8 +303,8 @@ class OpenID_Connect_Generic_Role_Mapping {
 	 */
 	public function admin_menu() {
 		add_options_page(
-			__( 'Hitobito Auth', 'daggerhart-openid-connect-generic' ),
-			__( 'Hitobito Auth Roles', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito OAuth Authentication', 'daggerhart-openid-connect-generic' ),
+			__( 'Hitobito OAuth Roles', 'daggerhart-openid-connect-generic' ),
 			'manage_options',
 			self::PAGE_NAME,
 			array( $this, 'settings_page' )
