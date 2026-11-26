@@ -15,7 +15,7 @@ return array(
     'Firebase\\JWT\\JWTExceptionWithPayloadInterface' => $vendorDir . '/firebase/php-jwt/src/JWTExceptionWithPayloadInterface.php',
     'Firebase\\JWT\\Key' => $vendorDir . '/firebase/php-jwt/src/Key.php',
     'Firebase\\JWT\\SignatureInvalidException' => $vendorDir . '/firebase/php-jwt/src/SignatureInvalidException.php',
-    'OpenID_Connect_Generic' => $baseDir . '/openid-connect-generic.php',
+    'OpenID_Connect_Generic' => $baseDir . '/hitobito-oauth.php',
     'OpenID_Connect_Generic_Button_Style' => $baseDir . '/includes/openid-connect-generic-button-style.php',
     'OpenID_Connect_Generic_Client' => $baseDir . '/includes/openid-connect-generic-client.php',
     'OpenID_Connect_Generic_Client_Wrapper' => $baseDir . '/includes/openid-connect-generic-client-wrapper.php',

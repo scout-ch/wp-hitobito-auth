@@ -124,7 +124,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 			$this->logger->log( $response, 'jwks-fetch-failed' );
 			return new WP_Error(
 				'jwks-fetch-failed',
-				__( 'Failed to fetch JWKS from identity provider.', 'daggerhart-openid-connect-generic' ),
+				__( 'Failed to fetch JWKS from identity provider.', 'hitobito-oauth' ),
 				$response
 			);
 		}
@@ -135,7 +135,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 				'jwks-fetch-failed',
 				sprintf(
 					/* translators: %d is the HTTP response code */
-					__( 'JWKS endpoint returned HTTP %d', 'daggerhart-openid-connect-generic' ),
+					__( 'JWKS endpoint returned HTTP %d', 'hitobito-oauth' ),
 					$response_code
 				)
 			);
@@ -149,7 +149,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( ! $jwks || ! isset( $jwks['keys'] ) ) {
 			$error = new WP_Error(
 				'jwks-invalid-format',
-				__( 'Invalid JWKS format received from identity provider.', 'daggerhart-openid-connect-generic' )
+				__( 'Invalid JWKS format received from identity provider.', 'hitobito-oauth' )
 			);
 			$this->logger->log( $error, 'jwks-invalid-format' );
 			return $error;
@@ -173,7 +173,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( ! isset( $decoded_jwt->sub ) || empty( $decoded_jwt->sub ) ) {
 			return new WP_Error(
 				'missing-sub',
-				__( 'Token missing subject claim.', 'daggerhart-openid-connect-generic' )
+				__( 'Token missing subject claim.', 'hitobito-oauth' )
 			);
 		}
 
@@ -181,7 +181,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( ! isset( $decoded_jwt->exp ) ) {
 			return new WP_Error(
 				'missing-exp',
-				__( 'Token missing expiration claim.', 'daggerhart-openid-connect-generic' )
+				__( 'Token missing expiration claim.', 'hitobito-oauth' )
 			);
 		}
 
@@ -189,7 +189,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( ! isset( $decoded_jwt->iat ) ) {
 			return new WP_Error(
 				'missing-iat',
-				__( 'Token missing issued at claim.', 'daggerhart-openid-connect-generic' )
+				__( 'Token missing issued at claim.', 'hitobito-oauth' )
 			);
 		}
 
@@ -197,7 +197,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( ! isset( $decoded_jwt->aud ) ) {
 			return new WP_Error(
 				'missing-aud',
-				__( 'Token missing audience claim.', 'daggerhart-openid-connect-generic' )
+				__( 'Token missing audience claim.', 'hitobito-oauth' )
 			);
 		}
 
@@ -214,7 +214,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( ! $audience_valid ) {
 			return new WP_Error(
 				'invalid-aud',
-				__( 'Token audience does not match client.', 'daggerhart-openid-connect-generic' )
+				__( 'Token audience does not match client.', 'hitobito-oauth' )
 			);
 		}
 
@@ -223,7 +223,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 			if ( ! isset( $decoded_jwt->iss ) ) {
 				return new WP_Error(
 					'missing-iss',
-					__( 'Token missing issuer claim.', 'daggerhart-openid-connect-generic' )
+					__( 'Token missing issuer claim.', 'hitobito-oauth' )
 				);
 			}
 
@@ -238,7 +238,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 				);
 				return new WP_Error(
 					'invalid-iss',
-					__( 'Token issuer does not match expected issuer.', 'daggerhart-openid-connect-generic' )
+					__( 'Token issuer does not match expected issuer.', 'hitobito-oauth' )
 				);
 			}
 		}
@@ -312,7 +312,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 		if ( empty( $this->jwks_uri ) ) {
 			$error = new WP_Error(
 				'jwks-not-configured',
-				__( 'JWKS URI not configured. JWT signature verification requires JWKS endpoint.', 'daggerhart-openid-connect-generic' )
+				__( 'JWKS URI not configured. JWT signature verification requires JWKS endpoint.', 'hitobito-oauth' )
 			);
 			$this->logger->log( $error, 'jwks-not-configured' );
 			return $error;
@@ -343,7 +343,7 @@ class OpenID_Connect_Generic_JWT_Validator {
 				'jwt-verification-failed',
 				sprintf(
 					/* translators: %s is the error message */
-					__( 'JWT verification failed: %s', 'daggerhart-openid-connect-generic' ),
+					__( 'JWT verification failed: %s', 'hitobito-oauth' ),
 					$e->getMessage()
 				)
 			);
